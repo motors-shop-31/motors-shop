@@ -1,9 +1,10 @@
 import React from "react";
-import { ProductCard } from "./components/productCard/productCard";
+import { ProductCard } from "./components/ProductCard/productCard";
 import { GlobalStyle } from "./styles";
 import { FontsStyle } from "./styles/fonts";
 
 import { IDataCardFake } from "./interface/productArray";
+import { ButtonStyle } from "./styles/button";
 
 const data: IDataCardFake[] = [
   {
@@ -50,8 +51,23 @@ function App() {
       <GlobalStyle />
       <FontsStyle />
       <ProductCard arrayProduto={data} anuncianteCard={false} />
+      <ButtonStyle />
 
-      <div>dasdas</div>
+      <button className="big grey1">Ola mundo</button>
+      <button className="big negative">Ola mundo</button>
+      <button className="big  disable">Ola mundo</button>
+      <button className="big  brand1">Ola mundo</button>
+      <button className="big  BrandOpacity">Ola mundo</button>
+      <button className="big  Light">Ola mundo</button>
+      <button className="big  outlineLight">Ola mundo</button>
+      <button className="big  Outline1">Ola mundo</button>
+      <button className="big  big45">Ola mundo</button>
+      <button className="big  Outline2">Ola mundo</button>
+      <button className="big  outlineBrand1">Ola mundo</button>
+      <button className="big  link">Ola mundo</button>
+      <button className="big  alert">Ola mundo</button>
+      <button className="big  sucess">Ola mundo</button>
+      <button className="big  brandDisable">Ola mundo</button>
     </>
   );
 }
