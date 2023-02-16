@@ -15,6 +15,12 @@ export const GlobalStyle = createGlobalStyle`
         --grey3: #868E96;
         --grey4: #ADB5BD;
         --grey5: #CED4DA;
+        --grey6: #DEE2E6;
+        --grey7: #E9ECEF;
+        --grey8: #F1F3F5;
+        --grey9: #F8F9FA;
+        --grey10: #FDFDFD;
+        --whiteFixed: #FFFFFF;
         //Feedback
         --alert1: #CD2B31;
         --alert2: #FDD8D8;
@@ -43,6 +49,7 @@ export const GlobalStyle = createGlobalStyle`
         border: none;
         box-sizing: border-box;
     }
+
     button{
         cursor: pointer;
     }
