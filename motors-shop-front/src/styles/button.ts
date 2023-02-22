@@ -2,7 +2,6 @@ import { createGlobalStyle } from "styled-components";
 
 export const ButtonStyle = createGlobalStyle`
 
-
    .big {
     font-family: 'Inter';
     font-style: normal;
@@ -172,7 +171,7 @@ export const ButtonStyle = createGlobalStyle`
             border: 1.5px solid var(--sucess2);
         }
    }
-   
+
    .brandDisable {
         background-color: var(--brand3);
         border: 1.5px solid var(--brand3);
