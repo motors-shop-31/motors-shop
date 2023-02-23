@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { AuctionCard } from "../components/AuctionCard";
 import { FooterStyle } from "../components/Footer/styles";
+import Navbar from "../components/Navbar";
 import { ProductCard } from "../components/ProductCard/productCard";
 import { IDataCard } from "../interface/productArray";
 import { getAllProduct } from "../service/product/getAllProduct";
@@ -27,6 +28,7 @@ const Dashboard = () => {
 
   return (
     <Conteiner>
+      <Navbar />
       <div className="info">
         <div>
           <h1 className="title Heading-3-600">
