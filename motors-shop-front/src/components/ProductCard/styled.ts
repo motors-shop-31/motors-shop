@@ -4,9 +4,16 @@ export const Conteiner = styled.div`
   ul {
     background-color: var(--whiteFixed);
     padding: 1rem;
+    padding-left: 0px;
+
+    margin-left: 1rem;
 
     display: flex;
     gap: 1rem;
+
+    li {
+      cursor: pointer;
+    }
 
     .conteiner--cart {
       position: relative;
@@ -18,6 +25,14 @@ export const Conteiner = styled.div`
 
       align-items: center;
       background-color: var(--grey7);
+
+      img {
+        &:hover {
+          -moz-transform: scale(1.4);
+          -webkit-transform: scale(1.4);
+          transform: scale(1.4);
+        }
+      }
 
       .anuncioStatus {
         position: absolute;
@@ -116,6 +131,13 @@ export const Conteiner = styled.div`
         padding: 4px 8px;
         max-width: 50%;
       }
+    }
+  }
+
+  @media (min-width: 580px) {
+    ul {
+      padding-left: 0px;
+      margin-left: 3.7rem;
     }
   }
 `;
