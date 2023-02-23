@@ -21,6 +21,7 @@ export const GlobalStyle = createGlobalStyle`
         --grey8: #F1F3F5;
         --grey9: #F8F9FA;
         --grey10: #FDFDFD;
+
         --whiteFixed: #FFFFFF;
         //Feedback
         --alert1: #CD2B31;

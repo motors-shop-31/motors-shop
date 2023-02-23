@@ -50,6 +50,7 @@ function App() {
     <>
       <GlobalStyle />
       <FontsStyle />
+
       <ProductCard arrayProduto={data} anuncianteCard={true} />
       <ButtonStyle />
 
@@ -68,6 +69,7 @@ function App() {
       <button className="big  alert">Ola mundo</button>
       <button className="big  sucess">Ola mundo</button>
       <button className="big  brandDisable">Ola mundo</button>
+
     </>
   );
 }
