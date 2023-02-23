@@ -13,7 +13,7 @@ export const FooterStyle = styled.footer`
   gap: 20px;
 
   h1 {
-    color: white;
+    color: var(--whiteFixed);
   }
 
   span {
@@ -21,7 +21,7 @@ export const FooterStyle = styled.footer`
   }
 
   p {
-    color: white;
+    color: var(--whiteFixed);
   }
 
   .arrow-up {
