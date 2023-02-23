@@ -1,26 +1,35 @@
 import { Conteiner } from "./styled";
 
-import { IDataCardFake } from "../../interface/productArray";
+import { IDataCard } from "../../interface/productArray";
 
 interface props {
-  arrayProduto: IDataCardFake[];
+  arrayProduto: IDataCard[];
   anuncianteCard: boolean;
 }
 
 export const ProductCard = ({ arrayProduto, anuncianteCard }: props) => {
+  // console.log(arrayProduto);
   return (
     <Conteiner>
       <ul>
         {arrayProduto.map((vehicle) => {
-          const { description, img, km, logo, price, title, year, status } =
-            vehicle;
+          const {
+            description,
+            cover_image,
+            mileage,
+            price,
+            title,
+            year,
+            published,
+            id,
+          } = vehicle;
 
-          const anuncioStatus = status ? "Ativo" : "Inativo";
+          const anuncioStatus = published ? "Ativo" : "Inativo";
 
           return (
-            <li>
+            <li key={id}>
               <figure className="conteiner--cart">
-                <img src={img} alt="" />
+                <img src={cover_image} alt="Imagen do veiculo sendo vendido" />
                 {anuncianteCard ? (
                   <p className={`anuncioStatus ${anuncioStatus}`}>
                     {anuncioStatus}
@@ -33,13 +42,13 @@ export const ProductCard = ({ arrayProduto, anuncianteCard }: props) => {
 
               <p className="body-2-400 description">{description}</p>
               <figure className="conteiner--logo">
-                <img src={logo} alt="" className="logo" />
+                <img alt="" className="logo" />
                 <p className="body-2-500">Anuciante</p>
               </figure>
 
               <div className="conteiner--info">
                 <div>
-                  <p className="km">{km} KM</p>
+                  <p className="km">{mileage} KM</p>
                   <p className="year">{year}</p>
                 </div>
                 <p className="Heading-7-500 price">R$ {price}</p>
