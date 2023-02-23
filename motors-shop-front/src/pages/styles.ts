@@ -32,6 +32,11 @@ export const Conteiner = styled.div`
 
       gap: 1rem;
       margin-top: 3rem;
+
+      a {
+        text-decoration: none;
+        text-align: center;
+      }
     }
 
     .vehicle {
