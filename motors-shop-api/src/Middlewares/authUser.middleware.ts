@@ -10,8 +10,9 @@ export const authUser = (req: Request, res: Response, next: NextFunction) => {
   jwt.verify(
     token as string,
     process.env.SECRET_KEY as string,
-    (err: any, decoded: any) => {
-      if (err) throw new AppError(err, "Invalid token");
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (err, decoded: any) => {
+      if (err) throw new AppError(400, "Invalid token");
       req.user = { id: decoded.sub };
       next();
     }
