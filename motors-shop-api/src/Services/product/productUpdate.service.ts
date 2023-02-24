@@ -15,7 +15,8 @@ const productUpdateService = async (
     description,
     vehicle,
     published,
-    cover_image }:IProductUpdate,
+    cover_image,
+     }:IProductUpdate,
   id: string):Promise<IProductResponse> => {
   const productsRepository = AppDataSource.getRepository(Product);
   const findProduct = await productsRepository.findOneBy({ id });
