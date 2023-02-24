@@ -31,6 +31,8 @@ export const ButtonStyle = createGlobalStyle`
         background-color: var(--grey0);
         border: 1.5px solid var(--grey0);
 
+        color: var(--whiteFixed);
+
         &:hover {
             background-color: var(--grey1);
             border: 1.5px solid var(--grey1);
@@ -57,6 +59,7 @@ export const ButtonStyle = createGlobalStyle`
    .brand1 {
         background-color: var(--brand1);
         border: 1.5px solid var(--brand1);
+        color: var(--whiteFixed);
 
         &:hover {
             background-color: var(--brand2);

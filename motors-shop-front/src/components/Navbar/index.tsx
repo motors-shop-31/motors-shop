@@ -9,13 +9,21 @@ import {
 } from "@chakra-ui/react";
 import { AiOutlineClose } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const Navigate = useNavigate();
+
   return (
     <>
       <NavbarStyle>
         <div>
-          <h1>MOTORS shop</h1>
+          <button
+            className="button-logo"
+            onClick={() => Navigate("/dashboard", { replace: true })}
+          >
+            <h1>MOTORS shop</h1>
+          </button>
           <MobileStyle>
             <Menu>
               {({ isOpen }) => (
@@ -61,20 +69,14 @@ const Navbar = () => {
             </Menu>
           </MobileStyle>
           <DesktopStyle>
-            <h2>
-              <a href="#carros" className="body-1-600">
-                Carros
-              </a>
+            <h2 className="body-1-600">
+              <a href="#carros">Carros</a>
             </h2>
-            <h2>
-              <a href="#motos" className="body-1-600">
-                Motos
-              </a>
+            <h2 className="body-1-600">
+              <a href="#motos">Motos</a>
             </h2>
-            <h2>
-              <a href="#leilao" className="body-1-600">
-                Leilão
-              </a>
+            <h2 className="body-1-600">
+              <a href="#leilao">Leilão</a>
             </h2>
             <p></p>
             <h3 className="body-1-600">Fazer Login</h3>
