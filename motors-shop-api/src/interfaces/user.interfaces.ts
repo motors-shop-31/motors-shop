@@ -12,6 +12,15 @@ interface ICreateUser {
   address: IAddressCreate;
 }
 
+interface IUser{
+  email: string;
+  name: string;
+  tel: string;
+  description?: string;
+  account_type: string;
+  address: IAddressCreate;
+}
+
 interface IUpdateUser {
   email?: string;
   name?: string;
@@ -33,4 +42,4 @@ interface ITokenInfo {
   id: string;
 }
 
-export { ICreateUser, ILogin, ITokenInfo, IUpdateUser };
+export { ICreateUser, ILogin, ITokenInfo, IUpdateUser, IUser };
