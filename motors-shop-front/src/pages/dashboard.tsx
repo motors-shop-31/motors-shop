@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AuctionCard } from "../components/AuctionCard";
-import { FooterStyle } from "../components/Footer/styles";
+import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { ProductCard } from "../components/ProductCard/productCard";
 import { IDataCard } from "../interface/productArray";
@@ -72,8 +72,7 @@ const Dashboard = () => {
         Motos
       </h2>
       <ProductCard arrayProduto={productMotorbike} anuncianteCard={false} />
-
-      <FooterStyle />
+      <Footer />
     </Conteiner>
   );
 };

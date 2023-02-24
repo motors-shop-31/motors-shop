@@ -9,7 +9,9 @@ const Footer = () => {
           <span>MOTORS</span> shop
         </h1>
         <p className="body-2-400">© 2022 - Todos os direitos reservados.</p>
-        <BsFillArrowUpSquareFill className="arrow-up" />
+        <a href="#top">
+          <BsFillArrowUpSquareFill className="arrow-up" />
+        </a>
       </FooterStyle>
     </>
   );

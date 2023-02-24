@@ -2,6 +2,11 @@ import styled from "styled-components";
 
 export const NavbarStyle = styled.header`
   width: 100%;
+  position: sticky;
+  top: 0;
+  left: 0;
+  height: 80px;
+  z-index: 1;
 
   div {
     width: 100%;
@@ -27,6 +32,9 @@ export const NavbarStyle = styled.header`
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+  .button-logo {
+    background: none;
+  }
 
   .div-button {
     display: flex;
@@ -47,6 +55,11 @@ export const NavbarStyle = styled.header`
   }
 `;
 export const MobileStyle = styled.section`
+  a {
+    text-decoration: none;
+    color: var(--grey2);
+    width: 100%;
+  }
   @media (min-width: 768px) {
     display: none;
   }
@@ -62,8 +75,12 @@ export const DesktopStyle = styled.section`
     align-items: center;
 
     h2 {
-      color: var(--grey2);
       margin-right: 5px;
+
+      a {
+        text-decoration: none;
+        color: var(--grey2);
+      }
     }
 
     p {

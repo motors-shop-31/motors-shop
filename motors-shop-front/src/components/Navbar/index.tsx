@@ -9,13 +9,21 @@ import {
 } from "@chakra-ui/react";
 import { AiOutlineClose } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const Navigate = useNavigate();
+
   return (
     <>
       <NavbarStyle>
         <div>
-          <h1>MOTORS shop</h1>
+          <button
+            className="button-logo"
+            onClick={() => Navigate("/dashboard", { replace: true })}
+          >
+            <h1>MOTORS shop</h1>
+          </button>
           <MobileStyle>
             <Menu>
               {({ isOpen }) => (
@@ -38,12 +46,14 @@ const Navbar = () => {
                   >
                     <section className="body-1-600 items">
                       <MenuDivider />
-                      <MenuItem marginLeft={"16px"}>Carros</MenuItem>
-                      <MenuItem marginLeft={"16px"} marginTop={"10px"}>
-                        Motos
+                      <MenuItem marginLeft={"16px"}>
+                        <a href="#carros">Carros</a>
                       </MenuItem>
                       <MenuItem marginLeft={"16px"} marginTop={"10px"}>
-                        Leilão
+                        <a href="#motos">Motos</a>
+                      </MenuItem>
+                      <MenuItem marginLeft={"16px"} marginTop={"10px"}>
+                        <a href="#leilao">Leilão</a>
                       </MenuItem>
                       <MenuDivider />
                       <MenuItem marginLeft={"12px"} marginTop={"10px"}>
@@ -59,9 +69,15 @@ const Navbar = () => {
             </Menu>
           </MobileStyle>
           <DesktopStyle>
-            <h2 className="body-1-600">Carros</h2>
-            <h2 className="body-1-600">Motos</h2>
-            <h2 className="body-1-600">Leilão</h2>
+            <h2 className="body-1-600">
+              <a href="#carros">Carros</a>
+            </h2>
+            <h2 className="body-1-600">
+              <a href="#motos">Motos</a>
+            </h2>
+            <h2 className="body-1-600">
+              <a href="#leilao">Leilão</a>
+            </h2>
             <p></p>
             <h3 className="body-1-600">Fazer Login</h3>
             <button className="body-1-600 button-desktop">Cadastrar</button>
