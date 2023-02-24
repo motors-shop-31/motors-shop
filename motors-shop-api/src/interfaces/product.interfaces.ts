@@ -1,3 +1,4 @@
+import { Image } from "../entities/image.entity";
 import { IUser } from "./user.interfaces";
 
 interface IProductCreate {
@@ -15,6 +16,7 @@ interface IProductCreate {
 
 interface IProduct{
   user: IUser,
+  id: string;
   type: string;
   title: string;
   year: number;
@@ -22,11 +24,12 @@ interface IProduct{
   price: number;
   description: string;
   vehicle: string;
-  published: boolean;
+  published: boolean; 
   cover_image: string;
-  // image: string[];
+  image: Image[];
 }
 interface IProductUpdate{
+  id: string;
   type?: string;
   title?: string;
   year?: number;
@@ -36,7 +39,7 @@ interface IProductUpdate{
   vehicle?: string;
   published?: boolean;
   cover_image?: string;
-  // image: string[];
+  image?: Image[];
 }
 
 interface IProductList {
