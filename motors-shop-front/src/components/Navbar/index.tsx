@@ -38,12 +38,14 @@ const Navbar = () => {
                   >
                     <section className="body-1-600 items">
                       <MenuDivider />
-                      <MenuItem marginLeft={"16px"}>Carros</MenuItem>
-                      <MenuItem marginLeft={"16px"} marginTop={"10px"}>
-                        Motos
+                      <MenuItem marginLeft={"16px"}>
+                        <a href="#carros">Carros</a>
                       </MenuItem>
                       <MenuItem marginLeft={"16px"} marginTop={"10px"}>
-                        Leilão
+                        <a href="#motos">Motos</a>
+                      </MenuItem>
+                      <MenuItem marginLeft={"16px"} marginTop={"10px"}>
+                        <a href="#leilao">Leilão</a>
                       </MenuItem>
                       <MenuDivider />
                       <MenuItem marginLeft={"12px"} marginTop={"10px"}>
@@ -59,9 +61,21 @@ const Navbar = () => {
             </Menu>
           </MobileStyle>
           <DesktopStyle>
-            <h2 className="body-1-600">Carros</h2>
-            <h2 className="body-1-600">Motos</h2>
-            <h2 className="body-1-600">Leilão</h2>
+            <h2>
+              <a href="#carros" className="body-1-600">
+                Carros
+              </a>
+            </h2>
+            <h2>
+              <a href="#motos" className="body-1-600">
+                Motos
+              </a>
+            </h2>
+            <h2>
+              <a href="#leilao" className="body-1-600">
+                Leilão
+              </a>
+            </h2>
             <p></p>
             <h3 className="body-1-600">Fazer Login</h3>
             <button className="body-1-600 button-desktop">Cadastrar</button>

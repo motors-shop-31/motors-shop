@@ -8,7 +8,7 @@ export const ButtonStyle = createGlobalStyle`
     font-weight: 600;
     font-size: 16px;
 
-    padding: 28px 24px;
+    padding: 1rem 2rem;
     border-radius: 4px;
 
     color: var(--whiteFixed);
@@ -20,9 +20,9 @@ export const ButtonStyle = createGlobalStyle`
     font-weight: 600;
     font-size: 14px;
 
-    padding: 19px 20px;
+    padding: 0.6rem 1rem;
     
-    padding: 1rem;
+    border-radius: 4px;
 
     color: var(--whiteFixed);
    }
