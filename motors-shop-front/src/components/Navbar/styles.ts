@@ -2,6 +2,10 @@ import styled from "styled-components";
 
 export const NavbarStyle = styled.header`
   width: 100%;
+  position: fixed;
+  top: 0px;
+
+  z-index: 1;
 
   div {
     width: 100%;
@@ -41,6 +45,10 @@ export const NavbarStyle = styled.header`
     color: var(--grey0);
     font-weight: bold;
     border-radius: 4px;
+  }
+
+  a {
+    color: var(--grey2);
   }
 
   @media (min-width: 768px) {

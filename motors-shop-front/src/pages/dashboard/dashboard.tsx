@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { AuctionCard } from "../components/AuctionCard";
-import { FooterStyle } from "../components/Footer/styles";
-import Navbar from "../components/Navbar";
-import { ProductCard } from "../components/ProductCard/productCard";
-import { IDataCard } from "../interface/productArray";
-import { getAllProduct } from "../service/product/getAllProduct";
+import { AuctionCard } from "../../components/AuctionCard";
+import Footer from "../../components/Footer";
+import Navbar from "../../components/Navbar";
+import { ProductCard } from "../../components/ProductCard/productCard";
+import { IDataCard } from "../../interface/productArray";
+import { getAllProduct } from "../../service/product/getAllProduct";
 import { Conteiner } from "./styles";
 
 const Dashboard = () => {
@@ -53,27 +53,35 @@ const Dashboard = () => {
       </h2>
       <ul className="leilaoConteiner">
         <li>
-          <AuctionCard />
+          <AuctionCard myAds={false} />
         </li>
         <li>
-          <AuctionCard />
+          <AuctionCard myAds={false} />
         </li>
         <li>
-          <AuctionCard />
+          <AuctionCard myAds={false} />
         </li>
       </ul>
 
       <h2 className="Heading-5-600 tipo" id="carros">
         Carros
       </h2>
-      <ProductCard arrayProduto={productCart} anuncianteCard={false} />
+      <ProductCard
+        arrayProduto={productCart}
+        anuncianteCard={false}
+        myAds={false}
+      />
 
       <h2 className="Heading-5-600 tipo" id="motos">
         Motos
       </h2>
-      <ProductCard arrayProduto={productMotorbike} anuncianteCard={false} />
+      <ProductCard
+        arrayProduto={productMotorbike}
+        anuncianteCard={false}
+        myAds={false}
+      />
 
-      <FooterStyle />
+      <Footer />
     </Conteiner>
   );
 };

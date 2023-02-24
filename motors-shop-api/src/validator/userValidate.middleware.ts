@@ -15,9 +15,9 @@ export const userCreateSchema: Schema<ICreateUser> = yup.object().shape({
     .transform((value, originalValue) => {
       return hashSync(originalValue, 10);
     }),
-  cpf: yup.number().required(),
+  cpf: yup.string().required(),
   birthday: yup.date().required(),
-  tel: yup.number().required(),
+  tel: yup.string().required(),
   description: yup.string(),
   account_type: yup.string().required(),
   address: yup.object().shape({
