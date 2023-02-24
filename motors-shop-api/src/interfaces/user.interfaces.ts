@@ -4,9 +4,9 @@ interface ICreateUser {
   email: string;
   name: string;
   password: string;
-  cpf: number;
+  cpf: string;
   birthday: Date;
-  tel: number;
+  tel: string;
   description?: string;
   account_type: string;
   address: IAddressCreate;
@@ -16,9 +16,9 @@ interface IUpdateUser {
   email?: string;
   name?: string;
   password?: string;
-  cpf?: number;
+  cpf?: string;
   birthday?: string;
-  tel?: number;
+  tel?: string;
   description?: string;
   account_type?: string;
   address?: IAddressCreate;

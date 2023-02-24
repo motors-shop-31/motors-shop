@@ -1,3 +1,5 @@
+import { IUser } from "./userInterface";
+
 export interface IDataCard {
   id: string;
   type: string;
@@ -11,6 +13,7 @@ export interface IDataCard {
   cover_image: string;
   date_creation: string;
   date_update: string;
+  user: IUser;
 
   //A fazer ainda
   image?: any;

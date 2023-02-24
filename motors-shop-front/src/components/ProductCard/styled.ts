@@ -8,11 +8,18 @@ export const Conteiner = styled.div`
 
     margin-left: 1rem;
 
-    display: flex;
     gap: 1rem;
 
     li {
       cursor: pointer;
+    }
+
+    .carroselConteiner {
+      overflow: hidden;
+    }
+
+    ul {
+      display: flex;
     }
 
     .conteiner--cart {
@@ -25,6 +32,11 @@ export const Conteiner = styled.div`
 
       align-items: center;
       background-color: var(--grey7);
+
+      border: 1.25px solid transparent;
+      &:hover {
+        border: 1.25px solid var(--brand1);
+      }
 
       img {
         &:hover {
@@ -130,6 +142,19 @@ export const Conteiner = styled.div`
       .price {
         padding: 4px 8px;
         max-width: 50%;
+      }
+    }
+
+    .conteinerEdit {
+      display: flex;
+      gap: 1rem;
+
+      margin-top: 1rem;
+
+      button:hover {
+        background-color: var(--brand2);
+        border: 1.5px solid var(--brand2);
+        color: var(--grey0);
       }
     }
   }

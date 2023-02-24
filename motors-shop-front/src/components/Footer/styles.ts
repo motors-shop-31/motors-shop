@@ -12,6 +12,8 @@ export const FooterStyle = styled.footer`
   gap: 20px;
   margin-top: 20px;
 
+  margin-top: 2rem;
+
   h1 {
     color: var(--whiteFixed);
   }

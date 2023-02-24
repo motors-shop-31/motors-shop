@@ -1,6 +1,18 @@
 import styled from "styled-components";
 
 export const Conteiner = styled.div`
+  a {
+    text-decoration: none;
+  }
+
+  .carroselConteiner {
+    overflow: hidden;
+  }
+
+  ul {
+    display: flex;
+  }
+
   .info {
     width: 100vw;
     height: 703px;
@@ -60,12 +72,16 @@ export const Conteiner = styled.div`
 
   .leilaoConteiner {
     display: flex;
+    height: 28rem;
 
     gap: 2rem;
 
     margin-top: 1rem;
     margin-left: 1rem;
     margin-bottom: 12.5rem;
+
+    overflow: scroll;
+    overflow-y: hidden;
   }
 
   @media (min-width: 580px) {

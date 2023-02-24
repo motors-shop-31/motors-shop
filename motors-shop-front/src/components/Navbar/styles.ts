@@ -51,6 +51,10 @@ export const NavbarStyle = styled.header`
     border-radius: 4px;
   }
 
+  a {
+    color: var(--grey2);
+  }
+
   @media (min-width: 768px) {
   }
 `;

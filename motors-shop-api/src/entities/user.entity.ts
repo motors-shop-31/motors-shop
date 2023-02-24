@@ -25,14 +25,14 @@ export class User {
   @Column({ length: 250 })
   password: string;
 
-  @Column()
-  cpf: number;
+  @Column({ length: 30 })
+  cpf: string;
 
   @Column()
   birthday: Date;
 
-  @Column()
-  tel: number;
+  @Column({ length: 30 })
+  tel: string;
 
   @Column({ length: 250, nullable: true })
   description: string;
@@ -52,8 +52,6 @@ export class User {
   @JoinColumn()
   address: Address;
 
-  @OneToMany((type) => Product, (products) => products.user, {
-    eager: true,
-  })
+  @OneToMany((type) => Product, (products) => products.user)
   products: Product[];
 }

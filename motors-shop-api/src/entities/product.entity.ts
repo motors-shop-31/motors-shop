@@ -6,6 +6,7 @@ import {
   UpdateDateColumn,
   OneToMany,
   ManyToOne,
+  JoinColumn,
 } from "typeorm";
 import { Comments } from "./comments.entity";
 import { Image } from "./image.entity";
@@ -53,7 +54,8 @@ export class Product {
   })
   comments: Comments[];
 
-  @ManyToOne((type) => User, (user) => user.products)
+  @ManyToOne((type) => User, (user) => user.products, { eager: true })
+  @JoinColumn()
   user: User;
 
   @CreateDateColumn()
