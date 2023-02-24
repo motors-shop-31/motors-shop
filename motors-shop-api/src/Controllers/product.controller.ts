@@ -37,17 +37,16 @@ const productGetAllController = async (req: Request, res: Response) => {
 };
 
 const productGetUserController  = async (req: Request, res: Response) => {
-  const user_id = req.params.id
+  const userId = req.params.id
 
-  const response = await productGetUserService(user_id);
+  const response = await productGetUserService(userId);
   return res.status(200).json(response);
 };
 
 const productDeleteController = async (req: Request, res: Response) => {
   const id = req.params.id
-
-  const response = await productDeleteService(id);
-  return res.status(200).json(response);
+  await productDeleteService(id);
+  return res.status(200).json({ message : "Product deleted successfully"});
 }
 
 const productUpdateController = async (req: Request, res: Response) => {
