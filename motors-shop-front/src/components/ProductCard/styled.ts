@@ -4,9 +4,23 @@ export const Conteiner = styled.div`
   ul {
     background-color: var(--whiteFixed);
     padding: 1rem;
+    padding-left: 0px;
 
-    display: flex;
+    margin-left: 1rem;
+
     gap: 1rem;
+
+    li {
+      cursor: pointer;
+    }
+
+    .carroselConteiner {
+      overflow: hidden;
+    }
+
+    ul {
+      display: flex;
+    }
 
     .conteiner--cart {
       position: relative;
@@ -18,6 +32,19 @@ export const Conteiner = styled.div`
 
       align-items: center;
       background-color: var(--grey7);
+
+      border: 1.25px solid transparent;
+      &:hover {
+        border: 1.25px solid var(--brand1);
+      }
+
+      img {
+        &:hover {
+          -moz-transform: scale(1.4);
+          -webkit-transform: scale(1.4);
+          transform: scale(1.4);
+        }
+      }
 
       .anuncioStatus {
         position: absolute;
@@ -116,6 +143,26 @@ export const Conteiner = styled.div`
         padding: 4px 8px;
         max-width: 50%;
       }
+    }
+
+    .conteinerEdit {
+      display: flex;
+      gap: 1rem;
+
+      margin-top: 1rem;
+
+      button:hover {
+        background-color: var(--brand2);
+        border: 1.5px solid var(--brand2);
+        color: var(--grey0);
+      }
+    }
+  }
+
+  @media (min-width: 580px) {
+    ul {
+      padding-left: 0px;
+      margin-left: 3.7rem;
     }
   }
 `;

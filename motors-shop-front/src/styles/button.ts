@@ -8,7 +8,7 @@ export const ButtonStyle = createGlobalStyle`
     font-weight: 600;
     font-size: 16px;
 
-    padding: 28px 24px;
+    padding: 1rem 2rem;
     border-radius: 4px;
 
     color: var(--whiteFixed);
@@ -20,9 +20,9 @@ export const ButtonStyle = createGlobalStyle`
     font-weight: 600;
     font-size: 14px;
 
-    padding: 19px 20px;
+    padding: 0.6rem 1rem;
     
-    padding: 1rem;
+    border-radius: 4px;
 
     color: var(--whiteFixed);
    }
@@ -30,6 +30,8 @@ export const ButtonStyle = createGlobalStyle`
    .grey1 {
         background-color: var(--grey0);
         border: 1.5px solid var(--grey0);
+
+        color: var(--whiteFixed);
 
         &:hover {
             background-color: var(--grey1);
@@ -57,6 +59,7 @@ export const ButtonStyle = createGlobalStyle`
    .brand1 {
         background-color: var(--brand1);
         border: 1.5px solid var(--brand1);
+        color: var(--whiteFixed);
 
         &:hover {
             background-color: var(--brand2);
