@@ -23,7 +23,7 @@ productRoutes.post(
 );
 
 productRoutes.get("", productGetAllController);
-productRoutes.get("/user/:id",autentificarToken, productGetUserController);
+productRoutes.get("/user/:id", productGetUserController);
 productRoutes.delete("/:id",  autentificarToken, authUser, productDeleteController);
 productRoutes.patch("/:id", autentificarToken, authUser, productUpdateController);
 
