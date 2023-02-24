@@ -1,23 +1,27 @@
 import AppDataSource from "../../data-source";
+import { Image } from "../../entities/image.entity";
 import { Product } from "../../entities/product.entity";
-
-import { AppError } from "../../errors/appError";
-
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const productDeleteService = async ( id : string): Promise<any> => { 
-    const productRepository = AppDataSource.getRepository(Product);
+    const productRepository = AppDataSource.getRepository(Product) 
+    const imageRepository = AppDataSource.getRepository(Image)
+    const produto = await productRepository.findOne({where: { id }})
+    const imagens = produto?.image;
 
-    const findProduct = await productRepository.findOneBy({ id });
+    if(imagens?.length){
+        for(let i = 0; i < imagens?.length; i++){
+            await imageRepository.delete(imagens[i].id);
+        }
+    }
 
-    if(!findProduct){ throw new AppError(400, "Product not found" ) };
-    await productRepository.save(findProduct);
-    
-    const message = { 
-        message: "Product disabled",
-        statusCode: 200
-    };
+    await productRepository
+    .createQueryBuilder("product")
+    .delete()
+    .from(Product)
+    .where("id =:id", { id })
+    .execute();
 
-    return message;
+    return true;
 };
 
 export default productDeleteService;
