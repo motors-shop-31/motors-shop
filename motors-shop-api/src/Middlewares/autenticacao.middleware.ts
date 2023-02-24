@@ -21,6 +21,7 @@ const autentificarToken = (
   jsonWeb.verify(
     token,
     process.env.SECRET_KEY as string,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (error, decoded: any) => {
       if (error) {
         return req
