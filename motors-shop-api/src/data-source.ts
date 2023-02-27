@@ -1,5 +1,12 @@
+import "dotenv/config"
+import { User } from "./entities/user.entity";
+import { Address } from "./entities/address.entity";
+import { Image } from "./entities/image.entity";
+import { Product } from "./entities/product.entity";
+import { Comments } from "./entities/comments.entity";
+import { initialMigration1677061950964 } from "./migrations/1677061950964-initialMigration";
+import { startingTable1677076328388 } from "./migrations/1677076328388-startingTable";
 import { DataSource } from "typeorm";
-import "dotenv/config";
 
 const AppDataSource = new DataSource(
   process.env.NODE_ENV === "test"
@@ -7,7 +14,7 @@ const AppDataSource = new DataSource(
         type: "sqlite",
         database: ":memory:",
         synchronize: true,
-        entities: ["src/entities/*.ts"],
+        entities: [User, Address, Comments, Image, Product],
       }
     : {
         type: "postgres",
@@ -21,8 +28,8 @@ const AppDataSource = new DataSource(
         synchronize: false,
         logging: true,
 
-        entities: ["src/entities/*.ts"],
-        migrations: ["src/migrations/*.ts"],
+        entities: [User, Address, Comments, Image, Product],
+        migrations: [initialMigration1677061950964, startingTable1677076328388],
       }
 );
 

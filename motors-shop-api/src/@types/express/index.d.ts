@@ -5,6 +5,9 @@ import { ICreateUser, ILogin } from "../../interfaces/user.interfaces";
 declare global {
   namespace Express {
     interface Request {
+      user: {
+				id: string;
+			};
       userCreateValidate: ICreateUser;
       loginValidate: ILogin;
       productValidate: IProductCreate;
