@@ -29,9 +29,7 @@ const userCreateService = async ({ address, ...data }: ICreateUser) => {
 
   const newAddress = addressRepository.create(address);
   await addressRepository.save(newAddress);
-
-  console.log(newAddress);
-
+  
   const newUser = userRepository.create({ address: newAddress, ...data });
   await userRepository.save(newUser);
 

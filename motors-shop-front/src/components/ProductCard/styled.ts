@@ -163,6 +163,12 @@ export const Conteiner = styled.div`
     ul {
       padding-left: 0px;
       margin-left: 3.7rem;
+
+      /* .conteiner--cart {
+        width: 25rem;
+        display: flex;
+        justify-content: center;
+      } */
     }
   }
 `;
