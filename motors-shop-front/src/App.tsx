@@ -12,6 +12,7 @@ function App() {
       <FontsStyle />
       <ButtonStyle />
       <MainRoute />
+      
     </>
   );
 }

@@ -12,14 +12,18 @@ import {
   } from '@chakra-ui/react'
 // import * as yup from "yup";
 import { useForm } from "react-hook-form";
-// import { yupResolver } from "@hookform/resolvers/yup";
-import React from 'react'
+import { yupResolver } from "@hookform/resolvers/yup";
+import React, { useContext } from 'react'
 import { Input } from '../Input'
 import { Buttons, FormMain, InputsInfos } from './style';
-
+import { IPostResponse, ValuesFunctions } from '../../contexts/InputsContext';
+import ModalSucess from '../ModalSucess';
+import { ModalHeaderStryled } from '../ModalSucess/style';
 
 function ModalForm() {
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const { formSchema, onSubmitFunction } = useContext(ValuesFunctions);
+  
   
     const initialRef = React.useRef(null)
     const finalRef = React.useRef(null)
@@ -27,13 +31,9 @@ function ModalForm() {
         register,
         handleSubmit,
         formState: { errors }
-      } = useForm({
-        // resolver: yupResolver(formSchema)
+      } = useForm<IPostResponse>({
+        resolver: yupResolver(formSchema)
       });
-  
-    function onSubmitFunction(data: any){
-        console.log(data);
-    }
 
     return (
       <>
@@ -46,7 +46,7 @@ function ModalForm() {
         >
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader>Edição</ModalHeader>
+            <ModalHeaderStryled>Edição</ModalHeaderStryled>
             <ModalCloseButton />
             <ModalBody pb={6}>
               <FormControl onSubmit={handleSubmit(onSubmitFunction)}>
