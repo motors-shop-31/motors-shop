@@ -33,6 +33,8 @@ export const ProductPage = () => {
 
   const Navigate = useNavigate();
 
+  // Math.floor((new Date() - Data Banco) / 86400000)
+
   function comment() {
     console.log(value);
     setValue("");

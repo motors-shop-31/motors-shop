@@ -505,6 +505,11 @@ export const InputComments = styled.div`
     .container {
       width: 720px;
     }
+    .div-input {
+      textarea {
+        width: 490px;
+      }
+    }
   }
 `;
 
