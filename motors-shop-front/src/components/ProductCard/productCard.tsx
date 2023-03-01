@@ -14,8 +14,6 @@ interface props {
 }
 
 export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
-  // console.log(arrayProduto);
-
   const carrosel = useRef<any>();
   const [width, setWidth] = useState(0);
 
@@ -32,7 +30,6 @@ export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
       <motion.div ref={carrosel} className="carroselConteiner">
         <motion.ul drag="x" dragConstraints={{ right: 0, left: -width }}>
           {arrayProduto.map((vehicle) => {
-            console.log(vehicle);
             const {
               description,
               cover_image,
