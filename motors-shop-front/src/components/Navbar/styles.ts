@@ -55,6 +55,10 @@ export const NavbarStyle = styled.header`
     color: var(--grey2);
   }
 
+  .login {
+    cursor: pointer;
+  }
+
   @media (min-width: 768px) {
   }
 `;

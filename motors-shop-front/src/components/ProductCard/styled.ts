@@ -121,6 +121,8 @@ export const Conteiner = styled.div`
     .conteiner--info {
       display: flex;
       justify-content: space-between;
+
+      margin-top: 1rem;
       div {
         display: flex;
 
@@ -164,11 +166,26 @@ export const Conteiner = styled.div`
       padding-left: 0px;
       margin-left: 3.7rem;
 
-      /* .conteiner--cart {
+      li {
+        width: 25rem;
+      }
+    }
+  }
+
+  @media (min-width: 1200px) {
+    ul {
+      padding-left: 0px;
+      margin-left: 3.7rem;
+
+      li {
+        width: 25rem;
+      }
+
+      .conteiner--cart {
         width: 25rem;
         display: flex;
         justify-content: center;
-      } */
+      }
     }
   }
 `;

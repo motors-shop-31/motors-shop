@@ -17,6 +17,11 @@ export const Conteiner = styled.div`
 
     padding: 1rem;
 
+    label {
+      display: block;
+      padding: 5px 0px;
+    }
+
     h1 {
       margin: 1rem 0px;
     }
@@ -56,6 +61,24 @@ export const Conteiner = styled.div`
 
     button {
       width: 100%;
+    }
+  }
+
+  @media (min-width: 425px) {
+    form {
+      width: 70vw;
+    }
+  }
+
+  @media (min-width: 800px) {
+    form {
+      width: 40vw;
+    }
+  }
+
+  @media (min-width: 800px) {
+    form {
+      width: 412px;
     }
   }
 `;

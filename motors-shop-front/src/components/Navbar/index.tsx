@@ -56,7 +56,11 @@ const Navbar = () => {
                         <a href="#leilao">Leilão</a>
                       </MenuItem>
                       <MenuDivider />
-                      <MenuItem marginLeft={"12px"} marginTop={"10px"}>
+                      <MenuItem
+                        marginLeft={"12px"}
+                        marginTop={"10px"}
+                        onClick={() => Navigate("/Login", { replace: false })}
+                      >
                         Fazer login
                       </MenuItem>
                       <div className="div-button">
@@ -79,7 +83,12 @@ const Navbar = () => {
               <a href="#leilao">Leilão</a>
             </h2>
             <p></p>
-            <h3 className="body-1-600">Fazer Login</h3>
+            <h3
+              className="body-1-600 login"
+              onClick={() => Navigate("/Login", { replace: false })}
+            >
+              Fazer Login
+            </h3>
             <button className="body-1-600 button-desktop">Cadastrar</button>
           </DesktopStyle>
         </div>

@@ -4,6 +4,8 @@ import { useNavigate } from "react-router";
 import Navbar from "../../components/Navbar";
 import { Conteiner } from "./styles";
 
+import jwt from "jwt-decode";
+
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
@@ -19,19 +21,21 @@ import {
   ModalHeaderStryled,
 } from "../../components/ModalSucess/style";
 import Footer from "../../components/Footer";
+import { loginPost } from "../../service/login/login";
+import InputError from "../../components/InputError";
 
 const Login = () => {
   const navegar = useNavigate();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const tokenJson = localStorage.getItem("token");
+  // const tokenJson = localStorage.getItem("token");
 
-  useEffect(() => {
-    if (tokenJson) {
-      navegar("/Dashboard", { replace: false });
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (tokenJson) {
+  //     navegar("/Dashboard", { replace: false });
+  //   }
+  // }, []);
 
   const schema = yup.object({
     name: yup.string().required("Campo obrigatorio"),
@@ -47,8 +51,17 @@ const Login = () => {
   });
 
   function login(data) {
-    console.log(data);
-    onOpen();
+    loginPost(data)
+      .then((response) => {
+        const { token } = response.data;
+        const user = jwt(token);
+
+        localStorage.setItem("token", token);
+        localStorage.setItem("userId", user.id);
+
+        navegar("/Dashboard", { replace: false });
+      })
+      .catch((erro) => onOpen());
   }
 
   return (
@@ -57,25 +70,22 @@ const Login = () => {
 
       <form onSubmit={handleSubmit(login)}>
         <h1 className="Heading-5-500">Login</h1>
-        <div>
-          <label htmlFor="usuario">Usuário</label>
-          <input
-            type="text"
-            placeholder="Digitar usuário"
-            id="usuario"
-            {...register("name")}
-          />
-        </div>
 
-        <div>
-          <label htmlFor="senha">Senha</label>
-          <input
-            type="text"
-            placeholder="Digitar senha"
-            id="senha"
-            {...register("password")}
-          />
-        </div>
+        <InputError
+          id="usuario"
+          error={errors.name}
+          placeholder="Digitar usuário"
+          label="Usuário"
+          registerForm={register("name")}
+        />
+
+        <InputError
+          id="senha"
+          error={errors.password}
+          placeholder="Digitar senha"
+          label="Senha"
+          registerForm={register("password")}
+        />
 
         <p className="body-2-500 password">Esqueci minha senha</p>
 
@@ -95,7 +105,7 @@ const Login = () => {
         </ModalContent>
       </Modal>
 
-      {/* <Footer /> */}
+      <Footer />
     </Conteiner>
   );
 };

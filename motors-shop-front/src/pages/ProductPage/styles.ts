@@ -28,6 +28,7 @@ export const Container = styled.div`
     justify-content: center;
 
     background-color: var(--grey10);
+    border-radius: 4px;
 
     img {
       width: 243px;
@@ -86,6 +87,7 @@ export const InfoProduct = styled.div`
   width: 290px;
   height: 255px;
   background-color: var(--grey10);
+  border-radius: 4px;
 
   display: flex;
   flex-direction: column;
@@ -133,6 +135,7 @@ export const Description = styled.div`
   width: 290px;
   height: 254px;
   background-color: var(--grey10);
+  border-radius: 4px;
 
   display: flex;
   flex-direction: column;
@@ -161,6 +164,7 @@ export const PhotosProduct = styled.div`
   width: 290px;
   height: 254px;
   background-color: var(--grey10);
+  border-radius: 4px;
 
   h2 {
     margin-left: 20px;
@@ -190,6 +194,7 @@ export const PhotosProduct = styled.div`
     img {
       width: 50px;
       height: 50px;
+      cursor: pointer;
     }
   }
 
@@ -226,6 +231,7 @@ export const ProfileProduct = styled.div`
   width: 290px;
   height: 294px;
   background-color: var(--grey10);
+  border-radius: 4px;
 
   display: flex;
   flex-direction: column;
@@ -273,10 +279,12 @@ export const Comments = styled.div`
 
   .container {
     width: 290px;
+    padding-bottom: 20px;
     background-color: var(--grey10);
     display: flex;
     flex-direction: column;
     gap: 40px;
+    border-radius: 4px;
   }
 
   .container-comment {
@@ -353,4 +361,189 @@ export const LogoName = styled.div`
   font-size: 14px;
   font-weight: 500;
   color: var(--whiteFixed);
+`;
+
+const randomColor2: string =
+  "--random" + Math.floor(Math.random() * (12 - 0) + 1);
+
+export const InputComments = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
+
+  .container {
+    width: 290px;
+    height: 294px;
+    background-color: var(--grey10);
+    border-radius: 4px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+  }
+
+  .div-name {
+    display: flex;
+    align-items: center;
+    margin-left: 28px;
+    gap: 8px;
+
+    div {
+      width: 32px;
+      height: 32px;
+      border-radius: 100px;
+      background-color: var(${randomColor2});
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--whiteFixed);
+    }
+  }
+
+  .div-input {
+    display: flex;
+    flex-direction: column;
+    margin-left: 28px;
+    gap: 24px;
+
+    textarea {
+      width: 200px;
+      height: 50px;
+      border: 1.5px solid var(--grey7);
+      border-radius: 4px;
+      resize: none;
+
+      padding: 12px;
+
+      font-weight: 400;
+      font-size: 16px;
+      color: var(--grey3);
+    }
+
+    button {
+      width: 108px;
+      height: 35px;
+      border-radius: 4px;
+    }
+  }
+
+  .div-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 28px;
+    gap: 8px;
+
+    button {
+      color: var(--grey3);
+      font-weight: 500;
+      font-size: 12px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      background: var(--grey7);
+      border-radius: 24px;
+      padding: 10px;
+      height: 24px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    align-items: flex-start;
+    width: 0;
+    margin-left: 100px;
+  }
+
+  @media (min-width: 1000px) {
+    .container {
+      width: 520px;
+    }
+    .div-input {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      border-radius: 4px;
+      padding-right: 10px;
+      height: 150px;
+      outline: 2px solid var(--grey7);
+
+      :focus-within {
+        outline: 2px solid black;
+      }
+      textarea {
+        width: 300px;
+        height: 130px;
+        border: none;
+        overflow: hidden;
+        :focus {
+          outline: none;
+        }
+      }
+
+      button {
+        margin-top: 100px;
+      }
+    }
+  }
+
+  @media (min-width: 1400px) {
+    .container {
+      margin-left: 149px;
+    }
+  }
+
+  @media (min-width: 1500px) {
+    .container {
+      width: 720px;
+    }
+    .div-input {
+      textarea {
+        width: 490px;
+      }
+    }
+  }
+`;
+
+export const Figure = styled.div`
+  width: 400px;
+  height: 239px;
+  background-color: var(--grey7);
+  border-radius: 4px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 280px;
+    height: 185px;
+
+    border-radius: 4px;
+  }
+
+  @media (max-width: 768px) {
+    width: 320px;
+
+    img {
+      width: 250px;
+      height: 155px;
+    }
+  }
+`;
+
+export const Issoai = styled.div`
+  @media (max-width: 768px) {
+    .teste {
+      width: 344px;
+    }
+  }
 `;
