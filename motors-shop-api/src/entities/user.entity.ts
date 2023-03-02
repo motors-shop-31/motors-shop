@@ -9,7 +9,9 @@ import {
   OneToMany,
 } from "typeorm";
 import { Address } from "./address.entity";
+import { Comments } from "./comments.entity";
 import { Product } from "./product.entity";
+import { Exclude } from "class-transformer";
 
 @Entity()
 export class User {
@@ -23,6 +25,7 @@ export class User {
   name: string;
 
   @Column({ length: 250 })
+  @Exclude()
   password: string;
 
   @Column({ length: 30 })
@@ -48,10 +51,14 @@ export class User {
 
   @OneToOne((type) => Address, {
     eager: true,
+    onDelete: "CASCADE",
   })
   @JoinColumn()
   address: Address;
 
   @OneToMany((type) => Product, (products) => products.user)
   products: Product[];
+
+  @OneToMany((type) => Comments, (comments) => comments.user, { eager: true })
+  comments: Comments[];
 }
