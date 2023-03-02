@@ -54,6 +54,12 @@ export const ButtonStyle = createGlobalStyle`
    .disable {
         background-color: var(--grey5);
         border: 1.5px solid var(--grey5);
+        
+        font-weight: 600;
+        font-size: 14px;
+        color: #FFFFFF;
+
+        cursor: not-allowed;
    }
 
    .brand1 {

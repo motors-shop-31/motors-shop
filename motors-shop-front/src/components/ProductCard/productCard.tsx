@@ -3,7 +3,9 @@ import { Conteiner } from "./styled";
 import { IDataCard } from "../../interface/productArray";
 
 import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import { AuthContext } from "../../contexts/modalContext";
+import ModalFormEdit from "../ModalEdit";
 
 interface props {
   arrayProduto: IDataCard[];
@@ -16,6 +18,8 @@ export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
 
   const carrosel = useRef<any>();
   const [width, setWidth] = useState(0);
+  const { modal, openModal } = useContext(AuthContext);
+  
 
   useEffect(() => {
     setWidth(carrosel.current?.scrollWidth - carrosel.current?.offsetWidth);
@@ -23,6 +27,7 @@ export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
 
   return (
     <Conteiner>
+      {modal === true ? <ModalFormEdit/> : null }
       <motion.div ref={carrosel} className="carroselConteiner">
         <motion.ul drag="x" dragConstraints={{ right: 0, left: -width }}>
           {arrayProduto.map((vehicle) => {
@@ -75,7 +80,7 @@ export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
                 </div>
                 {myAds ? (
                   <div className="conteinerEdit">
-                    <button className="medium Outline1">Editar</button>
+                    <button onClick={() => openModal()}className="medium Outline1">Editar</button>
                     <button className="medium Outline1">Ver como</button>
                   </div>
                 ) : (
