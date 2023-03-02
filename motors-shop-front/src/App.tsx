@@ -1,10 +1,9 @@
 import React from "react";
 import { GlobalStyle } from "./styles";
 import { FontsStyle } from "./styles/fonts";
-
 import { ButtonStyle } from "./styles/button";
 import { MainRoute } from "./routes/Route";
-import Navbar from "./components/Navbar";
+import ModalForm from "./components/ModalCreate";
 
 function App() {
   return (
@@ -12,8 +11,9 @@ function App() {
       <GlobalStyle />
       <FontsStyle />
       <ButtonStyle />
-
       <MainRoute />
+      {/* <ModalDelete/> */}
+      {/* <ModalForm/> */}
     </>
   );
 }

@@ -5,6 +5,7 @@ import { Dashboard } from "../pages/dashboard/dashboard";
 import { SellerAd } from "../pages/sellerAd/SellerAd";
 import { SellerUserAd } from "../pages/sellerUserAd/SellerUserAd";
 
+
 export const MainRoute = () => {
   return (
     <Routes>

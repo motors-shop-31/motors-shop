@@ -19,3 +19,4 @@ export interface IDataCard {
   image?: any;
   comments?: any;
 }
+

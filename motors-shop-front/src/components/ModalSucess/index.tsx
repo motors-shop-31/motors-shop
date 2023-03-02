@@ -12,16 +12,13 @@ import {
 import { ModalHeaderStryled, ModalBoryStyled } from './style';
 
 
-
-
-
 function ModalSucess() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     return (
       <>
-        <Button onClick={onOpen}>Open Modal</Button>
+        {/* <Button onClick={onOpen}>Open Modal</Button>
   
-        <Modal isOpen={isOpen} onClose={onClose}>
+        <Modal isOpen={isOpen} onClose={onClose} >
           <ModalOverlay />
           <ModalContent>
             <ModalHeaderStryled>Sucesso!</ModalHeaderStryled>
@@ -32,7 +29,7 @@ function ModalSucess() {
               <button>Ir para o login</button>
             </ModalBoryStyled>
           </ModalContent>
-        </Modal>
+        </Modal> */}
       </>
     )
   }
