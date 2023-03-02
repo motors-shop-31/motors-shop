@@ -29,13 +29,13 @@ const Login = () => {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  // const tokenJson = localStorage.getItem("token");
+  const tokenJson = localStorage.getItem("token");
 
-  // useEffect(() => {
-  //   if (tokenJson) {
-  //     navegar("/Dashboard", { replace: false });
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (tokenJson) {
+      navegar("/Dashboard", { replace: false });
+    }
+  }, []);
 
   const schema = yup.object({
     name: yup.string().required("Campo obrigatorio"),
