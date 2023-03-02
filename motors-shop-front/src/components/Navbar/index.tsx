@@ -6,13 +6,24 @@ import {
   MenuItem,
   MenuDivider,
   Button,
+  // Modal,
+  // ModalOverlay,
+  // ModalContent,
+  // ModalCloseButton,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { AiOutlineClose } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useNavigate } from "react-router-dom";
+import { ModalBoryStyled, ModalHeaderStryled } from "../ModalSucess/style";
+import { useState } from "react";
+import { UserModal } from "../userModal/userModal";
+import { UserEditForm } from "../../form/userEdit";
+import { AddressEdit } from "../../form/addresEdit";
 
 const Navbar = () => {
   const Navigate = useNavigate();
+  const [userEdit, setUserEdit] = useState(true);
 
   return (
     <>
@@ -97,6 +108,18 @@ const Navbar = () => {
             </button>
           </DesktopStyle>
         </div>
+
+        {/* <UserModal
+          state={userEdit}
+          setState={setUserEdit}
+          children={<UserEditForm setState={setUserEdit} />}
+        /> */}
+
+        <UserModal
+          state={userEdit}
+          setState={setUserEdit}
+          children={<AddressEdit setState={setUserEdit} />}
+        />
       </NavbarStyle>
     </>
   );
