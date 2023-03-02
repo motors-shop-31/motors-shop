@@ -169,17 +169,6 @@ export const Conteiner = styled.div`
       li {
         width: 25rem;
       }
-    }
-  }
-
-  @media (min-width: 1200px) {
-    ul {
-      padding-left: 0px;
-      margin-left: 3.7rem;
-
-      li {
-        width: 25rem;
-      }
 
       .conteiner--cart {
         width: 25rem;

@@ -15,21 +15,13 @@ const userCreateService = async ({ address, ...data }: ICreateUser) => {
     where: { email: data.email },
   });
 
-  const userNameExist = await userRepository.findOne({
-    where: { name: data.name },
-  });
-
-  if (userEmailExist && userNameExist) {
-    throw new AppError(400, "E-mail and name already registered");
-  } else if (userEmailExist) {
+  if (userEmailExist) {
     throw new AppError(400, "E-mail already registered");
-  } else if (userNameExist) {
-    throw new AppError(400, "Name already registered");
   }
 
   const newAddress = addressRepository.create(address);
   await addressRepository.save(newAddress);
-  
+
   const newUser = userRepository.create({ address: newAddress, ...data });
   await userRepository.save(newUser);
 

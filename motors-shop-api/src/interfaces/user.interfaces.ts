@@ -12,7 +12,7 @@ interface ICreateUser {
   address: IAddressCreate;
 }
 
-interface IUser{
+interface IUser {
   email: string;
   name: string;
   tel: string;
@@ -34,7 +34,7 @@ interface IUpdateUser {
 }
 
 interface ILogin {
-  name: string;
+  email: string;
   password: string;
 }
 

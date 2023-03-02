@@ -6,6 +6,11 @@ export const Conteiner = styled.div`
   width: 100vw;
   height: 100vh;
 
+  .footer {
+    position: fixed;
+    top: -1;
+  }
+
   form {
     background-color: var(--grey10);
 

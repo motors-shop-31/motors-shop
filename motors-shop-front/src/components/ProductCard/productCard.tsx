@@ -3,9 +3,11 @@ import { Conteiner } from "./styled";
 import { IDataCard } from "../../interface/productArray";
 
 import { motion } from "framer-motion";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useContext, useEffect, useMemo, useRef, useState } from "react";
 
 import { LogoName } from "../../pages/ProductPage/styles";
+import { useNavigate } from "react-router-dom";
+import { GlobalContext } from "../../contexts/GlobalContext";
 
 interface props {
   arrayProduto: IDataCard[];
@@ -16,6 +18,14 @@ interface props {
 export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
   const carrosel = useRef<any>();
   const [width, setWidth] = useState(0);
+
+  let widthMove = 0;
+
+  const Navigate = useNavigate();
+
+  const { setProduct } = useContext(GlobalContext);
+
+  // console.log(page);
 
   const color = useMemo(() => {
     return "--random" + Math.floor(Math.random() * (12 - 0) + 1);
@@ -59,7 +69,17 @@ export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
             const anuncioStatus = published ? "Ativo" : "Inativo";
 
             return (
-              <motion.li key={id}>
+              <motion.li
+                key={id}
+                onMouseDown={(e) => {
+                  widthMove = e.clientX;
+                }}
+                onMouseUp={(e) => {
+                  const dif = Math.abs(widthMove - e.clientX);
+                  setProduct(vehicle);
+                  if (dif < 5) Navigate("/product", { replace: false });
+                }}
+              >
                 <figure className="conteiner--cart">
                   <img
                     src={cover_image}

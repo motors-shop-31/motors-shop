@@ -4,7 +4,7 @@ import { BsFillArrowUpSquareFill } from "react-icons/bs";
 const Footer = () => {
   return (
     <>
-      <FooterStyle>
+      <FooterStyle className="footer">
         <h1 className="Heading-5-600">
           <span>MOTORS</span> shop
         </h1>

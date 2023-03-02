@@ -1,4 +1,3 @@
-// import Footer from "../../components/Footer";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import Navbar from "../../components/Navbar";
@@ -38,7 +37,7 @@ const Login = () => {
   }, []);
 
   const schema = yup.object({
-    name: yup.string().required("Campo obrigatorio"),
+    email: yup.string().required("Campo obrigatorio"),
     password: yup.string().required("Campo obrigatorio"),
   });
 
@@ -72,11 +71,11 @@ const Login = () => {
         <h1 className="Heading-5-500">Login</h1>
 
         <InputError
-          id="usuario"
-          error={errors.name}
-          placeholder="Digitar usuário"
-          label="Usuário"
-          registerForm={register("name")}
+          id="email"
+          error={errors.email}
+          placeholder="Digitar email"
+          label="Email"
+          registerForm={register("email")}
         />
 
         <InputError
@@ -91,7 +90,13 @@ const Login = () => {
 
         <button className="medium brand1">Entrar</button>
         <p className="body-2-500">Ainda não possui conta?</p>
-        <button className="medium Outline2">Cadastrar</button>
+        <button
+          className="medium Outline2"
+          type="button"
+          onClick={() => navegar("/Cadastro", { replace: false })}
+        >
+          Cadastrar
+        </button>
       </form>
 
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -104,6 +109,8 @@ const Login = () => {
           </ModalBoryStyled>
         </ModalContent>
       </Modal>
+
+      <div className="spaceFooter"></div>
 
       <Footer />
     </Conteiner>

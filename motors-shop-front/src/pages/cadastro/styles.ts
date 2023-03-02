@@ -4,7 +4,6 @@ export const Conteiner = styled.div`
   background-color: var(--grey7);
 
   width: 100vw;
-  height: 100vh;
 
   form {
     background-color: var(--grey10);

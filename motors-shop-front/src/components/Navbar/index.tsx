@@ -89,7 +89,12 @@ const Navbar = () => {
             >
               Fazer Login
             </h3>
-            <button className="body-1-600 button-desktop">Cadastrar</button>
+            <button
+              className="body-1-600 button-desktop"
+              onClick={() => Navigate("/Cadastro", { replace: false })}
+            >
+              Cadastrar
+            </button>
           </DesktopStyle>
         </div>
       </NavbarStyle>
