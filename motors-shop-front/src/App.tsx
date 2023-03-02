@@ -3,7 +3,7 @@ import { GlobalStyle } from "./styles";
 import { FontsStyle } from "./styles/fonts";
 import { ButtonStyle } from "./styles/button";
 import { MainRoute } from "./routes/Route";
-import ModalForm from "./components/ModalCreate";
+
 
 function App() {
   return (
@@ -12,8 +12,6 @@ function App() {
       <FontsStyle />
       <ButtonStyle />
       <MainRoute />
-      {/* <ModalDelete/> */}
-      {/* <ModalForm/> */}
     </>
   );
 }
