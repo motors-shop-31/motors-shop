@@ -10,9 +10,9 @@ import { AuthContext } from '../../contexts/modalContext';
 import { ModalCloseButton } from "@chakra-ui/react";
 import  { GrFormClose } from "react-icons/gr"
 
-const ModalForm = () =>  {
+const ModalFormEdit = () =>  {
     const { formSchema, onSubmitFunction } = useContext(ValuesFunctions);
-    const { modal, openModal, closeModal } = useContext(AuthContext);
+    const { modal, openModal, closeModal, openModalDelete } = useContext(AuthContext);
   
     const {
         register,
@@ -27,7 +27,7 @@ const ModalForm = () =>  {
       <Modal>
         <ModalBody>
         <ModalHeader>
-          <ModalHeaderStryled>Criar anuncio</ModalHeaderStryled>
+          <ModalHeaderStryled>Editar anuncio</ModalHeaderStryled>
           <GrFormClose id='xis' onClick={() => closeModal()}/>
         </ModalHeader>
         <div>
@@ -50,67 +50,26 @@ const ModalForm = () =>  {
                       <button className='button1'>Carro</button>
                       <button className='button2'>Moto</button>
                   </Buttons> 
-                  <Input label='Imagem de capa' placeholder='https://image.com' {...register("cover_image")}/>         
-                  <Input label='1º imagem da galeria' placeholder='https://image.com' {...register("image")}/>         
-                  <Input label='2º imagem da galeria' placeholder='https://image.com' {...register("image")}/>  
-                  <button id='adcCampo'>Adicionar campo para imagem da galeria</button> 
-                  <ButtonFooter>
-                      <button className='cancel' onClick={() => closeModal()}>Cancelar</button>
-                      <button type='submit' className='enter'>Criar anuncio</button>
-                  </ButtonFooter>
-          </FormMain>
-        </div>
-        </ModalBody>
-      </Modal>
-      {/* <Button onClick={onOpen}>Open Modal</Button> */}
-      {/* <Modal isOpen={isOpen} onClose={onClose}>
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeaderStryled>Criar anuncio</ModalHeaderStryled>
-            <ModalCloseButton />
-            <ModalBody pb={6}>
-              <FormControl onSubmit={handleSubmit(onSubmitFunction)}>
-                <FormMain>
-                  <label className='label'>Tipo do anuncio</label>
-                  <Buttons>
-                      <button className='button1'>Venda</button>
-                      <button className='button2'>Leilão</button>
-                  </Buttons>
-                  <label className='label'>Informações de veículo</label>
-                  <Input label='Título' placeholder='Mercedes Benz A 200 CGI ADVANCE SEDAN'/>
-                  <InputsInfos>
-                      <Input label='Ano' placeholder='2018'/>
-                      <Input label='Quilometragem' placeholder='0'/>
-                      <Input label='Preço' placeholder='50.000.00'/>
-                  </InputsInfos>
-                  <Input  label='Descrição' placeholder='Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s'/> 
-                  <label className='label'>Tipo de veículo</label>
-                  <Buttons>
-                      <button className='button1'>Carro</button>
-                      <button className='button2'>Moto</button>
-                  </Buttons> 
                   <label className='label'>Publicado</label>
                   <Buttons>
                       <button className='button1'>Sim</button>
                       <button className='button2'>Não</button>
                   </Buttons>    
-                  <Input label='Imagem de capa' placeholder='https://image.com'/>         
-                  <Input label='1º imagem da galeria' placeholder='https://image.com'/>         
-                  <Input label='2º imagem da galeria' placeholder='https://image.com'/>  
+                  <Input label='Imagem de capa' placeholder='https://image.com' {...register("cover_image")}/>         
+                  <Input label='1º imagem da galeria' placeholder='https://image.com' {...register("image")}/>         
+                  <Input label='2º imagem da galeria' placeholder='https://image.com' {...register("image")}/>  
                   <button id='adcCampo'>Adicionar campo para imagem da galeria</button> 
-                  <Buttons>
-                      <button className='button1'>Excluir anúncio</button>
-                      <button className='button2'>Salvar alterações</button>
-                  </Buttons>
-                </FormMain>      
-                </FormControl>
-             
-            </ModalBody>
-          </ModalContent>
-        </Modal> */}
+                  <ButtonFooter>
+                      <button className='cancel' onClick={() => openModalDelete()}>Excluir anuncio</button>
+                      <button type='submit' className='enter'>Salvar alterações</button>
+                  </ButtonFooter>
+          </FormMain>
+        </div>
+        </ModalBody>
+      </Modal>
     </>
  ) : null;
 } 
 
 
-export default ModalForm
+export default ModalFormEdit
