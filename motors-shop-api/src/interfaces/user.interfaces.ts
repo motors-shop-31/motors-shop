@@ -1,4 +1,4 @@
-import { IAddressCreate } from "./address.interfaces";
+import { IAddressCreate, IAddressUpdate } from "./address.interfaces";
 
 interface ICreateUser {
   email: string;
@@ -12,7 +12,7 @@ interface ICreateUser {
   address: IAddressCreate;
 }
 
-interface IUser{
+interface IUser {
   email: string;
   name: string;
   tel: string;
@@ -30,7 +30,6 @@ interface IUpdateUser {
   tel?: string;
   description?: string;
   account_type?: string;
-  address?: IAddressCreate;
 }
 
 interface ILogin {

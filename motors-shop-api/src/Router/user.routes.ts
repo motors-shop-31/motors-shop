@@ -1,5 +1,11 @@
 import { Router } from "express";
-import { userCreateController } from "../Controllers/user.controllers";
+import { addressUpdateController } from "../Controllers/address.controller";
+import {
+  userCreateController,
+  userDeleteController,
+  userUpdateController,
+} from "../Controllers/user.controllers";
+import autentificarToken from "../Middlewares/autenticacao.middleware";
 import {
   userCreateSchema,
   validateUserCreate,
@@ -8,5 +14,9 @@ import {
 const userRoutes = Router();
 
 userRoutes.post("", validateUserCreate(userCreateSchema), userCreateController);
+userRoutes.patch("", autentificarToken, userUpdateController);
+userRoutes.delete("/:id", userDeleteController);
+
+userRoutes.patch("/address", autentificarToken, addressUpdateController);
 
 export default userRoutes;
