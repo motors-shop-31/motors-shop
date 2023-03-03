@@ -1,3 +1,4 @@
+import { Exclude } from "class-transformer";
 import {
   Entity,
   Column,
@@ -54,4 +55,12 @@ export class User {
 
   @OneToMany((type) => Product, (products) => products.user)
   products: Product[];
+
+  @Column({ default: null })
+  @Exclude()
+  reset_password_token: string;
+
+  @Column({ type: Date, default: null })
+  @Exclude()
+  reset_password_expires: Date;
 }
