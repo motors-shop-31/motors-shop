@@ -62,12 +62,51 @@ export const NavbarStyle = styled.header`
   @media (min-width: 768px) {
   }
 `;
+
+const randomColor: string =
+  "--random" + Math.floor(Math.random() * (12 - 0) + 1);
+
 export const MobileStyle = styled.section`
   a {
     text-decoration: none;
     color: var(--grey2);
-    width: 100%;
+    width: 80%;
   }
+
+  .div-name {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 28px;
+    gap: 12px;
+
+    height: 50px;
+
+    .name {
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .logo-name {
+      width: 25px;
+      height: 25px;
+      border-radius: 100px;
+      background-color: var(${randomColor});
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--whiteFixed);
+    }
+  }
+
+  .div-info {
+    flex-direction: column;
+    padding-bottom: 5px;
+  }
+
   @media (min-width: 768px) {
     display: none;
   }
@@ -104,6 +143,62 @@ export const DesktopStyle = styled.section`
       color: var(--grey0);
       font-weight: bold;
       border-radius: 4px;
+    }
+
+    .section-name {
+      display: flex;
+      align-items: center;
+      height: 80px;
+      gap: 10px;
+
+      margin-right: 40px;
+    }
+
+    .section-dropdown {
+      display: none;
+      position: absolute;
+      margin-top: 200px;
+      width: 115px;
+      background-color: var(--grey9);
+      box-shadow: 0px 4px 40px -10px rgba(0, 0, 0, 0.5);
+      border-radius: 4px;
+      padding: 20px 20px;
+      z-index: 1;
+      gap: 20px;
+
+      button {
+        background: none;
+        text-align: start;
+        font-weight: 400;
+        font-size: 16px;
+        color: var(--grey2);
+      }
+    }
+
+    .section-name:hover .section-dropdown {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-name {
+      width: 32px;
+      height: 32px;
+      border-radius: 100px;
+      background-color: var(${randomColor});
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--whiteFixed);
+    }
+
+    .name {
+      font-weight: 400;
+      font-size: 16px;
+      color: var(--grey2);
     }
   }
   @media (min-width: 1027px) {
