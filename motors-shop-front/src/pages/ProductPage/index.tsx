@@ -33,8 +33,6 @@ export const ProductPage = () => {
 
   const Navigate = useNavigate();
 
-  // Math.floor((new Date() - Data Banco) / 86400000)
-
   function comment() {
     console.log(value);
     setValue("");
@@ -44,12 +42,17 @@ export const ProductPage = () => {
     {
       name: "joao Dantas",
       description: "oi meu nome é joao e eu me chamou joao",
-      date: "há 2 dias",
+      date: new Date(),
     },
     {
       name: "Clieton",
       description: "oi meu nome é joao e eu me chamou joao",
-      date: "há 2 dias",
+      date: new Date("2023/01/02"),
+    },
+    {
+      name: "Clieton",
+      description: "oi meu nome é joao e eu me chamou joao",
+      date: new Date("2022/01/02"),
     },
   ];
 
