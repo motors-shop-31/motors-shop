@@ -12,7 +12,7 @@ import {
 } from "./styles";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CommentsProduct } from "../../components/CommentsProduct";
 import {
   Modal,
@@ -24,6 +24,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import { GlobalContext } from "../../contexts/GlobalContext";
 
 export const ProductPage = () => {
   const [value, setValue] = useState("");
@@ -34,6 +35,14 @@ export const ProductPage = () => {
   const Navigate = useNavigate();
 
   // Math.floor((new Date() - Data Banco) / 86400000)
+
+  useEffect(() => {
+    if (product.id === undefined) {
+      Navigate("/Dashboard");
+    }
+  });
+
+  const { product } = useContext(GlobalContext);
 
   function comment() {
     console.log(value);

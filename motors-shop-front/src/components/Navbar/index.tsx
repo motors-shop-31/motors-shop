@@ -6,13 +6,24 @@ import {
   MenuItem,
   MenuDivider,
   Button,
+  // Modal,
+  // ModalOverlay,
+  // ModalContent,
+  // ModalCloseButton,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { AiOutlineClose } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useNavigate } from "react-router-dom";
+import { ModalBoryStyled, ModalHeaderStryled } from "../ModalSucess/style";
+import { useState } from "react";
+import { UserModal } from "../userModal/userModal";
+import { UserEditForm } from "../../form/userEdit";
+import { AddressEdit } from "../../form/addresEdit";
 
 const Navbar = () => {
   const Navigate = useNavigate();
+  const [userEdit, setUserEdit] = useState(true);
 
   return (
     <>
@@ -56,7 +67,11 @@ const Navbar = () => {
                         <a href="#leilao">Leilão</a>
                       </MenuItem>
                       <MenuDivider />
-                      <MenuItem marginLeft={"12px"} marginTop={"10px"}>
+                      <MenuItem
+                        marginLeft={"12px"}
+                        marginTop={"10px"}
+                        onClick={() => Navigate("/Login", { replace: false })}
+                      >
                         Fazer login
                       </MenuItem>
                       <div className="div-button">
@@ -79,10 +94,32 @@ const Navbar = () => {
               <a href="#leilao">Leilão</a>
             </h2>
             <p></p>
-            <h3 className="body-1-600">Fazer Login</h3>
-            <button className="body-1-600 button-desktop">Cadastrar</button>
+            <h3
+              className="body-1-600 login"
+              onClick={() => Navigate("/Login", { replace: false })}
+            >
+              Fazer Login
+            </h3>
+            <button
+              className="body-1-600 button-desktop"
+              onClick={() => Navigate("/Cadastro", { replace: false })}
+            >
+              Cadastrar
+            </button>
           </DesktopStyle>
         </div>
+
+        {/* <UserModal
+          state={userEdit}
+          setState={setUserEdit}
+          children={<AddressEdit setState={setUserEdit} />}
+        /> */}
+
+        {/* <UserModal
+          state={userEdit}
+          setState={setUserEdit}
+          children={<UserEditForm setState={setUserEdit} />}
+        /> */}
       </NavbarStyle>
     </>
   );
