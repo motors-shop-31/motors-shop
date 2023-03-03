@@ -56,8 +56,16 @@ const ModalForm = () => {
   });
 
   const onSubmitFunction = (data: FieldValues) => {
-    const request = { ...data, images: imagesURLs }
+    const request = { ...data, image: imagesURLs, published: true }
     console.log(request)
+
+    api.post("/product", request, {
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+      }
+    }).then((res) => {
+      console.log(res.data)
+    })
   };
 
   return (
