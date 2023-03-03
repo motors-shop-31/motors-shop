@@ -33,7 +33,7 @@ interface IUpdateUser {
 }
 
 interface ILogin {
-  name: string;
+  email: string;
   password: string;
 }
 

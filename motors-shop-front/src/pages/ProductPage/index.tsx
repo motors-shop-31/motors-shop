@@ -12,7 +12,7 @@ import {
 } from "./styles";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CommentsProduct } from "../../components/CommentsProduct";
 import {
   Modal,
@@ -24,6 +24,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import { GlobalContext } from "../../contexts/GlobalContext";
 
 export const ProductPage = () => {
   const [value, setValue] = useState("");
@@ -32,6 +33,14 @@ export const ProductPage = () => {
   const [login, Setlogin] = useState(true);
 
   const Navigate = useNavigate();
+
+  useEffect(() => {
+    // if (product.id === undefined) {
+    //   Navigate("/Dashboard");
+    // }
+  });
+
+  const { product } = useContext(GlobalContext);
 
   function comment() {
     console.log(value);
@@ -52,9 +61,10 @@ export const ProductPage = () => {
     {
       name: "Clieton",
       description: "oi meu nome é joao e eu me chamou joao",
-      date: new Date("2022/01/02"),
+      date: new Date("2021/01/02"),
     },
   ];
+  console.log(array[0]);
 
   return (
     <>

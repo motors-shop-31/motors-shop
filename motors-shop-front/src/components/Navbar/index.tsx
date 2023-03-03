@@ -6,16 +6,28 @@ import {
   MenuItem,
   MenuDivider,
   Button,
+  // Modal,
+  // ModalOverlay,
+  // ModalContent,
+  // ModalCloseButton,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { AiOutlineClose } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { ModalBoryStyled, ModalHeaderStryled } from "../ModalSucess/style";
+import { UserModal } from "../userModal/userModal";
+import { UserEditForm } from "../../form/userEdit";
+import { AddressEdit } from "../../form/addresEdit";
+
 
 const Navbar = () => {
   const Navigate = useNavigate();
   const [login, setLogin] = useState(true);
   const [anunciante, setAnunciante] = useState(true);
+  const [userEdit, setUserEdit] = useState(true);
+
 
   return (
     <>
@@ -94,11 +106,11 @@ const Navbar = () => {
                           </>
                         ) : (
                           <>
-                            <MenuItem marginLeft={"12px"} marginTop={"10px"}>
+                            <MenuItem marginLeft={"12px"} marginTop={"10px"} onClick={() => Navigate("/Login", { replace: false })}>
                               Fazer login
                             </MenuItem>
                             <div className="div-button ">
-                              <button className="button-mobile">
+                              <button className="button-mobile" onClick={() => Navigate("/Cadastro", { replace: false })}>
                                 Cadastrar
                               </button>
                             </div>
@@ -137,12 +149,24 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                <h3 className="body-1-600">Fazer Login</h3>
-                <button className="body-1-600 button-desktop">Cadastrar</button>
+                <h3 className="body-1-600" onClick={() => Navigate("/Login", { replace: false })}>Fazer Login</h3>
+                <button className="body-1-600 button-desktop" onClick={() => Navigate("/Cadastro", { replace: false })}>Cadastrar</button>
               </>
             )}
           </DesktopStyle>
         </div>
+
+        {/* <UserModal
+          state={userEdit}
+          setState={setUserEdit}
+          children={<AddressEdit setState={setUserEdit} />}
+        /> */}
+
+        {/* <UserModal
+          state={userEdit}
+          setState={setUserEdit}
+          children={<UserEditForm setState={setUserEdit} />}
+        /> */}
       </NavbarStyle>
     </>
   );

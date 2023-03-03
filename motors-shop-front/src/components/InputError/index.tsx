@@ -1,19 +1,26 @@
 import { Div, Error } from "./styles";
 import { BiErrorCircle } from "react-icons/bi";
-import { FieldError } from "react-hook-form";
+import { FieldError, FieldValues, UseFormRegister } from "react-hook-form";
 
 interface IInuput {
   label: string;
   error: FieldError | undefined;
   placeholder: string;
   id: string;
+  registerForm: UseFormRegister<FieldValues>;
 }
 
-const InputError = ({ id, label, error, placeholder }: IInuput) => {
+const InputError = ({
+  id,
+  label,
+  error,
+  placeholder,
+  registerForm,
+}: IInuput) => {
   return (
     <>
-      <Div>
-        <label>{label}</label>
+      <Div className="Teste">
+        <label htmlFor="id">{label}</label>
         {error?.message && (
           <Error>
             <BiErrorCircle />
@@ -22,8 +29,7 @@ const InputError = ({ id, label, error, placeholder }: IInuput) => {
         )}
       </Div>
       <div className="InputContaine">
-        {/* <input placeholder={placeholder} {...register(id)} /> */}
-        <input placeholder={placeholder} />
+        <input placeholder={placeholder} {...registerForm} />
       </div>
     </>
   );

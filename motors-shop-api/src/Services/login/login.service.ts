@@ -6,21 +6,21 @@ import jwt from "jsonwebtoken";
 import { AppError } from "../../errors/appError";
 import { ILogin } from "../../interfaces/user.interfaces";
 
-const loginService = async ({ name, password }: ILogin) => {
+const loginService = async ({ email, password }: ILogin) => {
   const userRepository = AppDataSource.getRepository(User);
 
   const userExist = await userRepository.findOne({
-    where: { name: name },
+    where: { email: email },
   });
 
   if (!userExist) {
-    throw new AppError(400, "Invalid user or password");
+    throw new AppError(400, "Invalid email or password");
   }
 
   const passwordMatch = await compare(password, userExist.password);
 
   if (!passwordMatch) {
-    throw new AppError(400, "Invalid user or password");
+    throw new AppError(400, "Invalid email or password");
   }
 
   const token = jwt.sign(
