@@ -22,6 +22,10 @@ export const Conteiner = styled.div`
 
     padding: 1rem;
 
+    #forgotPass{
+      cursor: pointer;
+    }
+
     label {
       display: block;
       padding: 5px 0px;

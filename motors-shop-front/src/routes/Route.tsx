@@ -4,16 +4,16 @@ import { ProductPage } from "../pages/ProductPage";
 import { Dashboard } from "../pages/dashboard/dashboard";
 import { SellerAd } from "../pages/sellerAd/SellerAd";
 import { SellerUserAd } from "../pages/sellerUserAd/SellerUserAd";
-import ModalFormEdit from "../components/ModalEdit";
+import ForgotCode from "../pages/forgotCode/forgotCode";
+import ResetPassword from "../pages/resetPassword/resetPassword";
+import { ForgotPassword } from "../pages/forgotPassword/forgotPassword";
 import { Login } from "../pages/login/login";
 import { Cadastro } from "../pages/cadastro/cadastro";
-
-
 
 export const MainRoute = () => {
   return (
     <Routes>
-      <Route path="/" element={<ModalFormEdit />} />
+      {/* <Route path="/" element={<ModalFormEdit />} /> */}
 
       <Route path="/Dashboard" element={<Dashboard />} />
       <Route path="/product" element={<ProductPage />} />
@@ -21,7 +21,10 @@ export const MainRoute = () => {
       <Route path="/MyAds" element={<SellerAd />} />
       <Route path="/Login" element={<Login />} />
       <Route path="/Cadastro" element={<Cadastro />} />
-      {/* <Route path="*" element={<Navigate to="/Login" replace />} /> */}
+      <Route path="/forgotPassword" element={<ForgotPassword />} />
+      <Route path="/forgotPassword/code" element={<ForgotCode />} />
+      <Route path="/forgotPassword/resetPassword" element={<ResetPassword />} />
+      {/* * <Route path="*" element={<Navigate to="/Login" replace />} /> */}
     </Routes>
   );
 };

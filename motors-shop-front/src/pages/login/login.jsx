@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import Navbar from "../../components/Navbar";
@@ -34,7 +35,7 @@ const Login = () => {
     if (tokenJson) {
       navegar("/Dashboard", { replace: false });
     }
-  }, []);
+  }, [navegar, tokenJson]);
 
   const schema = yup.object({
     email: yup.string().required("Campo obrigatorio"),
@@ -86,10 +87,16 @@ const Login = () => {
           registerForm={register("password")}
         />
 
-        <p className="body-2-500 password">Esqueci minha senha</p>
+        <p
+          id="forgotPass"
+          className="body-2-500 password"
+          onClick={() => navegar("/forgotPassword", { replace: false })}
+        >
+          Esqueci minha senha
+        </p>
 
         <button className="medium brand1">Entrar</button>
-        <p className="body-2-500">Ainda não possui conta?</p>
+        <p lassName="body-2-500">Ainda não possui conta?</p>
         <button
           className="medium Outline2"
           type="button"
