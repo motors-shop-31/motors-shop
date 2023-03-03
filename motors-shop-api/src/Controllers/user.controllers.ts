@@ -47,8 +47,7 @@ const UserVerifyPwController = async (req: Request, res: Response) => {
 };
 
 
-export { userCreateController, UserForgotPasswordController, UserResetPasswordController, UserVerifyPwController };
-=======
+
 const userUpdateController = async (req: Request, res: Response) => {
   try {
     const data: IUpdateUser = req.body;
@@ -79,5 +78,5 @@ const userDeleteController = async (req: Request, res: Response) => {
   }
 };
 
-export { userCreateController, userUpdateController, userDeleteController };
+export { userCreateController, userUpdateController, userDeleteController, UserForgotPasswordController, UserResetPasswordController, UserVerifyPwController };
 
