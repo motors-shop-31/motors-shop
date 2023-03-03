@@ -54,7 +54,10 @@ export class Product {
   })
   comments: Comments[];
 
-  @ManyToOne((type) => User, (user) => user.products, { eager: true })
+  @ManyToOne((type) => User, (user) => user.products, {
+    eager: true,
+    onDelete: "CASCADE",
+  })
   @JoinColumn()
   user: User;
 

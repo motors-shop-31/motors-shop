@@ -112,14 +112,14 @@ const Navbar = () => {
         {/* <UserModal
           state={userEdit}
           setState={setUserEdit}
-          children={<UserEditForm setState={setUserEdit} />}
+          children={<AddressEdit setState={setUserEdit} />}
         /> */}
 
-        <UserModal
+        {/* <UserModal
           state={userEdit}
           setState={setUserEdit}
-          children={<AddressEdit setState={setUserEdit} />}
-        />
+          children={<UserEditForm setState={setUserEdit} />}
+        /> */}
       </NavbarStyle>
     </>
   );

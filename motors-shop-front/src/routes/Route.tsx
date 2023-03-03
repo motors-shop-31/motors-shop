@@ -7,6 +7,7 @@ import { SellerUserAd } from "../pages/sellerUserAd/SellerUserAd";
 import { Login } from "../pages/login/login";
 import { Cadastro } from "../pages/cadastro/cadastro";
 
+
 export const MainRoute = () => {
   return (
     <Routes>

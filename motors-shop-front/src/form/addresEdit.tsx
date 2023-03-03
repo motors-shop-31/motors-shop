@@ -44,7 +44,9 @@ export const AddressEdit = ({ setState }: modalProps) => {
         <button className="big negative" onClick={() => setState(false)}>
           Cancelar
         </button>
-        <button className="big brand1">Salvar alterações</button>
+        <button className="big brand1" type="submit">
+          Salvar alterações
+        </button>
       </div>
     </>
   );
