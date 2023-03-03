@@ -9,10 +9,11 @@ import { ModalHeaderStryled } from '../ModalSucess/style';
 import { AuthContext } from '../../contexts/modalContext';
 import { ModalCloseButton } from "@chakra-ui/react";
 import  { GrFormClose } from "react-icons/gr"
+import ModalDelete from "../ModalDelete";
 
 const ModalFormEdit = () =>  {
     const { formSchema, onSubmitFunction } = useContext(ValuesFunctions);
-    const { modal, openModal, closeModal, openModalDelete } = useContext(AuthContext);
+    const { modal, openModal, closeModal, openModalDelete, modalDelete} = useContext(AuthContext);
   
     const {
         register,
@@ -25,6 +26,7 @@ const ModalFormEdit = () =>  {
     return modal === true ? (
       <> 
       <Modal>
+        {modalDelete === true ? <ModalDelete/> : null}
         <ModalBody>
         <ModalHeader>
           <ModalHeaderStryled>Editar anuncio</ModalHeaderStryled>

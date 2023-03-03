@@ -19,6 +19,15 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [modal, setModal] = useState(false);
   const [modalDelete, setModalDelete] = useState(false);
 
+  
+  function openModal() {
+    setModal(true);
+  }
+  
+  function closeModal() {
+    setModal(false);
+  }
+
   function openModalDelete(){
     setModal(false);
     setModalDelete(true);
@@ -27,14 +36,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   function closeModalDelete(){
     setModal(true);
     setModalDelete(false);
-  }
-
-  function openModal() {
-    setModal(true);
-  }
-
-  function closeModal() {
-    setModal(false);
   }
 
   return (

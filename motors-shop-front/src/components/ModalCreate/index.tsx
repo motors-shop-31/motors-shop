@@ -1,13 +1,12 @@
 // import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import React, { useContext } from 'react'
-import { Input } from '../Input'
+import React, { useContext } from 'react';
+import { Input } from '../Input';
 import { ButtonFooter, Buttons, FormMain, InputsInfos, Modal, ModalBody, ModalHeader } from './style';
 import { IPostResponse, ValuesFunctions } from '../../contexts/InputsContext';
 import { ModalHeaderStryled } from '../ModalSucess/style';
 import { AuthContext } from '../../contexts/modalContext';
-import { ModalCloseButton } from "@chakra-ui/react";
 import  { GrFormClose } from "react-icons/gr"
 
 const ModalForm = () =>  {
@@ -62,52 +61,6 @@ const ModalForm = () =>  {
         </div>
         </ModalBody>
       </Modal>
-      {/* <Button onClick={onOpen}>Open Modal</Button> */}
-      {/* <Modal isOpen={isOpen} onClose={onClose}>
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeaderStryled>Criar anuncio</ModalHeaderStryled>
-            <ModalCloseButton />
-            <ModalBody pb={6}>
-              <FormControl onSubmit={handleSubmit(onSubmitFunction)}>
-                <FormMain>
-                  <label className='label'>Tipo do anuncio</label>
-                  <Buttons>
-                      <button className='button1'>Venda</button>
-                      <button className='button2'>Leilão</button>
-                  </Buttons>
-                  <label className='label'>Informações de veículo</label>
-                  <Input label='Título' placeholder='Mercedes Benz A 200 CGI ADVANCE SEDAN'/>
-                  <InputsInfos>
-                      <Input label='Ano' placeholder='2018'/>
-                      <Input label='Quilometragem' placeholder='0'/>
-                      <Input label='Preço' placeholder='50.000.00'/>
-                  </InputsInfos>
-                  <Input  label='Descrição' placeholder='Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s'/> 
-                  <label className='label'>Tipo de veículo</label>
-                  <Buttons>
-                      <button className='button1'>Carro</button>
-                      <button className='button2'>Moto</button>
-                  </Buttons> 
-                  <label className='label'>Publicado</label>
-                  <Buttons>
-                      <button className='button1'>Sim</button>
-                      <button className='button2'>Não</button>
-                  </Buttons>    
-                  <Input label='Imagem de capa' placeholder='https://image.com'/>         
-                  <Input label='1º imagem da galeria' placeholder='https://image.com'/>         
-                  <Input label='2º imagem da galeria' placeholder='https://image.com'/>  
-                  <button id='adcCampo'>Adicionar campo para imagem da galeria</button> 
-                  <Buttons>
-                      <button className='button1'>Excluir anúncio</button>
-                      <button className='button2'>Salvar alterações</button>
-                  </Buttons>
-                </FormMain>      
-                </FormControl>
-             
-            </ModalBody>
-          </ModalContent>
-        </Modal> */}
     </>
  ) : null;
 } 

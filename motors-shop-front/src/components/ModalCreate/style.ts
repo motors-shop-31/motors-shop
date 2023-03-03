@@ -13,6 +13,7 @@ export const ModalHeader = styled.div`
         cursor: pointer;
 
     }
+    overflow-Y: hidden;
 `
 
 export const ModalBody = styled.div`
@@ -24,7 +25,10 @@ export const ModalBody = styled.div`
     max-width: 26.875rem;
     padding: 0.9375rem;
     border-radius: 0.25rem;
-
+    margin-top: 600px;
+    margin-bottom: 100px;
+    overflow-y: scroll;
+    overflow-Y: hidden;
 `
 
 export const Modal = styled.div`
