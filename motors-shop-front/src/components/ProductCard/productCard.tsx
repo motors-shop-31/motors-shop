@@ -3,9 +3,15 @@ import { Conteiner } from "./styled";
 import { IDataCard } from "../../interface/productArray";
 
 import { motion } from "framer-motion";
+
 import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../contexts/modalContext";
 import ModalFormEdit from "../ModalEdit";
+import { useContext, useEffect, useMemo, useRef, useState } from "react";
+import { LogoName } from "../../pages/ProductPage/styles";
+import { useNavigate } from "react-router-dom";
+import { GlobalContext } from "../../contexts/GlobalContext";
+
 
 interface props {
   arrayProduto: IDataCard[];
@@ -14,12 +20,22 @@ interface props {
 }
 
 export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
-  // console.log(arrayProduto);
-
   const carrosel = useRef<any>();
   const [width, setWidth] = useState(0);
   const { modal, openModal } = useContext(AuthContext);
   
+
+  let widthMove = 0;
+
+  const Navigate = useNavigate();
+
+  const { setProduct } = useContext(GlobalContext);
+
+  // console.log(page);
+
+  const color = useMemo(() => {
+    return "--random" + Math.floor(Math.random() * (12 - 0) + 1);
+  }, []);
 
   useEffect(() => {
     setWidth(carrosel.current?.scrollWidth - carrosel.current?.offsetWidth);
@@ -40,12 +56,37 @@ export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
               year,
               published,
               id,
+              user,
             } = vehicle;
+
+            let firstLetter = user.name
+              .trim()
+              .split(" ")[0][0]
+              ?.toLocaleUpperCase();
+            let secondLetter = "";
+
+            if (user.name.split(" ").length > 1) {
+              secondLetter = user.name.split(" ")[1][0]?.toLocaleUpperCase();
+            }
+
+            if (!secondLetter) {
+              secondLetter = "";
+            }
 
             const anuncioStatus = published ? "Ativo" : "Inativo";
 
             return (
-              <motion.li key={id}>
+              <motion.li
+                key={id}
+                onMouseDown={(e) => {
+                  widthMove = e.clientX;
+                }}
+                onMouseUp={(e) => {
+                  const dif = Math.abs(widthMove - e.clientX);
+                  setProduct(vehicle);
+                  if (dif < 5) Navigate("/product", { replace: false });
+                }}
+              >
                 <figure className="conteiner--cart">
                   <img
                     src={cover_image}
@@ -63,10 +104,12 @@ export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
 
                 <p className="body-2-400 description">{description}</p>
                 {!myAds ? (
-                  <figure className="conteiner--logo">
-                    <img alt="" className="logo" />
-                    <p className="body-2-500">Anuciante</p>
-                  </figure>
+                  <div className="conteiner--logo">
+                    <LogoName color={color}>
+                      {`${firstLetter}${secondLetter}`.trim()}
+                    </LogoName>
+                    <p className="body-2-500">{user.name}</p>
+                  </div>
                 ) : (
                   <></>
                 )}

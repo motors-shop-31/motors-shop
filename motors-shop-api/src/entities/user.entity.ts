@@ -10,7 +10,9 @@ import {
   OneToMany,
 } from "typeorm";
 import { Address } from "./address.entity";
+import { Comments } from "./comments.entity";
 import { Product } from "./product.entity";
+import { Exclude } from "class-transformer";
 
 @Entity()
 export class User {
@@ -20,10 +22,11 @@ export class User {
   @Column({ length: 250, unique: true })
   email: string;
 
-  @Column({ length: 250, unique: true })
+  @Column({ length: 250 })
   name: string;
 
   @Column({ length: 250 })
+  @Exclude()
   password: string;
 
   @Column({ length: 30 })
@@ -49,6 +52,7 @@ export class User {
 
   @OneToOne((type) => Address, {
     eager: true,
+    onDelete: "CASCADE",
   })
   @JoinColumn()
   address: Address;
@@ -63,4 +67,8 @@ export class User {
   @Column({ type: Date, default: null })
   @Exclude()
   reset_password_expires: Date;
+
+  @OneToMany((type) => Comments, (comments) => comments.user, { eager: true })
+  comments: Comments[];
+
 }

@@ -1,10 +1,12 @@
 import { LogoName } from "../../pages/ProductPage/styles";
 import { useMemo } from "react";
+import "moment/dist/locale/pt-br";
+import moment from "moment";
 
 interface Iprops {
   name: string;
   description: string;
-  date: string;
+  date: Date;
 }
 
 export const CommentsProduct = ({ name, description, date }: Iprops) => {
@@ -30,7 +32,7 @@ export const CommentsProduct = ({ name, description, date }: Iprops) => {
           {`${firstLetter}${secondLetter}`.trim()}
         </LogoName>
         <h3 className="body-2-500">{name.trim()}</h3>
-        <h4>{date}</h4>
+        <h4>{moment(date).fromNow()}</h4>
       </div>
       <p className="body-2-400">{description}</p>
     </div>

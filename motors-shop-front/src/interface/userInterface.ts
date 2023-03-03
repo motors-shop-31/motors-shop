@@ -3,6 +3,7 @@ import { IAddress } from "./addressInterface";
 export interface IUser {
   id: string;
   email: string;
+  name: string;
   password: string;
   cpf: string;
   birthday: string;

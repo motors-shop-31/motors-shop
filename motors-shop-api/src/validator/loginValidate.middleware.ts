@@ -5,7 +5,7 @@ import { Schema } from "yup";
 import { ILogin } from "../interfaces/user.interfaces";
 
 export const loginCreateSchema: Schema<ILogin> = yup.object().shape({
-  name: yup.string().required(),
+  email: yup.string().required(),
   password: yup.string().required(),
 });
 
