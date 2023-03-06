@@ -1,3 +1,4 @@
+import { Exclude } from "class-transformer";
 import {
   Entity,
   Column,
@@ -11,7 +12,6 @@ import {
 import { Address } from "./address.entity";
 import { Comments } from "./comments.entity";
 import { Product } from "./product.entity";
-import { Exclude } from "class-transformer";
 
 @Entity()
 export class User {
@@ -59,6 +59,15 @@ export class User {
   @OneToMany((type) => Product, (products) => products.user)
   products: Product[];
 
+  @Column({ default: null })
+  @Exclude()
+  reset_password_token: string;
+
+  @Column({ type: Date, default: null })
+  @Exclude()
+  reset_password_expires: Date;
+
   @OneToMany((type) => Comments, (comments) => comments.user, { eager: true })
   comments: Comments[];
+
 }

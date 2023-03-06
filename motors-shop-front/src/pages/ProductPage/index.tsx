@@ -34,12 +34,10 @@ export const ProductPage = () => {
 
   const Navigate = useNavigate();
 
-  // Math.floor((new Date() - Data Banco) / 86400000)
-
   useEffect(() => {
-    if (product.id === undefined) {
-      Navigate("/Dashboard");
-    }
+    // if (product.id === undefined) {
+    //   Navigate("/Dashboard");
+    // }
   });
 
   const { product } = useContext(GlobalContext);
@@ -53,14 +51,20 @@ export const ProductPage = () => {
     {
       name: "joao Dantas",
       description: "oi meu nome é joao e eu me chamou joao",
-      date: "há 2 dias",
+      date: new Date(),
     },
     {
       name: "Clieton",
       description: "oi meu nome é joao e eu me chamou joao",
-      date: "há 2 dias",
+      date: new Date("2023/01/02"),
+    },
+    {
+      name: "Clieton",
+      description: "oi meu nome é joao e eu me chamou joao",
+      date: new Date("2021/01/02"),
     },
   ];
+  console.log(array[0]);
 
   return (
     <>

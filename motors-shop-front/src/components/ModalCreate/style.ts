@@ -29,6 +29,7 @@ export const ModaMessageContainer = styled.div`
     h3 {
         margin: 20px 0;
     }
+    overflow-Y: hidden;
 `
 
 export const ModalCard = styled.div`

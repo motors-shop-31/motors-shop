@@ -35,4 +35,29 @@ const InputError = ({
   );
 };
 
+export const InputErrorPassword = ({
+  id,
+  label,
+  error,
+  placeholder,
+  registerForm,
+}: IInuput) => {
+  return (
+    <>
+      <Div className="Teste">
+        <label htmlFor="id">{label}</label>
+        {error?.message && (
+          <Error>
+            <BiErrorCircle />
+            <span>{error?.message}</span>
+          </Error>
+        )}
+      </Div>
+      <div className="InputContaine">
+        <input type="password" placeholder={placeholder} {...registerForm} />
+      </div>
+    </>
+  );
+};
+
 export default InputError;

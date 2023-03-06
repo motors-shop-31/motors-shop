@@ -17,7 +17,6 @@ const SellerAd = () => {
   const { modal, openModal } = useContext(AuthContext);
   const { isOpen, onOpen } = useDisclosure();
 
-
   const userId = localStorage.getItem("userId");
   console.log(modal)
 
