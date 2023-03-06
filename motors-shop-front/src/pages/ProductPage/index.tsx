@@ -23,8 +23,12 @@ import {
   ModalOverlay,
   useDisclosure,
 } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+
+import { useNavigate, useParams } from "react-router-dom";
 import { GlobalContext } from "../../contexts/GlobalContext";
+import { getAllProduct } from "../../service/product/getAllProduct";
+import { IComments, IDataCard } from "../../interface/productArray";
+import { getAllcommentsByProduct } from "../../service/product/getAllcommentsByProduct";
 
 export const ProductPage = () => {
   const [value, setValue] = useState("");
@@ -32,15 +36,61 @@ export const ProductPage = () => {
   const [img, setImg] = useState("");
   const [login, Setlogin] = useState(true);
 
+  const [load, setLoad] = useState(false);
+
   const Navigate = useNavigate();
 
+  const [productCart, setProductCart] = useState<IDataCard>({} as IDataCard);
+  const [commets, setCommets] = useState<IComments[]>([]);
+
+  const { id } = useParams();
+
   useEffect(() => {
-    // if (product.id === undefined) {
-    //   Navigate("/Dashboard");
-    // }
-  });
+    getAllProduct()
+      .then(({ data }) => {
+        data.forEach((product: IDataCard) => {
+          if (product.id === id) {
+            setProductCart(product);
+            setLoad(true);
+          }
+        });
+      })
+      .catch((err) => console.log(err));
+
+    getAllcommentsByProduct(id!)
+      .then(({ data }) => {
+        setCommets(data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  let logo = window.localStorage.getItem("userNameLogo");
+  let userName = window.localStorage.getItem("userName");
+
+  const {
+    description,
+    cover_image,
+    mileage,
+    price,
+    title,
+    year,
+    published,
+    user,
+    image,
+  } = productCart;
 
   const { product } = useContext(GlobalContext);
+
+  let firstLetterProduc = "";
+  let secondLetterProduc = "";
+
+  if (load) {
+    firstLetterProduc = user.name.trim().split(" ")[0][0]?.toLocaleUpperCase();
+
+    if (user.name.split(" ").length > 1) {
+      secondLetterProduc = user.name.split(" ")[1][0]?.toLocaleUpperCase();
+    }
+  }
 
   function comment() {
     console.log(value);
@@ -64,9 +114,11 @@ export const ProductPage = () => {
       date: new Date("2021/01/02"),
     },
   ];
-  console.log(array[0]);
+  // console.log(array[0]);
 
-  return (
+  return !load ? (
+    <></>
+  ) : (
     <>
       <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
@@ -97,135 +149,76 @@ export const ProductPage = () => {
       <Container>
         <section className="section-main">
           <figure>
-            <img
-              src="https://s2.glbimg.com/RL7sN_k9FVLGtaeK-nx4AtjRgqA=/0x0:2540x1693/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_cf9d035bf26b4646b105bd958f32089d/internal_photos/bs/2020/h/l/4oOMchSDqa6sJkL4a9Tg/ftypefrente.jpg"
-              alt=""
-            />
+            <img src={cover_image} alt="" />
           </figure>
           <InfoProduct>
-            <h2 className="Heading-6-600 ">
-              Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200{" "}
-            </h2>
+            <h2 className="Heading-6-600 ">{title}</h2>
             <div>
-              <h3 className="body-2-500">2013</h3>
-              <h3 className="body-2-500">0 KM</h3>
+              <h3 className="body-2-500">{year}</h3>
+              <h3 className="body-2-500">{mileage} KM</h3>
             </div>
-            <h4 className="Heading-7-500">R$ 00.000,00</h4>
+            <h4 className="Heading-7-500">
+              {price !== undefined
+                ? price.toLocaleString("pt-BR", {
+                    style: "currency",
+                    currency: "BRL",
+                  })
+                : null}
+            </h4>
             <button className="brand1">Comprar</button>
           </InfoProduct>
           <Description>
             <h2 className="Heading-6-600">Descrição</h2>
-            <p className="body-1-400">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book.
-            </p>
+            <p className="body-1-400">{description}</p>
           </Description>
         </section>
         <section className="section-fixed">
           <PhotosProduct>
             <h2>Fotos</h2>
             <ul>
-              <li>
-                <img
-                  onClick={() => {
-                    setImg(
-                      "https://s2.glbimg.com/RL7sN_k9FVLGtaeK-nx4AtjRgqA=/0x0:2540x1693/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_cf9d035bf26b4646b105bd958f32089d/internal_photos/bs/2020/h/l/4oOMchSDqa6sJkL4a9Tg/ftypefrente.jpg"
-                    );
-                    onOpen();
-                  }}
-                  src="https://s2.glbimg.com/RL7sN_k9FVLGtaeK-nx4AtjRgqA=/0x0:2540x1693/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_cf9d035bf26b4646b105bd958f32089d/internal_photos/bs/2020/h/l/4oOMchSDqa6sJkL4a9Tg/ftypefrente.jpg"
-                  alt=""
-                />
-              </li>
-              <li>
-                <img
-                  onClick={() => {
-                    setImg(
-                      "https://revistacarro.com.br/wp-content/uploads/2022/05/Q3-Sportback-Performance-Black_1.jpg"
-                    );
-                    onOpen();
-                  }}
-                  src="https://revistacarro.com.br/wp-content/uploads/2022/05/Q3-Sportback-Performance-Black_1.jpg"
-                  alt=""
-                />
-              </li>
-              <li>
-                <img
-                  onClick={() => {
-                    setImg(
-                      "https://s2.glbimg.com/RL7sN_k9FVLGtaeK-nx4AtjRgqA=/0x0:2540x1693/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_cf9d035bf26b4646b105bd958f32089d/internal_photos/bs/2020/h/l/4oOMchSDqa6sJkL4a9Tg/ftypefrente.jpg"
-                    );
-                    onOpen();
-                  }}
-                  src="https://s2.glbimg.com/RL7sN_k9FVLGtaeK-nx4AtjRgqA=/0x0:2540x1693/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_cf9d035bf26b4646b105bd958f32089d/internal_photos/bs/2020/h/l/4oOMchSDqa6sJkL4a9Tg/ftypefrente.jpg"
-                  alt=""
-                />
-              </li>
-              <li>
-                <img
-                  onClick={() => {
-                    setImg(
-                      "https://s2.glbimg.com/RL7sN_k9FVLGtaeK-nx4AtjRgqA=/0x0:2540x1693/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_cf9d035bf26b4646b105bd958f32089d/internal_photos/bs/2020/h/l/4oOMchSDqa6sJkL4a9Tg/ftypefrente.jpg"
-                    );
-                    onOpen();
-                  }}
-                  src="https://s2.glbimg.com/RL7sN_k9FVLGtaeK-nx4AtjRgqA=/0x0:2540x1693/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_cf9d035bf26b4646b105bd958f32089d/internal_photos/bs/2020/h/l/4oOMchSDqa6sJkL4a9Tg/ftypefrente.jpg"
-                  alt=""
-                />
-              </li>
-              <li>
-                <img
-                  onClick={() => {
-                    setImg(
-                      "https://s2.glbimg.com/RL7sN_k9FVLGtaeK-nx4AtjRgqA=/0x0:2540x1693/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_cf9d035bf26b4646b105bd958f32089d/internal_photos/bs/2020/h/l/4oOMchSDqa6sJkL4a9Tg/ftypefrente.jpg"
-                    );
-                    onOpen();
-                  }}
-                  src="https://s2.glbimg.com/RL7sN_k9FVLGtaeK-nx4AtjRgqA=/0x0:2540x1693/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_cf9d035bf26b4646b105bd958f32089d/internal_photos/bs/2020/h/l/4oOMchSDqa6sJkL4a9Tg/ftypefrente.jpg"
-                  alt=""
-                />
-              </li>
-              <li>
-                <img
-                  onClick={() => {
-                    setImg(
-                      "https://s2.glbimg.com/RL7sN_k9FVLGtaeK-nx4AtjRgqA=/0x0:2540x1693/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_cf9d035bf26b4646b105bd958f32089d/internal_photos/bs/2020/h/l/4oOMchSDqa6sJkL4a9Tg/ftypefrente.jpg"
-                    );
-                    onOpen();
-                  }}
-                  src="https://s2.glbimg.com/RL7sN_k9FVLGtaeK-nx4AtjRgqA=/0x0:2540x1693/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_cf9d035bf26b4646b105bd958f32089d/internal_photos/bs/2020/h/l/4oOMchSDqa6sJkL4a9Tg/ftypefrente.jpg"
-                  alt=""
-                />
-              </li>
+              {image?.map((img: any) => {
+                return (
+                  <li key={img.id}>
+                    <img
+                      onClick={() => {
+                        setImg(img.image);
+                        onOpen();
+                      }}
+                      src={img.image}
+                      alt=""
+                    />
+                  </li>
+                );
+              })}
             </ul>
           </PhotosProduct>
           <ProfileProduct>
-            <div>SL</div>
-            <h2>Samuel Leão</h2>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's
-            </p>
-            <button className="grey1">Ver todos anuncios</button>
+            <div>{`${firstLetterProduc}${secondLetterProduc}`.trim()}</div>
+            <h2>{user.name}</h2>
+            <p>{user.description}</p>
+            <button
+              className="grey1"
+              onClick={() => Navigate(`/seller/${user.id}`, { replace: false })}
+            >
+              Ver todos anuncios
+            </button>
           </ProfileProduct>
         </section>
       </Container>
       <Comments>
         <div className="container">
           <h2 className="Heading-6-600">Comentários</h2>
-          {array &&
-            array.map((item, i) => {
-              return (
-                <CommentsProduct
-                  date={item.date}
-                  description={item.description}
-                  name={item.name}
-                  key={i}
-                />
-              );
-            })}
+
+          {commets.map((item: IComments) => {
+            return (
+              <CommentsProduct
+                date={item.date_creation}
+                description={item.text}
+                name={item.user.name}
+                key={item.id}
+              />
+            );
+          })}
         </div>
       </Comments>
       <InputComments>
@@ -233,8 +226,8 @@ export const ProductPage = () => {
           <div className="div-name">
             {login ? (
               <>
-                <div>SL</div>
-                <h3 className="body-2-500">Samuel Leão</h3>
+                <div>{logo}</div>
+                <h3 className="body-2-500">{userName}</h3>
               </>
             ) : (
               <></>

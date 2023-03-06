@@ -1,5 +1,12 @@
 import { IUser } from "./userInterface";
 
+export interface IComments {
+  id: string;
+  text: string;
+  date_creation: string;
+  user: IUser;
+}
+
 export interface IDataCard {
   id: string;
   type: string;
@@ -16,7 +23,5 @@ export interface IDataCard {
   user: IUser;
 
   //A fazer ainda
-  image?: any;
-  comments?: any;
+  image?: string[];
 }
-

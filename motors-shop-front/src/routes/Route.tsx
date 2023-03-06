@@ -16,7 +16,7 @@ export const MainRoute = () => {
       {/* <Route path="/" element={<ModalFormEdit />} /> */}
 
       <Route path="/Dashboard" element={<Dashboard />} />
-      <Route path="/product" element={<ProductPage />} />
+      <Route path="/product/:id" element={<ProductPage />} />
       <Route path="/seller/:id" element={<SellerUserAd />} />
       <Route path="/MyAds" element={<SellerAd />} />
       <Route path="/Login" element={<Login />} />

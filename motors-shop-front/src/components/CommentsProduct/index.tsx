@@ -6,7 +6,7 @@ import moment from "moment";
 interface Iprops {
   name: string;
   description: string;
-  date: Date;
+  date: string;
 }
 
 export const CommentsProduct = ({ name, description, date }: Iprops) => {

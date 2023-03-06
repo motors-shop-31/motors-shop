@@ -1,6 +1,4 @@
-import { useDisclosure } from "@chakra-ui/react";
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { AuctionCard } from "../../components/AuctionCard";
 import Footer from "../../components/Footer";
 import ModalForm from "../../components/ModalCreate";
@@ -18,7 +16,7 @@ const SellerAd = () => {
   const { isOpen, onOpen } = useDisclosure();
 
   const userId = localStorage.getItem("userId");
-  console.log(modal)
+  console.log(modal);
 
   useEffect(() => {
     getAllProduct()
@@ -40,6 +38,7 @@ const SellerAd = () => {
   }, []);
 
   return (
+
     <>
       {modal ? <ModalForm /> : null}
       <Conteiner>

@@ -8,7 +8,7 @@ import userVerifyPwService from "../Services/user/userVerifyPw.service";
 import userDeleteService from "../Services/user/userDelete.service";
 import userUpdateService from "../Services/user/userUpdate.service";
 import { instanceToPlain } from "class-transformer";
-
+import userListById from "../Services/user/userGetOne.service";
 
 const userCreateController = async (req: Request, res: Response) => {
   try {
@@ -24,29 +24,38 @@ const userCreateController = async (req: Request, res: Response) => {
   }
 };
 
+const userById = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.ITokenInfo;
+    const resp = await userListById(id);
+
+    return res.status(201).json(resp);
+  } catch (err) {
+    if (err instanceof AppError) {
+      handleError(err, res);
+    }
+  }
+};
 
 const UserForgotPasswordController = async (req: Request, res: Response) => {
-	const { email } = req.body;
-	console.log(email)
-	const codePassword = await userForgotPasswordService({ email });
-	return res.status(200).send(codePassword)
+  const { email } = req.body;
+  console.log(email);
+  const codePassword = await userForgotPasswordService({ email });
+  return res.status(200).send(codePassword);
 };
 
 const UserResetPasswordController = async (req: Request, res: Response) => {
-	const newPassword = req.body;
-    const { code } = req.params
-	const userPassword = await userResetPasswordService(newPassword, code);
-	return res.status(200).send(userPassword)
+  const newPassword = req.body;
+  const { code } = req.params;
+  const userPassword = await userResetPasswordService(newPassword, code);
+  return res.status(200).send(userPassword);
 };
-
 
 const UserVerifyPwController = async (req: Request, res: Response) => {
-	const { code } = req.body;
-	const userCode = await userVerifyPwService({ code });
-	return res.status(200).send(userCode)
+  const { code } = req.body;
+  const userCode = await userVerifyPwService({ code });
+  return res.status(200).send(userCode);
 };
-
-
 
 const userUpdateController = async (req: Request, res: Response) => {
   try {
@@ -78,5 +87,12 @@ const userDeleteController = async (req: Request, res: Response) => {
   }
 };
 
-export { userCreateController, userUpdateController, userDeleteController, UserForgotPasswordController, UserResetPasswordController, UserVerifyPwController };
-
+export {
+  userCreateController,
+  userUpdateController,
+  userDeleteController,
+  UserForgotPasswordController,
+  UserResetPasswordController,
+  UserVerifyPwController,
+  userById,
+};

@@ -40,8 +40,8 @@ export class User {
   @Column({ length: 250, nullable: true })
   description: string;
 
-  @Column({ length: 250 })
-  account_type: string;
+  @Column()
+  account_type: boolean;
 
   @CreateDateColumn()
   date_creation: Date;
@@ -67,7 +67,6 @@ export class User {
   @Exclude()
   reset_password_expires: Date;
 
-  @OneToMany((type) => Comments, (comments) => comments.user, { eager: true })
+  @OneToMany((type) => Comments, (comments) => comments.user)
   comments: Comments[];
-
 }

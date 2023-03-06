@@ -11,7 +11,6 @@ import { LogoName } from "../../pages/ProductPage/styles";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../contexts/GlobalContext";
 
-
 interface props {
   arrayProduto: IDataCard[];
   anuncianteCard: boolean;
@@ -22,15 +21,12 @@ export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
   const carrosel = useRef<any>();
   const [width, setWidth] = useState(0);
   const { modal, openModal } = useContext(AuthContext);
-  
 
   let widthMove = 0;
 
   const Navigate = useNavigate();
 
   const { setProduct } = useContext(GlobalContext);
-
-  // console.log(page);
 
   const color = useMemo(() => {
     return "--random" + Math.floor(Math.random() * (12 - 0) + 1);
@@ -42,7 +38,7 @@ export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
 
   return (
     <Conteiner>
-      {modal === true ? <ModalFormEdit/> : null }
+      {modal === true ? <ModalFormEdit /> : null}
       <motion.div ref={carrosel} className="carroselConteiner">
         <motion.ul drag="x" dragConstraints={{ right: 0, left: -width }}>
           {arrayProduto.map((vehicle) => {
@@ -83,7 +79,7 @@ export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
                 onMouseUp={(e) => {
                   const dif = Math.abs(widthMove - e.clientX);
                   setProduct(vehicle);
-                  if (dif < 5) Navigate("/product", { replace: false });
+                  if (dif < 5) Navigate(`/product/${id}`, { replace: false });
                 }}
               >
                 <figure className="conteiner--cart">
@@ -118,11 +114,21 @@ export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
                     <p className="km">{mileage} KM</p>
                     <p className="year">{year}</p>
                   </div>
-                  <p className="Heading-7-500 price">R$ {price}</p>
+                  <p className="Heading-7-500 price">
+                    {price.toLocaleString("pt-BR", {
+                      style: "currency",
+                      currency: "BRL",
+                    })}
+                  </p>
                 </div>
                 {myAds ? (
                   <div className="conteinerEdit">
-                    <button onClick={() => openModal()}className="medium Outline1">Editar</button>
+                    <button
+                      onClick={() => openModal()}
+                      className="medium Outline1"
+                    >
+                      Editar
+                    </button>
                     <button className="medium Outline1">Ver como</button>
                   </div>
                 ) : (
