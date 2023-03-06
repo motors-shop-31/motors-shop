@@ -1,8 +1,11 @@
 import styled from "styled-components";
 
 export const Conteiner = styled.div`
+
+  max-width: 100%;
+
   .backGroudHeader {
-    width: 100vw;
+    width: 100%;
     height: 357px;
     background-color: var(--brand2);
 

@@ -1,145 +1,160 @@
 import styled from "styled-components";
 
 
-export const ModalHeader = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-
-    #xis{
-        width: 1.5625rem;
-        height: 1.5625rem;
-        cursor: pointer;
-
-    }
-    overflow-Y: hidden;
-`
-
-export const ModalBody = styled.div`
-    background-color: var(--whiteFixed);
-    width: auto;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    max-width: 26.875rem;
-    padding: 0.9375rem;
-    border-radius: 0.25rem;
-    margin-top: 600px;
-    margin-bottom: 100px;
-    overflow-y: scroll;
-    overflow-Y: hidden;
-`
-
-export const Modal = styled.div`
+export const ModalBackground = styled.div`
+    position: fixed;
     width: 100%;
     height: 100vh;
-    display: flex;
-    justify-content: center;
-    position: fixed;
-    align-items: center;
-    z-index: 1;
-    overflow-y: auto;
-    background-color: rgb(0, 0, 0);
+    max-height: 100vh;
+    z-index: 2;
     background-color: rgba(0, 0, 0, 0.4);
 `
 
-export const Buttons = styled.div`
+export const ModalContainer = styled.div`
+    position: relative;
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    padding: 0.625rem 0rem 0.625rem 0.9375rem;
-
-    .button1{
-        width: 47%;
-        color: #000;
-        font-size: 1rem;
-        font-weight: 600;
-        height: 2.8125rem;
-        border: none;
-        border-radius: 0.25rem;
-        border: 0.0625rem solid var(--grey4);
-
-        :hover{
-            background-color: var(--brand1);
-            color: #fff;
-        }
-        
-    }
-    .button2{
-        width: 47%;
-        height: 2.8125rem;
-        font-size: 1rem;
-        font-weight: 600;
-        border-radius: 0.25rem;
-        border: 0.0625rem solid var(--grey4);
-        :hover{
-            background-color: var(--brand1);
-            color: #fff;
-        }
-    }
-
-    
-`
-
-export const ButtonFooter = styled.div`
-    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    justify-content: flex-end;
-    gap: 0.625rem;
-    margin-top: 1.25rem;
-.cancel{
-        width: 28%;
-        color: #000;
-        font-size: 1rem;
-        font-weight: 600;
-        height: 2.5rem;
-        border: none;
-        border-radius: 0.25rem;
-        border: 0.0625rem solid var(--grey4);
-        :hover{
-            background-color: var(--brand1);
-            color: #fff;
-        }
-    }
-    .enter {
-        width: 38%;
-        height: 2.5rem;
-        font-size: 1rem;
-        font-weight: 600;
-        border-radius: 0.25rem;
-        border: 0.0625rem solid var(--grey4);
-        :hover{
-            background-color: var(--brand1);
-            color: #fff;
-        }
-    }
+    height: 100vh;
+    padding: 20px;
+    background-color: transparent;
+    overflow-y: scroll;
 `
 
-export const InputsInfos = styled.div`
+export const ModaMessageContainer = styled.div`
+    h2 {
+        margin-top: 30px;
+    }
+    h3 {
+        margin: 20px 0;
+    }
+    overflow-Y: hidden;
+`
+
+export const ModalCard = styled.div`
+    position: relative;
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    flex-direction: column;
+    width: 100%;
+    max-width: 26.875rem;
+    height: fit-content;
+    padding: 20px;
+    margin-top: 515px;
+    border-radius: 0.25rem;
+    background-color: var(--whiteFixed);
 `
 
-export const FormMain = styled.form`
-    .label { 
-        font-size: 0.875rem;
+export const ModalUpContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 38px;
+
+    .modal_title {
+        font-size: 1rem;
         font-weight: 500;
-        margin-bottom: 0.5rem;
-        padding: 0.625rem 0rem 0.625rem 0.9375rem;
+        font-family: 'Lexend';
     }
 
-    #adcCampo{
-        width: auto;
-        padding: 0.625rem;
-        margin-left: 0.9375rem;
-        background-color: var(--brand4);
-        color: var(--brand1);
-        font-size: 0.875rem;
-        font-weight: 600;
-        border-radius: 0.25rem;
-
+    #xis{
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
     }
-   
+`
+export const ModalFormContainer = styled.form`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+`
+
+export const DefaultInputContainer = styled.label`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    h2 {
+        margin-bottom: 18px;
+    }
+
+    input, textarea {
+        display: flex;
+        width: 100%;
+        padding: 20px 16px;
+        border: 1.5px solid #e9ecef;
+        border-radius: 4px;
+    }
+
+    input,textarea::placeholder {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+    }
+
+    textarea {
+        box-sizing: border-box;
+        max-width: 100%;
+        min-width: 100%;
+    }
+
+    span {
+        display: flex;
+        align-items: center;
+        height: 24px;
+        color: red;
+
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+    }
+`
+
+export const InputContainerButtons = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    h2 {
+        margin-bottom: 18px;
+    }
+
+    span {
+        display: flex;
+        align-items: center;
+        height: 24px;
+        color: red;
+
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+    }
+`
+
+export const InputContainerMarginBottom = styled(DefaultInputContainer)`
+    margin-bottom: 24px;
+`
+
+export const InputContainer02 = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    label {
+        width: 48%;
+    }
+`
+
+export const BottomButtons = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 30px 0;
+
+    button {
+        width: 48%;
+    }
 `

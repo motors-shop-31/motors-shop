@@ -2,8 +2,8 @@ import { createContext, useState } from "react";
 
 export const AuthContext = createContext<Values>({} as Values);
 
-interface Values { 
-  modal: boolean; 
+interface Values {
+  modal: boolean;
   modalDelete: boolean;
   openModal: () => void;
   closeModal: () => void;
@@ -13,7 +13,7 @@ interface Values {
   setCode: any;
 }
 
-interface AuthProviderProps{
+interface AuthProviderProps {
   children: React.ReactNode;
 }
 
@@ -22,23 +22,23 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [modalDelete, setModalDelete] = useState(false);
   const [code, setCode] = useState();
 
-  
-  function openModal() {
-    setModal(true);
-  }
-  
-  function closeModal() {
-    setModal(false);
-  }
-
-  function openModalDelete(){
+  function openModalDelete() {
     setModal(false);
     setModalDelete(true);
   }
 
-  function closeModalDelete(){
+  function closeModalDelete() {
     setModal(true);
     setModalDelete(false);
+  }
+
+  function openModal() {
+    setModal(true);
+  }
+
+  function closeModal() {
+    setModal(false);
+    document.body.classList.remove("modal_body");
   }
 
   return (
