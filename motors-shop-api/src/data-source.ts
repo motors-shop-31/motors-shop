@@ -6,9 +6,8 @@ import { Product } from "./entities/product.entity";
 import { Comments } from "./entities/comments.entity";
 
 import { DataSource } from "typeorm";
-import { forgotPass1677775216125 } from "./migrations/1677775216125-forgotPass";
-
-import { teste1677869625009 } from "./migrations/1677869625009-teste";
+import { initialMigration1678097729105 } from "./migrations/1678097729105-initialMigration";
+import { startingTable1678125352756 } from "./migrations/1678125352756-startingTable";
 
 const AppDataSource = new DataSource(
   process.env.NODE_ENV === "test"
@@ -31,8 +30,7 @@ const AppDataSource = new DataSource(
         logging: true,
 
         entities: [User, Address, Comments, Image, Product],
-        migrations: [ forgotPass1677775216125, teste1677869625009],
-
+        migrations: [initialMigration1678097729105, startingTable1678125352756],
       }
 );
 

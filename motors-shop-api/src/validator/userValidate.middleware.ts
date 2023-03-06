@@ -19,7 +19,7 @@ export const userCreateSchema: Schema<ICreateUser> = yup.object().shape({
   birthday: yup.date().required(),
   tel: yup.string().required(),
   description: yup.string(),
-  account_type: yup.string().required(),
+  account_type: yup.boolean().required(),
   address: yup.object().shape({
     cep: yup.number().required(),
     state: yup.string().required(),

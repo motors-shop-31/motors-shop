@@ -7,6 +7,7 @@ import {
   OneToMany,
   ManyToOne,
   JoinColumn,
+  JoinTable,
 } from "typeorm";
 import { Comments } from "./comments.entity";
 import { Image } from "./image.entity";

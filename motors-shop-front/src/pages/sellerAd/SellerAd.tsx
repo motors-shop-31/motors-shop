@@ -1,6 +1,4 @@
-import { useDisclosure } from "@chakra-ui/react";
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { AuctionCard } from "../../components/AuctionCard";
 import Footer from "../../components/Footer";
 import ModalForm from "../../components/ModalCreate";
@@ -16,9 +14,8 @@ const SellerAd = () => {
   const [productMotorbike, setProductMotorbike] = useState<IDataCard[]>([]);
   const { modal, openModal } = useContext(AuthContext);
 
-  
   const userId = localStorage.getItem("userId");
-  console.log(modal)
+  console.log(modal);
 
   useEffect(() => {
     getAllProduct()
@@ -41,7 +38,7 @@ const SellerAd = () => {
 
   return (
     <Conteiner>
-      {modal === true? <ModalForm /> : null} 
+      {modal === true ? <ModalForm /> : null}
       <Navbar />
       <div className="backGroudHeader"></div>
       <div className="advertiserCard">
@@ -55,7 +52,13 @@ const SellerAd = () => {
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s
         </p>
-        <button type='button' onClick={() => openModal()} className="big outlineBrand1">Criar anuncio</button>
+        <button
+          type="button"
+          onClick={() => openModal()}
+          className="big outlineBrand1"
+        >
+          Criar anuncio
+        </button>
       </div>
 
       <h2 className="Heading-5-600 tipo" id="leilao">
