@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Conteiner = styled.div`
   background-color: var(--grey7);
 
-  width: 100vw;
+  max-width: 100vw;
 
   form {
     background-color: var(--grey10);
