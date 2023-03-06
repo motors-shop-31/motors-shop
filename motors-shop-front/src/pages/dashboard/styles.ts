@@ -14,7 +14,7 @@ export const Conteiner = styled.div`
   }
 
   .info {
-    width: 100vw;
+    width: 100%;
     height: 703px;
     background-color: var(--brand2);
 

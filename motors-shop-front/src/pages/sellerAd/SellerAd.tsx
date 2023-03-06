@@ -28,7 +28,7 @@ const SellerAd = () => {
         const bike: IDataCard[] = [];
         data.forEach((product: IDataCard) => {
           if (product.user.id === userId) {
-            product.vehicle === "carro"
+            product.vehicle === "car"
               ? cart.push(product)
               : bike.push(product);
           }

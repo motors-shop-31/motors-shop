@@ -1,30 +1,50 @@
 import styled from "styled-components";
 
 
-export const Modal = styled.div`
-    position: absolute;
+export const ModalBackground = styled.div`
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.4);
+`
+
+export const ModalContainer = styled.div`
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    min-height: 100vh;
-    z-index: 2;
+    height: 100vh;
     padding: 20px;
-    background-color: rgba(0, 0, 0, 0.4);
-    overflow: hidden;
+    background-color: transparent;
+    overflow-y: scroll;
 `
 
-export const ModalBody = styled.div`
+export const ModaMessageContainer = styled.div`
+    h2 {
+        margin-top: 30px;
+    }
+    h3 {
+        margin: 20px 0;
+    }
+`
+
+export const ModalCard = styled.div`
+    position: relative;
     display: flex;
     flex-direction: column;
     width: 100%;
     max-width: 26.875rem;
+    height: fit-content;
     padding: 20px;
+    margin-top: 515px;
     border-radius: 0.25rem;
     background-color: var(--whiteFixed);
 `
 
-export const ModalHeader = styled.div`
+export const ModalUpContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
