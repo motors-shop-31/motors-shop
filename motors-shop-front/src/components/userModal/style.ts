@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const FormStyle = styled.form`
+export const FormStyleConteiner = styled.div`
   p {
     margin: 1rem 0px;
   }
@@ -36,6 +36,20 @@ export const FormStyle = styled.form`
     }
   }
 
+  .alert {
+    background-color: var(--alert1);
+    border: 1.5px solid var(--alert1);
+
+    color: var(--whiteFixed);
+
+    &:hover {
+      background-color: var(--alert3);
+      border: 1.5px solid var(--alert3);
+
+      color: var(--alert1);
+    }
+  }
+
   .conteiner--button {
     display: flex;
     justify-content: end;
@@ -47,5 +61,38 @@ export const FormStyle = styled.form`
     display: flex;
     gap: 10px;
     margin: 1rem 0px;
+  }
+`;
+
+export const ConteinerInput = styled.div`
+  display: flex;
+  justify-content: end;
+
+  gap: 1rem;
+
+  .negative {
+    background-color: var(--grey6);
+    border: 1.5px solid var(--grey6);
+
+    color: var(--grey2);
+
+    &:hover {
+      background-color: var(--grey5);
+      border: 1.5px solid var(--grey5);
+    }
+  }
+
+  .alert {
+    background-color: var(--alert1);
+    border: 1.5px solid var(--alert1);
+
+    color: var(--whiteFixed);
+
+    &:hover {
+      background-color: var(--alert3);
+      border: 1.5px solid var(--alert3);
+
+      color: var(--alert1);
+    }
   }
 `;

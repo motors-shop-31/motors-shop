@@ -2,12 +2,20 @@ import { Div, Error } from "./styles";
 import { BiErrorCircle } from "react-icons/bi";
 import { FieldError, FieldValues, UseFormRegister } from "react-hook-form";
 
+// interface IInuput {
+//   label: string;
+//   error: FieldError | undefined;
+//   placeholder: string;
+//   id: string;
+//   registerForm: UseFormRegister<FieldValues>;
+// }
+
 interface IInuput {
   label: string;
-  error: FieldError | undefined;
+  error: any;
   placeholder: string;
   id: string;
-  registerForm: UseFormRegister<FieldValues>;
+  registerForm: any;
 }
 
 const InputError = ({
