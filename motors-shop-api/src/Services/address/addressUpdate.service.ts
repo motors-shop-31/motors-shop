@@ -20,7 +20,7 @@ const addressUpdateService = async (
     throw new AppError(400, "Address not found");
   }
 
-  await addressRepository.update(id, {
+  await addressRepository.update(user.address.id, {
     cep: cep ? cep : user.address.cep,
     city: city ? city : user.address.city,
     complement: complement ? complement : user.address.complement,
@@ -35,7 +35,7 @@ const addressUpdateService = async (
     },
   });
 
-  return addressUpdate;
+  return addressUpdate[0];
 };
 
 export default addressUpdateService;

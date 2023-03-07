@@ -1,3 +1,4 @@
+import { useDisclosure } from "@chakra-ui/react";
 import { useContext, useEffect, useState } from "react";
 import { AuctionCard } from "../../components/AuctionCard";
 import Footer from "../../components/Footer";
@@ -24,9 +25,7 @@ const SellerAd = () => {
         const bike: IDataCard[] = [];
         data.forEach((product: IDataCard) => {
           if (product.user.id === userId) {
-            product.vehicle === "car"
-              ? cart.push(product)
-              : bike.push(product);
+            product.vehicle === "car" ? cart.push(product) : bike.push(product);
           }
         });
 
@@ -37,7 +36,6 @@ const SellerAd = () => {
   }, []);
 
   return (
-
     <>
       {modal ? <ModalForm /> : null}
       <Conteiner>
@@ -51,10 +49,16 @@ const SellerAd = () => {
           </div>
           <p className="body-1-400 description">
             Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text ever
-            since the 1500s
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s
           </p>
-          <button type='button' onClick={() => openModal()} className="big outlineBrand1">Criar anuncio</button>
+          <button
+            type="button"
+            onClick={() => openModal()}
+            className="big outlineBrand1"
+          >
+            Criar anuncio
+          </button>
         </div>
 
         <h2 className="Heading-5-600 tipo" id="leilao">
