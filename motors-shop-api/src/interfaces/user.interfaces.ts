@@ -8,7 +8,7 @@ interface ICreateUser {
   birthday: Date;
   tel: string;
   description?: string;
-  account_type: string;
+  account_type: boolean;
   address: IAddressCreate;
 }
 
@@ -17,7 +17,7 @@ interface IUser {
   name: string;
   tel: string;
   description?: string;
-  account_type: string;
+  account_type: boolean;
   address: IAddressCreate;
 }
 
@@ -29,7 +29,7 @@ interface IUpdateUser {
   birthday?: string;
   tel?: string;
   description?: string;
-  account_type?: string;
+  account_type?: boolean;
 }
 
 interface ILogin {

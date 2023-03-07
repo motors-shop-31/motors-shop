@@ -23,6 +23,7 @@ export class Comments {
 
   @ManyToOne(() => User, (user) => user.comments, {
     onDelete: "CASCADE",
+    eager: true,
   })
   user: User;
 

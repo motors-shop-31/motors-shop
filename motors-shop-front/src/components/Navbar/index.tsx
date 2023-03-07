@@ -6,28 +6,59 @@ import {
   MenuItem,
   MenuDivider,
   Button,
-  // Modal,
-  // ModalOverlay,
-  // ModalContent,
-  // ModalCloseButton,
-  useDisclosure,
 } from "@chakra-ui/react";
 import { AiOutlineClose } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { ModalBoryStyled, ModalHeaderStryled } from "../ModalSucess/style";
+import { useEffect, useState } from "react";
 import { UserModal } from "../userModal/userModal";
 import { UserEditForm } from "../../form/userEdit";
 import { AddressEdit } from "../../form/addresEdit";
+import { getUser } from "../../service/user/getUser";
 
+import { IUser } from "../../interface/userInterface";
 
 const Navbar = () => {
   const Navigate = useNavigate();
-  const [login, setLogin] = useState(true);
-  const [anunciante, setAnunciante] = useState(true);
-  const [userEdit, setUserEdit] = useState(true);
 
+  const [user, setUser] = useState({} as IUser);
+
+  const [userEdit, setUserEdit] = useState(false);
+  const [addressEdit, setAddressEdit] = useState(false);
+
+  useEffect(() => {
+    const tokenJson = localStorage.getItem("token");
+
+    if (tokenJson) {
+      getUser(tokenJson)
+        .then((res) => {
+          setUser(res.data);
+        })
+        .catch((e) => {
+          window.localStorage.clear();
+          setUser({} as IUser);
+        });
+    }
+  }, []);
+
+  let firstLetterProduc = "";
+  let secondLetterProduc = "";
+
+  if (user?.name) {
+    firstLetterProduc = user.name.trim().split(" ")[0][0]?.toLocaleUpperCase();
+
+    if (user.name.split(" ").length > 1) {
+      secondLetterProduc = user.name.split(" ")[1][0]?.toLocaleUpperCase();
+    }
+
+    window.localStorage.setItem(
+      "userNameLogo",
+      `${firstLetterProduc}${secondLetterProduc}
+    `.trim()
+    );
+
+    window.localStorage.setItem("userName", user.name);
+  }
 
   return (
     <>
@@ -72,23 +103,37 @@ const Navbar = () => {
                           <a href="#leilao">Leilão</a>
                         </MenuItem>
                         <MenuDivider />
-                        {login ? (
+                        {user?.name ? (
                           <>
                             <section className="div-name">
-                              <h3 className="logo-name">JD</h3>
-                              <h3 className="name">João Dantas</h3>
+                              <h3 className="logo-name">
+                                {`${firstLetterProduc}${secondLetterProduc}
+                                `.trim()}
+                              </h3>
+                              <h3 className="name">{user?.name}</h3>
                             </section>
                             <section className="div-info">
-                              <MenuItem paddingLeft={"28px"} marginTop={"2px"}>
+                              <MenuItem
+                                paddingLeft={"28px"}
+                                marginTop={"2px"}
+                                onClick={() => setUserEdit(!userEdit)}
+                              >
                                 Editar Perfil
                               </MenuItem>
-                              <MenuItem paddingLeft={"28px"} marginTop={"5px"}>
+                              <MenuItem
+                                paddingLeft={"28px"}
+                                marginTop={"5px"}
+                                onClick={() => setAddressEdit(!addressEdit)}
+                              >
                                 Editar endereço
                               </MenuItem>
-                              {anunciante ? (
+                              {user.account_type ? (
                                 <MenuItem
                                   paddingLeft={"28px"}
                                   marginTop={"5px"}
+                                  onClick={() =>
+                                    Navigate("/myAds", { replace: true })
+                                  }
                                 >
                                   Meus Anúncios
                                 </MenuItem>
@@ -96,7 +141,10 @@ const Navbar = () => {
                                 <></>
                               )}
                               <MenuItem
-                                onClick={() => setLogin(false)}
+                                onClick={() => {
+                                  window.localStorage.clear();
+                                  setUser({} as IUser);
+                                }}
                                 paddingLeft={"28px"}
                                 marginTop={"5px"}
                               >
@@ -106,11 +154,22 @@ const Navbar = () => {
                           </>
                         ) : (
                           <>
-                            <MenuItem marginLeft={"12px"} marginTop={"10px"} onClick={() => Navigate("/Login", { replace: false })}>
+                            <MenuItem
+                              marginLeft={"12px"}
+                              marginTop={"10px"}
+                              onClick={() =>
+                                Navigate("/Login", { replace: false })
+                              }
+                            >
                               Fazer login
                             </MenuItem>
                             <div className="div-button ">
-                              <button className="button-mobile" onClick={() => Navigate("/Cadastro", { replace: false })}>
+                              <button
+                                className="button-mobile"
+                                onClick={() =>
+                                  Navigate("/Cadastro", { replace: false })
+                                }
+                              >
                                 Cadastrar
                               </button>
                             </div>
@@ -134,39 +193,70 @@ const Navbar = () => {
               <a href="#leilao">Leilão</a>
             </h2>
             <p></p>
-            {login ? (
+            {user?.name ? (
               <>
                 <section className="section-name">
-                  <h3 className="logo-name">JD</h3>
-                  <h3 className="name">João Dantas</h3>
+                  <h3 className="logo-name">
+                    {`${firstLetterProduc}${secondLetterProduc}`.trim()}
+                  </h3>
+                  <h3 className="name">{user?.name}</h3>
                   <section className="section-dropdown">
-                    <button>Editar Perfil</button>
-                    <button>Editar endereço</button>
-                    {anunciante ? <button>Meus Anúncios</button> : <></>}
-                    <button onClick={() => setLogin(false)}>Sair</button>
+                    <button onClick={() => setUserEdit(!userEdit)}>
+                      Editar Perfil
+                    </button>
+                    <button onClick={() => setAddressEdit(!addressEdit)}>
+                      Editar endereço
+                    </button>
+                    {user.account_type ? (
+                      <button
+                        onClick={() => Navigate("/myAds", { replace: true })}
+                      >
+                        Meus Anúncios
+                      </button>
+                    ) : (
+                      <></>
+                    )}
+                    <button
+                      onClick={() => {
+                        window.localStorage.clear();
+                        setUser({} as IUser);
+                      }}
+                    >
+                      Sair
+                    </button>
                   </section>
                 </section>
               </>
             ) : (
               <>
-                <h3 className="body-1-600" onClick={() => Navigate("/Login", { replace: false })}>Fazer Login</h3>
-                <button className="body-1-600 button-desktop" onClick={() => Navigate("/Cadastro", { replace: false })}>Cadastrar</button>
+                <h3
+                  className="body-1-600"
+                  onClick={() => Navigate("/Login", { replace: false })}
+                >
+                  Fazer Login
+                </h3>
+                <button
+                  className="body-1-600 button-desktop"
+                  onClick={() => Navigate("/Cadastro", { replace: false })}
+                >
+                  Cadastrar
+                </button>
               </>
             )}
           </DesktopStyle>
         </div>
 
-        {/* <UserModal
+        <UserModal
           state={userEdit}
           setState={setUserEdit}
           children={<AddressEdit setState={setUserEdit} />}
-        /> */}
+        />
 
-        {/* <UserModal
-          state={userEdit}
-          setState={setUserEdit}
+        <UserModal
+          state={addressEdit}
+          setState={setAddressEdit}
           children={<UserEditForm setState={setUserEdit} />}
-        /> */}
+        />
       </NavbarStyle>
     </>
   );
