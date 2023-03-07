@@ -13,7 +13,6 @@ const SellerAd = () => {
   const [productCart, setProductCart] = useState<IDataCard[]>([]);
   const [productMotorbike, setProductMotorbike] = useState<IDataCard[]>([]);
   const { modal, openModal } = useContext(AuthContext);
-  const { isOpen, onOpen } = useDisclosure();
 
   const userId = localStorage.getItem("userId");
   console.log(modal);
@@ -76,19 +75,24 @@ const SellerAd = () => {
         <h2 className="Heading-5-600 tipo" id="carros">
           Carros
         </h2>
+
         <ProductCard
           arrayProduto={productCart}
-          anuncianteCard={false}
+          anuncianteCard={true}
           myAds={true}
+          buttonHandler={openModal}
         />
+
 
         <h2 className="Heading-5-600 tipo" id="motos">
           Motos
         </h2>
+
         <ProductCard
           arrayProduto={productMotorbike}
-          anuncianteCard={false}
+          anuncianteCard={true}
           myAds={true}
+          buttonHandler={openModal}
         />
 
         <Footer />
