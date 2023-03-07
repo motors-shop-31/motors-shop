@@ -48,15 +48,6 @@ export const AddressEdit = ({ setState, user, setUser }: modalProps) => {
   return (
     <form onSubmit={handleSubmit(changeAddress)}>
       <p className="body-2-500">Infomações de endereço</p>
-      {/* <div>
-        <label htmlFor="cep">Cep</label>
-        <input
-          type="text"
-          placeholder={user.address.cep.toString()}
-          id="cep"
-          {...register("cep")}
-        />
-      </div> */}
 
       <InputError
         id="cep"
@@ -67,15 +58,6 @@ export const AddressEdit = ({ setState, user, setUser }: modalProps) => {
       />
 
       <div className="conteiner--input">
-        {/* <div>
-          <label htmlFor="state">Estado</label>
-          <input
-            type="text"
-            placeholder={user.address.state}
-            id="state"
-            {...register("state")}
-          />
-        </div> */}
         <div>
           <InputError
             id="state"
@@ -86,15 +68,6 @@ export const AddressEdit = ({ setState, user, setUser }: modalProps) => {
           />
         </div>
 
-        {/* <div>
-          <label htmlFor="city">Cidade</label>
-          <input
-            type="text"
-            placeholder={user.address.city}
-            id="city"
-            {...register("city")}
-          />
-        </div> */}
         <div>
           <InputError
             id="city"
@@ -105,16 +78,6 @@ export const AddressEdit = ({ setState, user, setUser }: modalProps) => {
           />
         </div>
       </div>
-
-      {/* <div>
-        <label htmlFor="street">Rua</label>
-        <input
-          type="text"
-          placeholder={user.address.street}
-          id="street"
-          {...register("street")}
-        />
-      </div> */}
 
       <InputError
         id="street"
