@@ -1,70 +1,34 @@
-# Getting Started with Create React App
+# Motors-Shop
+Motors-shop é  um e-commerce de carros e motos que tem como objetivo permitir que usuários comprem veículos online. A página web tem um layout moderno e intuitivo, e conta com diversas funcionalidades que visam proporcionar uma boa experiência de compra para o usuário.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Páginas
 
-## Available Scripts
+# Página inicial
+A página inicial apresenta os veículos em destaque, com imagens e informações básicas como marca, modelo, ano e preço. Além disso, a página conta com um menu com as seguintes opções:
 
-In the project directory, you can run:
+Carros: lista todos os carros disponíveis para compra. <br/>
+Motos: lista todas as motos disponíveis para compra.<br/>
+Minha conta: permite que o usuário faça login ou cadastro na página.<br/>
 
-### `npm start`
+# Página de listagem de veículos
+A página de listagem de veículos exibe uma lista com todos os veículos disponíveis para compra. Os veículos são apresentados em cards com imagens e informações básicas como marca, modelo, ano e preço. A página conta com filtros que permitem ao usuário buscar veículos por marca, modelo, ano e preço.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Página de detalhes do veículo
+A página de detalhes do veículo apresenta todas as informações do veículo selecionado, incluindo imagens, especificações técnicas, descrição e preço. A página também permite ao usuário visualizar e fazer comentários sobre o produto. Além de poder ver mais produtos do vendedor.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Página de cadastro e login
+A página de cadastro e login permite ao usuário criar uma conta na página ou fazer login caso já tenha uma conta. Para se cadastrar, o usuário deve preencher um formulário com informações pessoais como nome, e-mail e telefone, etc... Após o cadastro, o usuário pode acessar a página de minha conta.
 
-### `npm test`
+# Página de recuperar senha
+O usuário deve clicar no botão "Esqueci minha senha" na página de login e informar seu endereço de e-mail cadastrado. Em seguida, deve conferir o e-mail enviado com o código para recuperação. Em seguida precisa ser feito a mudança da senha destinada a conta com o email informado
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Página de minha conta
+A página de minha conta apresenta informações sobre a conta do usuário, como dados pessoais. A página também permite ao usuário editar suas informações pessoais, alterar a senha e sair da conta.
 
-### `npm run build`
+# Funcionalidades
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Proposta de compra
+O usuário pode fazer uma proposta de compra de um veículo através da página de detalhes do veículo. Para isso, o usuário deve estar logado, em seguida clicar no link de WhatsApp e ser redirecionado ao numero do vendedor.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Conclusão
+A página web é um e-commerce de carros e motos que oferece diversas funcionalidades para tornar a experiência de compra do usuário mais simples e agradável. Com um layout moderno e intuitivo, a página permite que o usuário encontre e compre
