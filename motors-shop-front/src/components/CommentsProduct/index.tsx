@@ -1,7 +1,8 @@
 import { LogoName } from "../../pages/ProductPage/styles";
 import { useMemo } from "react";
-import "moment/dist/locale/pt-br";
+
 import moment from "moment";
+import "moment/locale/pt-br";
 
 interface Iprops {
   name: string;
@@ -10,6 +11,8 @@ interface Iprops {
 }
 
 export const CommentsProduct = ({ name, description, date }: Iprops) => {
+  moment.locale("pt-br");
+
   const color = useMemo(() => {
     return "--random" + Math.floor(Math.random() * (12 - 0) + 1);
   }, []);
@@ -32,7 +35,7 @@ export const CommentsProduct = ({ name, description, date }: Iprops) => {
           {`${firstLetter}${secondLetter}`.trim()}
         </LogoName>
         <h3 className="body-2-500">{name.trim()}</h3>
-        <h4>{moment(date).fromNow()}</h4>
+        <h4>{moment(date).locale("pt").fromNow()}</h4>
       </div>
       <p className="body-2-400">{description}</p>
     </div>

@@ -10,18 +10,20 @@ import {
 import { AiOutlineClose } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserModal } from "../userModal/userModal";
 import { UserEditForm } from "../../form/userEdit";
 import { AddressEdit } from "../../form/addresEdit";
 import { getUser } from "../../service/user/getUser";
 
 import { IUser } from "../../interface/userInterface";
+import { GlobalContext } from "../../contexts/GlobalContext";
 
 const Navbar = () => {
   const Navigate = useNavigate();
 
   const [user, setUser] = useState({} as IUser);
+  const { setLogged } = useContext(GlobalContext);
 
   const [userEdit, setUserEdit] = useState(false);
   const [addressEdit, setAddressEdit] = useState(false);
@@ -30,6 +32,7 @@ const Navbar = () => {
     const tokenJson = localStorage.getItem("token");
 
     if (tokenJson) {
+      setLogged(true);
       getUser(tokenJson)
         .then((res) => {
           setUser(res.data);
@@ -37,6 +40,7 @@ const Navbar = () => {
         .catch((e) => {
           window.localStorage.clear();
           setUser({} as IUser);
+          setLogged(false);
         });
     }
   }, []);
@@ -220,6 +224,7 @@ const Navbar = () => {
                       onClick={() => {
                         window.localStorage.clear();
                         setUser({} as IUser);
+                        setLogged(false);
                       }}
                     >
                       Sair
@@ -249,13 +254,25 @@ const Navbar = () => {
         <UserModal
           state={userEdit}
           setState={setUserEdit}
-          children={<AddressEdit setState={setUserEdit} />}
+          children={
+            <UserEditForm
+              setState={setUserEdit}
+              user={user}
+              setUser={setUser}
+            />
+          }
         />
 
         <UserModal
           state={addressEdit}
           setState={setAddressEdit}
-          children={<UserEditForm setState={setUserEdit} />}
+          children={
+            <AddressEdit
+              setState={setAddressEdit}
+              user={user}
+              setUser={setUser}
+            />
+          }
         />
       </NavbarStyle>
     </>
