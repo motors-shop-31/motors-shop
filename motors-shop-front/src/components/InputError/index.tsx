@@ -17,7 +17,7 @@ interface IInuput {
   error: any;
   placeholder: string;
   id: string;
-  registerForm: UseFormRegister<FieldValues>;
+  registerForm: UseFormRegister<FieldValues> | any;
   type?: string;
 }
 
