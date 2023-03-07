@@ -230,7 +230,7 @@ const Navbar = () => {
             ) : (
               <>
                 <h3
-                  className="body-1-600"
+                  className="body-1-600 button-login"
                   onClick={() => Navigate("/Login", { replace: false })}
                 >
                   Fazer Login

@@ -22,7 +22,7 @@ export const Conteiner = styled.div`
 
     padding: 1rem;
 
-    #forgotPass{
+    #forgotPass {
       cursor: pointer;
     }
 
@@ -48,6 +48,26 @@ export const Conteiner = styled.div`
       }
       ::placeholder {
         color: var(--grey3);
+      }
+    }
+
+    div:nth-child(5) {
+      display: flex;
+      align-items: center;
+      background-color: var(--grey8);
+      border-radius: 4px;
+      padding-right: 10px;
+      width: 96%;
+
+      :focus-within {
+        outline: 2px solid black;
+      }
+
+      input {
+        width: 92%;
+        :focus {
+          outline: none;
+        }
       }
     }
 
