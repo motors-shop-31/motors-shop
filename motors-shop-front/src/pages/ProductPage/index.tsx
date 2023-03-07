@@ -34,7 +34,6 @@ export const ProductPage = () => {
   const [value, setValue] = useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [img, setImg] = useState("");
-  const [login, Setlogin] = useState(true);
 
   const [load, setLoad] = useState(false);
 
@@ -42,6 +41,8 @@ export const ProductPage = () => {
 
   const [productCart, setProductCart] = useState<IDataCard>({} as IDataCard);
   const [commets, setCommets] = useState<IComments[]>([]);
+
+  const { logged } = useContext(GlobalContext);
 
   const { id } = useParams();
 
@@ -96,25 +97,6 @@ export const ProductPage = () => {
     console.log(value);
     setValue("");
   }
-
-  const array = [
-    {
-      name: "joao Dantas",
-      description: "oi meu nome é joao e eu me chamou joao",
-      date: new Date(),
-    },
-    {
-      name: "Clieton",
-      description: "oi meu nome é joao e eu me chamou joao",
-      date: new Date("2023/01/02"),
-    },
-    {
-      name: "Clieton",
-      description: "oi meu nome é joao e eu me chamou joao",
-      date: new Date("2021/01/02"),
-    },
-  ];
-  // console.log(array[0]);
 
   return !load ? (
     <></>
@@ -224,7 +206,7 @@ export const ProductPage = () => {
       <InputComments>
         <div className="container">
           <div className="div-name">
-            {login ? (
+            {logged ? (
               <>
                 <div>{logo}</div>
                 <h3 className="body-2-500">{userName}</h3>
@@ -240,7 +222,7 @@ export const ProductPage = () => {
                 setValue(e.target.value);
               }}
             />
-            {login ? (
+            {logged ? (
               <button className="brand1" onClick={comment}>
                 Comentar
               </button>

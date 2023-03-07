@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 import { ProductPage } from "../pages/ProductPage";
 import { Dashboard } from "../pages/dashboard/dashboard";
@@ -14,7 +14,6 @@ export const MainRoute = () => {
   return (
     <Routes>
       {/* <Route path="/" element={<ModalFormEdit />} /> */}
-
       <Route path="/Dashboard" element={<Dashboard />} />
       <Route path="/product/:id" element={<ProductPage />} />
       <Route path="/seller/:id" element={<SellerUserAd />} />
@@ -24,7 +23,7 @@ export const MainRoute = () => {
       <Route path="/forgotPassword" element={<ForgotPassword />} />
       <Route path="/forgotPassword/code" element={<ForgotCode />} />
       <Route path="/forgotPassword/resetPassword" element={<ResetPassword />} />
-      {/* * <Route path="*" element={<Navigate to="/Login" replace />} /> */}
+      * <Route path="*" element={<Navigate to="/Dashboard" replace />} />
     </Routes>
   );
 };

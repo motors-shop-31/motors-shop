@@ -29,7 +29,7 @@ const userById = async (req: Request, res: Response) => {
     const { id } = req.ITokenInfo;
     const resp = await userListById(id);
 
-    return res.status(201).json(resp);
+    return res.status(200).json(resp);
   } catch (err) {
     if (err instanceof AppError) {
       handleError(err, res);

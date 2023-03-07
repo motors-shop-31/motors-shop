@@ -9,6 +9,7 @@ import jwt from "jwt-decode";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+
 import {
   Modal,
   ModalCloseButton,
@@ -57,9 +58,9 @@ const Cadastro = () => {
       .required("Campo obrigatorio")
       .matches(
         /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/,
-        "E necessario um data valida"
+        "E necessario uma data valida dia/mes/ano"
       )
-      .typeError("E necessario uma data valida"),
+      .typeError("E necessario uma data valida dia/mes/ano"),
     tel: yup
       .string()
       .required("Campo obrigatorio")
@@ -67,7 +68,7 @@ const Cadastro = () => {
         /^(?:(?:\+|00)?(55)\s?)?(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})\-?(\d{4}))$/,
         "telefone invalido"
       ),
-    description: yup.string("Campo obrigatorio"),
+    description: yup.string(),
     account_type: yup.string(),
     cep: yup
       .string()
@@ -78,7 +79,7 @@ const Cadastro = () => {
     city: yup.string().required("Campo obrigatorio"),
     street: yup.string().required("Campo obrigatorio"),
     number: yup.string().required("Campo obrigatorio"),
-    complement: yup.string("Campo obrigatorio"),
+    complement: yup.string(),
   });
 
   const {
@@ -96,16 +97,13 @@ const Cadastro = () => {
       account_type: userType,
       address: { cep, state, street, city, number, complement },
     };
-    console.log(body);
 
     createUser(body)
       .then((res) => {
-        console.log(res);
         setCadastroModal(true);
         onOpen();
       })
       .catch((erro) => {
-        console.log(erro);
         setErroCadastro("");
         setCadastroModal(false);
         onOpen();
@@ -196,7 +194,7 @@ const Cadastro = () => {
         </div>
 
         <InputError
-          id="city"
+          id="street"
           error={errors.street}
           placeholder="Digitar rua"
           label="Rua"

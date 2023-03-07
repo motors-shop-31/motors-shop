@@ -4,9 +4,17 @@ import { FieldError, FieldValues, UseFormRegister } from "react-hook-form";
 import { useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
+// interface IInuput {
+//   label: string;
+//   error: FieldError | undefined;
+//   placeholder: string;
+//   id: string;
+//   registerForm: UseFormRegister<FieldValues>;
+// }
+
 interface IInuput {
   label: string;
-  error: FieldError | undefined;
+  error: any;
   placeholder: string;
   id: string;
   registerForm: UseFormRegister<FieldValues>;

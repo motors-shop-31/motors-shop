@@ -14,7 +14,6 @@ const SellerAd = () => {
   const [productCart, setProductCart] = useState<IDataCard[]>([]);
   const [productMotorbike, setProductMotorbike] = useState<IDataCard[]>([]);
   const { modal, openModal } = useContext(AuthContext);
-  const { isOpen, onOpen } = useDisclosure();
 
   const userId = localStorage.getItem("userId");
   console.log(modal);
