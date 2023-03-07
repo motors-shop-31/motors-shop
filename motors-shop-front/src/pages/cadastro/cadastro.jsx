@@ -247,6 +247,7 @@ const Cadastro = () => {
           placeholder="Digitar senha"
           label="Senha"
           registerForm={register("password")}
+          type="password"
         />
 
         <InputError
@@ -255,6 +256,7 @@ const Cadastro = () => {
           placeholder="Digitar senha"
           label="Confirmar Senha"
           registerForm={register("confirmPassword")}
+          type="password"
         />
 
         <button className="big brand1 cadastro">Finalizar cadastro</button>

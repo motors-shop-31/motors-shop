@@ -121,6 +121,10 @@ export const DesktopStyle = styled.section`
     justify-content: space-between;
     align-items: center;
 
+    .button-login {
+      cursor: pointer;
+    }
+
     h2 {
       margin-right: 5px;
 

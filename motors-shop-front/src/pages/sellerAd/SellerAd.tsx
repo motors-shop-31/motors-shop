@@ -1,3 +1,4 @@
+import { useDisclosure } from "@chakra-ui/react";
 import { useContext, useEffect, useState } from "react";
 import { AuctionCard } from "../../components/AuctionCard";
 import Footer from "../../components/Footer";
