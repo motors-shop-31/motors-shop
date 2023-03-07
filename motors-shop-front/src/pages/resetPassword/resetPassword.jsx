@@ -6,6 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import {
+  CircularProgress,
   Modal,
   ModalCloseButton,
   ModalContent,
@@ -16,17 +17,27 @@ import {
   ModalBoryStyled,
   ModalHeaderStryled,
 } from "../../components/ModalSucess/style";
-import { InputErrorPassword } from "../../components/InputError";
 import api from "../../service/api";
 import { AuthContext } from "../../contexts/modalContext";
 import { useContext } from "react";
+import { InputErrorPassword } from "../../components/InputError";
 
 const ResetPassword = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navegar = useNavigate();
   const schema = yup.object({
-    new_password: yup.string().required("Campo obrigatório"),
-    confirm_password: yup.string().required("Campo obrigatório"),
+    new_password: yup
+      .string()
+      .required("Campo obrigatorio")
+      .matches(/[A-Z]/, "Deve conter ao menos 1 letra maiúscula")
+      .matches(/([a-z])/, "Deve conter ao menos 1 letra minúscula")
+      .matches(/(\d)/, "Deve conter ao menos 1 número")
+      .matches(/(\W)|_/, "Deve conter ao menos 1 caracter especial")
+      .matches(/.{8,}/, "deve conter ao menos 8 dígitos"),
+    confirm_password: yup
+      .string()
+      .required("Campo obrigatorio")
+      .oneOf([yup.ref("new_password")], "Deve ser igual a senha"),
   });
   const { code } = useContext(AuthContext);
 
@@ -44,7 +55,7 @@ const ResetPassword = () => {
       setTimeout(() => {
         navegar("/Login", { replace: false });
       }, 2500);
-    });
+    })
   }
 
   return (
@@ -83,6 +94,7 @@ const ResetPassword = () => {
               <p className="title">
                 Senha atualizada com sucesso, você será redirecionado em breve
               </p>
+            <CircularProgress isIndeterminate color="green.300" />
             </ModalBoryStyled>
           </ModalContent>
         </Modal>
