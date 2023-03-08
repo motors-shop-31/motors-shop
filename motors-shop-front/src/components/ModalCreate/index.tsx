@@ -39,9 +39,11 @@ const ModalForm = () => {
   };
 
   const updateImage = (index: number, url: string) => {
-    const newImages = [...imagesURLs];
-    newImages[index] = url;
-    setImagesURLs(newImages);
+    if (url) {
+      const newImages = [...imagesURLs];
+      newImages[index] = url;
+      setImagesURLs(newImages);
+    }
   };
 
   const formSchema = yup.object().shape({
@@ -64,8 +66,8 @@ const ModalForm = () => {
   });
 
   const onSubmitFunction = (data: FieldValues) => {
+    setImagesURLs(imagesURLs.filter((image) => image !== ""))
     const request = { ...data, image: imagesURLs, published: true }
-    console.log(request)
 
     api.post("/product", request, {
       headers: {

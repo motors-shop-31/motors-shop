@@ -9,6 +9,7 @@ import {
   InputComments,
   Figure,
   Issoai,
+  Background,
 } from "./styles";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
@@ -101,7 +102,7 @@ export const ProductPage = () => {
   return !load ? (
     <></>
   ) : (
-    <>
+    <Background>
       <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <Issoai>
@@ -142,9 +143,9 @@ export const ProductPage = () => {
             <h4 className="Heading-7-500">
               {price !== undefined
                 ? price.toLocaleString("pt-BR", {
-                    style: "currency",
-                    currency: "BRL",
-                  })
+                  style: "currency",
+                  currency: "BRL",
+                })
                 : null}
             </h4>
             <button className="brand1">Comprar</button>
@@ -156,9 +157,9 @@ export const ProductPage = () => {
         </section>
         <section className="section-fixed">
           <PhotosProduct>
-            <h2>Fotos</h2>
+            <h2 className="Heading-6-600">Fotos</h2>
             <ul>
-              {image?.map((img: any) => {
+              {image.length > 0 ? image.map((img: any) => {
                 return (
                   <li key={img.id}>
                     <img
@@ -171,7 +172,9 @@ export const ProductPage = () => {
                     />
                   </li>
                 );
-              })}
+              })
+                :
+                <h2 className="Heading-7-500">Oops! Parece que esse anúncio não tem imagens</h2>}
             </ul>
           </PhotosProduct>
           <ProfileProduct>
@@ -191,7 +194,7 @@ export const ProductPage = () => {
         <div className="container">
           <h2 className="Heading-6-600">Comentários</h2>
 
-          {commets.map((item: IComments) => {
+          {commets.length > 0 ? commets.map((item: IComments) => {
             return (
               <CommentsProduct
                 date={item.date_creation}
@@ -200,7 +203,10 @@ export const ProductPage = () => {
                 key={item.id}
               />
             );
-          })}
+          })
+            :
+            <h2 className="Heading-7-500 no_comments">Seja o primeiro a comentar!</h2>
+          }
         </div>
       </Comments>
       <InputComments>
@@ -261,6 +267,6 @@ export const ProductPage = () => {
         </div>
       </InputComments>
       <Footer />
-    </>
+    </Background>
   );
 };

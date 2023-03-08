@@ -93,13 +93,10 @@ export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
                       }}
                     >
                       <figure className="conteiner--cart">
-                        {vehicle.cover_image ?
-                          <img
-                            src={cover_image}
-                            alt="Imagem do veiculo sendo vendido"
-                          />
-                          :
-                          <FrontCarIcon className="no_image" />}
+                        <img
+                          src={cover_image}
+                          alt="Imagem do veiculo sendo vendido"
+                        />
                         {anuncianteCard ? (
                           <p className={`anuncioStatus ${anuncioStatus}`}>
                             {anuncioStatus}
