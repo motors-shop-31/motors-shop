@@ -121,8 +121,8 @@ export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
 
                       <div className="conteiner--info">
                         <div>
-                          <p className="km">{mileage} KM</p>
-                          <p className="year">{year}</p>
+                          <p className="km body-2-500">{mileage} KM</p>
+                          <p className="year body-2-500">{year}</p>
                         </div>
                         <p className="Heading-7-500 price">
                           {price.toLocaleString("pt-BR", {

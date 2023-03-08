@@ -2,11 +2,10 @@
 import styled from "styled-components";
 
 export const Background = styled.div`
-  /* position: relative;
+  width: 100%;
+  position: absolute;
   background-color: var(--grey8);
-  z-index: -3; */
-
-  /* Essa estilização está bugando o header, não funciona nenhum botão */
+  z-index: 0;
 `;
 
 export const BackgroundPurple = styled.div`
