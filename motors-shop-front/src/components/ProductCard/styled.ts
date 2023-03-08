@@ -1,6 +1,13 @@
 import styled from "styled-components";
 
 export const Conteiner = styled.div`
+  .empty_list_container {
+    margin-left: 4rem;
+    h3 {
+      margin-bottom: 20px;
+    }
+  }
+
   ul {
     background-color: var(--whiteFixed);
     padding: 1rem;
@@ -44,6 +51,11 @@ export const Conteiner = styled.div`
           -webkit-transform: scale(1.4);
           transform: scale(1.4);
         }
+      }
+
+      .no_image {
+        width: 100%;
+        height: 100%;
       }
 
       .anuncioStatus {

@@ -85,6 +85,13 @@ export const Conteiner = styled.div`
     margin-bottom: 1rem;
   }
 
+  .empty_list_container {
+    margin-left: 4rem;
+    h3 {
+      margin-bottom: 20px;
+    }
+  }
+
   .leilaoConteiner {
     display: flex;
     height: 28rem;

@@ -24,5 +24,5 @@ export interface IDataCard {
   user: IUser;
 
   //A fazer ainda
-  image?: string[];
+  image: string[];
 }

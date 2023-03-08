@@ -1,6 +1,14 @@
 /* eslint-disable no-useless-concat */
 import styled from "styled-components";
 
+export const Background = styled.div`
+  /* position: relative;
+  background-color: var(--grey8);
+  z-index: -3; */
+
+  /* Essa estilização está bugando o header, não funciona nenhum botão */
+`;
+
 export const BackgroundPurple = styled.div`
   width: 100%;
   height: 450px;
@@ -277,6 +285,11 @@ export const Comments = styled.div`
   align-items: center;
   flex-direction: column;
   margin-top: 20px;
+
+  .no_comments {
+    margin-bottom: 25px;
+    color: var(--grey2);
+  }
 
   .container {
     width: 290px;
@@ -597,9 +610,9 @@ export const Figure = styled.div`
   }
 `;
 
-export const Issoai = styled.div`
+export const DivModal = styled.div`
   @media (max-width: 768px) {
-    .teste {
+    .content {
       width: 344px;
     }
   }

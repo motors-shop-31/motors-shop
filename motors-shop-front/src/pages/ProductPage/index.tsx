@@ -8,19 +8,18 @@ import {
   Comments,
   InputComments,
   Figure,
-  Issoai,
+  Background,
+  DivModal,
 } from "./styles";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 import { useContext, useEffect, useState } from "react";
 import { CommentsProduct } from "../../components/CommentsProduct";
 import {
-  Button,
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalFooter,
   ModalHeader,
   ModalOverlay,
   useDisclosure,
@@ -72,17 +71,8 @@ export const ProductPage = () => {
   let userName = window.localStorage.getItem("userName");
   let token = localStorage.getItem("token");
 
-  const {
-    description,
-    cover_image,
-    mileage,
-    price,
-    title,
-    year,
-    published,
-    user,
-    image,
-  } = productCart;
+  const { description, cover_image, mileage, price, title, year, user, image } =
+    productCart;
 
   let firstLetterProduc = "";
   let secondLetterProduc = "";
@@ -119,15 +109,15 @@ export const ProductPage = () => {
   return !load ? (
     <></>
   ) : (
-    <>
+    <Background>
       <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <Issoai>
+        <DivModal>
           <ModalContent
             width={"520px"}
             height={"354px"}
             borderRadius={"8px"}
-            className="teste"
+            className="content"
           >
             <ModalHeader>Imagem do veículo</ModalHeader>
             <ModalCloseButton />
@@ -142,7 +132,7 @@ export const ProductPage = () => {
               </Figure>
             </ModalBody>
           </ModalContent>
-        </Issoai>
+        </DivModal>
       </Modal>
       <Navbar />
       <BackgroundPurple />
@@ -174,22 +164,28 @@ export const ProductPage = () => {
         </section>
         <section className="section-fixed">
           <PhotosProduct>
-            <h2>Fotos</h2>
+            <h2 className="Heading-6-600">Fotos</h2>
             <ul>
-              {image?.map((img: any) => {
-                return (
-                  <li key={img.id}>
-                    <img
-                      onClick={() => {
-                        setImg(img.image);
-                        onOpen();
-                      }}
-                      src={img.image}
-                      alt=""
-                    />
-                  </li>
-                );
-              })}
+              {image.length > 0 ? (
+                image.map((img: any) => {
+                  return (
+                    <li key={img.id}>
+                      <img
+                        onClick={() => {
+                          setImg(img.image);
+                          onOpen();
+                        }}
+                        src={img.image}
+                        alt=""
+                      />
+                    </li>
+                  );
+                })
+              ) : (
+                <h2 className="Heading-7-500">
+                  Oops! Parece que esse anúncio não tem imagens
+                </h2>
+              )}
             </ul>
           </PhotosProduct>
           <ProfileProduct>
@@ -211,7 +207,6 @@ export const ProductPage = () => {
 
           {commets.length ? (
             commets.map((item: IComments) => {
-              console.log(item);
               return (
                 <CommentsProduct
                   date_update={item.date_update}
@@ -229,7 +224,9 @@ export const ProductPage = () => {
               <h3 className="Heading-7-500">
                 Este veículo ainda não possuí comentários
               </h3>
-              <h3 className="Heading-7-500">Seja o primeiro a comentar!</h3>
+              <h3 className="Heading-7-500 no_comments">
+                Seja o primeiro a comentar!
+              </h3>
             </div>
           )}
         </div>
@@ -292,6 +289,6 @@ export const ProductPage = () => {
         </div>
       </InputComments>
       <Footer />
-    </>
+    </Background>
   );
 };
