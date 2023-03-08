@@ -168,6 +168,7 @@ export const DesktopStyle = styled.section`
       border-radius: 4px;
       padding: 20px 20px;
       z-index: 1;
+      right: 10px;
       gap: 20px;
 
       button {
