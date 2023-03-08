@@ -15,10 +15,12 @@ import Navbar from "../../components/Navbar";
 import { useContext, useEffect, useState } from "react";
 import { CommentsProduct } from "../../components/CommentsProduct";
 import {
+  Button,
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
+  ModalFooter,
   ModalHeader,
   ModalOverlay,
   useDisclosure,
@@ -29,6 +31,7 @@ import { GlobalContext } from "../../contexts/GlobalContext";
 import { getAllProduct } from "../../service/product/getAllProduct";
 import { IComments, IDataCard } from "../../interface/productArray";
 import { getAllcommentsByProduct } from "../../service/product/getAllcommentsByProduct";
+import api from "../../service/api";
 
 export const ProductPage = () => {
   const [value, setValue] = useState("");
@@ -40,9 +43,9 @@ export const ProductPage = () => {
   const Navigate = useNavigate();
 
   const [productCart, setProductCart] = useState<IDataCard>({} as IDataCard);
-  const [commets, setCommets] = useState<IComments[]>([]);
 
-  const { logged } = useContext(GlobalContext);
+  const { logged, setCommets, commets, listComment } =
+    useContext(GlobalContext);
 
   const { id } = useParams();
 
@@ -67,6 +70,7 @@ export const ProductPage = () => {
 
   let logo = window.localStorage.getItem("userNameLogo");
   let userName = window.localStorage.getItem("userName");
+  let token = localStorage.getItem("token");
 
   const {
     description,
@@ -80,8 +84,6 @@ export const ProductPage = () => {
     image,
   } = productCart;
 
-  const { product } = useContext(GlobalContext);
-
   let firstLetterProduc = "";
   let secondLetterProduc = "";
 
@@ -93,9 +95,25 @@ export const ProductPage = () => {
     }
   }
 
-  function comment() {
-    console.log(value);
-    setValue("");
+  function createComment() {
+    if (value === "") {
+      return;
+    }
+    const data = {
+      text: value,
+      idProduct: productCart.id,
+    };
+
+    api
+      .post("/comments", data, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then(() => {
+        setValue("");
+      })
+      .catch(() => {});
+
+    listComment(id);
   }
 
   return !load ? (
@@ -191,16 +209,29 @@ export const ProductPage = () => {
         <div className="container">
           <h2 className="Heading-6-600">Comentários</h2>
 
-          {commets.map((item: IComments) => {
-            return (
-              <CommentsProduct
-                date={item.date_creation}
-                description={item.text}
-                name={item.user.name}
-                key={item.id}
-              />
-            );
-          })}
+          {commets.length ? (
+            commets.map((item: IComments) => {
+              console.log(item);
+              return (
+                <CommentsProduct
+                  date_update={item.date_update}
+                  date_create={item.date_creation}
+                  description={item.text}
+                  name={item.user.name}
+                  key={item.id}
+                  id={item.user.id}
+                  idComment={item.id}
+                />
+              );
+            })
+          ) : (
+            <div className="comments-empty">
+              <h3 className="Heading-7-500">
+                Este veículo ainda não possuí comentários
+              </h3>
+              <h3 className="Heading-7-500">Seja o primeiro a comentar!</h3>
+            </div>
+          )}
         </div>
       </Comments>
       <InputComments>
@@ -223,7 +254,7 @@ export const ProductPage = () => {
               }}
             />
             {logged ? (
-              <button className="brand1" onClick={comment}>
+              <button className="brand1" onClick={createComment}>
                 Comentar
               </button>
             ) : (

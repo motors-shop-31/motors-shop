@@ -4,6 +4,7 @@ export interface IComments {
   id: string;
   text: string;
   date_creation: string;
+  date_update: string;
   user: IUser;
 }
 
