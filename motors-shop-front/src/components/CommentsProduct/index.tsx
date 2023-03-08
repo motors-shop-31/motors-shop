@@ -1,16 +1,27 @@
 import { LogoName } from "../../pages/ProductPage/styles";
 import { useMemo } from "react";
-
 import moment from "moment";
 import "moment/locale/pt-br";
+import { ModalTrash } from "../ModalTrashComments";
+import { ModalMoreComments } from "../ModalMoreComments";
 
 interface Iprops {
   name: string;
   description: string;
-  date: string;
+  date_create: string;
+  date_update: string;
+  id: string;
+  idComment: string;
 }
 
-export const CommentsProduct = ({ name, description, date }: Iprops) => {
+export const CommentsProduct = ({
+  name,
+  description,
+  date_create,
+  date_update,
+  id,
+  idComment,
+}: Iprops) => {
   moment.locale("pt-br");
 
   const color = useMemo(() => {
@@ -28,16 +39,32 @@ export const CommentsProduct = ({ name, description, date }: Iprops) => {
     secondLetter = "";
   }
 
+  let userId = localStorage.getItem("userId");
+
   return (
-    <div className="container-comment">
-      <div className="container-info">
-        <LogoName color={color}>
-          {`${firstLetter}${secondLetter}`.trim()}
-        </LogoName>
-        <h3 className="body-2-500">{name.trim()}</h3>
-        <h4>{moment(date).locale("pt").fromNow()}</h4>
+    <>
+      <div className="container-comment">
+        <div className="container-info">
+          <LogoName color={color}>
+            {`${firstLetter}${secondLetter}`.trim()}
+          </LogoName>
+          <h3 className="body-2-500">{name.trim()}</h3>
+          <div className="div-edit">
+            <h4>{moment(date_update).locale("pt").fromNow()}</h4>
+            {date_create !== date_update && <span>(Editado)</span>}
+          </div>
+          {userId === id ? (
+            <>
+              <ModalTrash idComment={idComment} />
+              <ModalMoreComments idComment={idComment} />
+            </>
+          ) : (
+            <></>
+          )}
+        </div>
+
+        <p className="body-2-400">{description}</p>
       </div>
-      <p className="body-2-400">{description}</p>
-    </div>
+    </>
   );
 };

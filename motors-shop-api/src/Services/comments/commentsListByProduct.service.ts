@@ -1,20 +1,17 @@
 import AppDataSource from "../../data-source";
-import { Comments } from "../../entities/comments.entity";
 import { Product } from "../../entities/product.entity";
+import { AppError } from "../../errors/appError";
 
 const commentsListByProductService = async (productId: string) => {
   const productRepository = AppDataSource.getRepository(Product);
-  const commentsRepository = AppDataSource.getRepository(Comments);
 
   const product = await productRepository.findOneBy({ id: productId });
 
-  let comments;
-
-  if (product) {
-    comments = await commentsRepository.find();
+  if (!product) {
+    throw new AppError(400, "Product not find");
   }
 
-  return comments;
+  return product?.comments;
 };
 
 export default commentsListByProductService;

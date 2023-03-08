@@ -3,4 +3,8 @@ interface ICreateComments {
   text: string;
 }
 
-export { ICreateComments };
+interface IUpdateComments {
+  text?: string;
+}
+
+export { ICreateComments, IUpdateComments };

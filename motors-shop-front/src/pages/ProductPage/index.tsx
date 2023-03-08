@@ -8,8 +8,8 @@ import {
   Comments,
   InputComments,
   Figure,
-  Issoai,
   Background,
+  DivModal,
 } from "./styles";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
@@ -30,6 +30,7 @@ import { GlobalContext } from "../../contexts/GlobalContext";
 import { getAllProduct } from "../../service/product/getAllProduct";
 import { IComments, IDataCard } from "../../interface/productArray";
 import { getAllcommentsByProduct } from "../../service/product/getAllcommentsByProduct";
+import api from "../../service/api";
 
 export const ProductPage = () => {
   const [value, setValue] = useState("");
@@ -41,9 +42,9 @@ export const ProductPage = () => {
   const Navigate = useNavigate();
 
   const [productCart, setProductCart] = useState<IDataCard>({} as IDataCard);
-  const [commets, setCommets] = useState<IComments[]>([]);
 
-  const { logged } = useContext(GlobalContext);
+  const { logged, setCommets, commets, listComment } =
+    useContext(GlobalContext);
 
   const { id } = useParams();
 
@@ -68,20 +69,10 @@ export const ProductPage = () => {
 
   let logo = window.localStorage.getItem("userNameLogo");
   let userName = window.localStorage.getItem("userName");
+  let token = localStorage.getItem("token");
 
-  const {
-    description,
-    cover_image,
-    mileage,
-    price,
-    title,
-    year,
-    published,
-    user,
-    image,
-  } = productCart;
-
-  const { product } = useContext(GlobalContext);
+  const { description, cover_image, mileage, price, title, year, user, image } =
+    productCart;
 
   let firstLetterProduc = "";
   let secondLetterProduc = "";
@@ -94,9 +85,25 @@ export const ProductPage = () => {
     }
   }
 
-  function comment() {
-    console.log(value);
-    setValue("");
+  function createComment() {
+    if (value === "") {
+      return;
+    }
+    const data = {
+      text: value,
+      idProduct: productCart.id,
+    };
+
+    api
+      .post("/comments", data, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then(() => {
+        setValue("");
+      })
+      .catch(() => {});
+
+    listComment(id);
   }
 
   return !load ? (
@@ -105,12 +112,12 @@ export const ProductPage = () => {
     <Background>
       <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <Issoai>
+        <DivModal>
           <ModalContent
             width={"520px"}
             height={"354px"}
             borderRadius={"8px"}
-            className="teste"
+            className="content"
           >
             <ModalHeader>Imagem do veículo</ModalHeader>
             <ModalCloseButton />
@@ -125,7 +132,7 @@ export const ProductPage = () => {
               </Figure>
             </ModalBody>
           </ModalContent>
-        </Issoai>
+        </DivModal>
       </Modal>
       <Navbar />
       <BackgroundPurple />
@@ -143,9 +150,9 @@ export const ProductPage = () => {
             <h4 className="Heading-7-500">
               {price !== undefined
                 ? price.toLocaleString("pt-BR", {
-                  style: "currency",
-                  currency: "BRL",
-                })
+                    style: "currency",
+                    currency: "BRL",
+                  })
                 : null}
             </h4>
             <button className="brand1">Comprar</button>
@@ -159,22 +166,26 @@ export const ProductPage = () => {
           <PhotosProduct>
             <h2 className="Heading-6-600">Fotos</h2>
             <ul>
-              {image.length > 0 ? image.map((img: any) => {
-                return (
-                  <li key={img.id}>
-                    <img
-                      onClick={() => {
-                        setImg(img.image);
-                        onOpen();
-                      }}
-                      src={img.image}
-                      alt=""
-                    />
-                  </li>
-                );
-              })
-                :
-                <h2 className="Heading-7-500">Oops! Parece que esse anúncio não tem imagens</h2>}
+              {image.length > 0 ? (
+                image.map((img: any) => {
+                  return (
+                    <li key={img.id}>
+                      <img
+                        onClick={() => {
+                          setImg(img.image);
+                          onOpen();
+                        }}
+                        src={img.image}
+                        alt=""
+                      />
+                    </li>
+                  );
+                })
+              ) : (
+                <h2 className="Heading-7-500">
+                  Oops! Parece que esse anúncio não tem imagens
+                </h2>
+              )}
             </ul>
           </PhotosProduct>
           <ProfileProduct>
@@ -194,19 +205,30 @@ export const ProductPage = () => {
         <div className="container">
           <h2 className="Heading-6-600">Comentários</h2>
 
-          {commets.length > 0 ? commets.map((item: IComments) => {
-            return (
-              <CommentsProduct
-                date={item.date_creation}
-                description={item.text}
-                name={item.user.name}
-                key={item.id}
-              />
-            );
-          })
-            :
-            <h2 className="Heading-7-500 no_comments">Seja o primeiro a comentar!</h2>
-          }
+          {commets.length ? (
+            commets.map((item: IComments) => {
+              return (
+                <CommentsProduct
+                  date_update={item.date_update}
+                  date_create={item.date_creation}
+                  description={item.text}
+                  name={item.user.name}
+                  key={item.id}
+                  id={item.user.id}
+                  idComment={item.id}
+                />
+              );
+            })
+          ) : (
+            <div className="comments-empty">
+              <h3 className="Heading-7-500">
+                Este veículo ainda não possuí comentários
+              </h3>
+              <h3 className="Heading-7-500 no_comments">
+                Seja o primeiro a comentar!
+              </h3>
+            </div>
+          )}
         </div>
       </Comments>
       <InputComments>
@@ -229,7 +251,7 @@ export const ProductPage = () => {
               }}
             />
             {logged ? (
-              <button className="brand1" onClick={comment}>
+              <button className="brand1" onClick={createComment}>
                 Comentar
               </button>
             ) : (

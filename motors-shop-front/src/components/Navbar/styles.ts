@@ -6,7 +6,7 @@ export const NavbarStyle = styled.header`
   top: 0;
   left: 0;
   height: 80px;
-  z-index: 1;
+  z-index: 4;
 
   div {
     width: 100%;

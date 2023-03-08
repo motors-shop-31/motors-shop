@@ -23,7 +23,7 @@ export const MainRoute = () => {
       <Route path="/forgotPassword" element={<ForgotPassword />} />
       <Route path="/forgotPassword/code" element={<ForgotCode />} />
       <Route path="/forgotPassword/resetPassword" element={<ResetPassword />} />
-      * <Route path="*" element={<Navigate to="/Dashboard" replace />} />
+      <Route path="*" element={<Navigate to="/Dashboard" replace />} />
     </Routes>
   );
 };
