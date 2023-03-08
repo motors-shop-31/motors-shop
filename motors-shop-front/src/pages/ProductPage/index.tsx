@@ -101,7 +101,7 @@ export const ProductPage = () => {
       .then(() => {
         setValue("");
       })
-      .catch(() => {});
+      .catch(() => { });
 
     listComment(id);
   }
@@ -150,9 +150,9 @@ export const ProductPage = () => {
             <h4 className="Heading-7-500">
               {price !== undefined
                 ? price.toLocaleString("pt-BR", {
-                    style: "currency",
-                    currency: "BRL",
-                  })
+                  style: "currency",
+                  currency: "BRL",
+                })
                 : null}
             </h4>
             <button className="brand1">Comprar</button>
@@ -222,7 +222,7 @@ export const ProductPage = () => {
           ) : (
             <div className="comments-empty">
               <h3 className="Heading-7-500">
-                Este veículo ainda não possuí comentários
+                Este veículo ainda não possui comentários
               </h3>
               <h3 className="Heading-7-500 no_comments">
                 Seja o primeiro a comentar!

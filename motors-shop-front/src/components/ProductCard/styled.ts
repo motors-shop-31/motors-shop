@@ -9,7 +9,8 @@ export const Conteiner = styled.div`
   }
 
   ul {
-    background-color: var(--whiteFixed);
+    display: flex;
+    width: fit-content;
     padding: 1rem;
     padding-left: 0px;
 
@@ -23,10 +24,6 @@ export const Conteiner = styled.div`
 
     .carroselConteiner {
       overflow: hidden;
-    }
-
-    ul {
-      display: flex;
     }
 
     .conteiner--cart {
@@ -146,12 +143,16 @@ export const Conteiner = styled.div`
 
         color: var(--brand1);
         background-color: var(--brand4);
+
+        border-radius: 4px;
       }
       .year {
         padding: 4px 8px;
 
         color: var(--brand1);
         background-color: var(--brand4);
+
+        border-radius: 4px;
       }
       .price {
         padding: 4px 8px;
