@@ -11,6 +11,8 @@ const Dashboard = () => {
   const [productCart, setProductCart] = useState<IDataCard[]>([]);
   const [productMotorbike, setProductMotorbike] = useState<IDataCard[]>([]);
 
+
+
   useEffect(() => {
     getAllProduct()
       .then(({ data }) => {
@@ -28,6 +30,7 @@ const Dashboard = () => {
 
   return (
     <Conteiner>
+
       <Navbar />
       <div className="info">
         <div>
