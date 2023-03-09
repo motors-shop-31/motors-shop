@@ -54,7 +54,7 @@ const InputError = ({
               : type
           }
         />
-        {label === "Senha" &&
+        {type === "password" &&
           (visible ? (
             <AiFillEye
               style={{ cursor: "pointer" }}
@@ -66,43 +66,6 @@ const InputError = ({
               onClick={() => setVisible(true)}
             />
           ))}
-        {label === "Confirmar Senha" &&
-          (visibleConfirm ? (
-            <AiFillEye
-              style={{ cursor: "pointer" }}
-              onClick={() => setVisibleConfirm(false)}
-            />
-          ) : (
-            <AiFillEyeInvisible
-              style={{ cursor: "pointer" }}
-              onClick={() => setVisibleConfirm(true)}
-            />
-          ))}
-      </div>
-    </>
-  );
-};
-
-export const InputErrorPassword = ({
-  id,
-  label,
-  error,
-  placeholder,
-  registerForm,
-}: IInuput) => {
-  return (
-    <>
-      <Div className="Teste">
-        <label htmlFor="id">{label}</label>
-        {error?.message && (
-          <Error>
-            <BiErrorCircle />
-            <span>{error?.message}</span>
-          </Error>
-        )}
-      </Div>
-      <div className="InputContaine">
-        <input type="password" placeholder={placeholder} {...registerForm} />
       </div>
     </>
   );

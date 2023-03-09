@@ -1,15 +1,13 @@
 import { Conteiner } from "./styled";
-
 import { IDataCard } from "../../interface/productArray";
-
 import { motion } from "framer-motion";
 
 import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { LogoName } from "../../pages/ProductPage/styles";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../contexts/GlobalContext";
-import { ReactComponent as FrontCarIcon } from "../../assets/front_car.svg";
-import { UserModal } from "../userModal/userModal";
+
+import { ModalEdit } from "../ModalFormEdit/ModalEdit";
 
 interface props {
   arrayProduto: IDataCard[];
@@ -21,8 +19,8 @@ interface props {
 export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
   const carrosel = useRef<any>();
   const [width, setWidth] = useState(0);
-
-  const [addressEdit, setAddressEdit] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [id, setID] = useState<any>();
 
   let widthMove = 0;
 
@@ -45,7 +43,6 @@ export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
           <h3 className="Heading-7-500">
             Ops... Parece que ainda não há anúncios por aqui!
           </h3>
-          {/* {anuncianteCard ? <button type='button' onClick={() => openModal()} className="big outlineBrand1">Criar anuncio</button> : null} */}
         </div>
       ) : (
         <motion.div ref={carrosel} className="carroselConteiner">
@@ -123,7 +120,7 @@ export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
 
                   <div className="conteiner--info">
                     <div>
-                      <p className="km">{mileage} KM</p>
+                      <p className="km">{mileage.toLocaleString("pt-BR")} KM</p>
                       <p className="year">{year}</p>
                     </div>
                     <p className="Heading-7-500 price">
@@ -136,8 +133,11 @@ export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
                   {myAds ? (
                     <div className="conteinerEdit">
                       <button
+                        onClick={() => {
+                          setModalOpen(true);
+                          setID(id);
+                        }}
                         className="medium Outline1"
-                        onClick={() => setAddressEdit(true)}
                       >
                         Editar
                       </button>
@@ -159,10 +159,12 @@ export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
           </motion.ul>
         </motion.div>
       )}
-      <UserModal
-        state={addressEdit}
-        setState={setAddressEdit}
+
+      <ModalEdit
+        state={modalOpen}
+        setState={setModalOpen}
         children={<h1>OLa adasd</h1>}
+        idProduct={id}
       />
     </Conteiner>
   );

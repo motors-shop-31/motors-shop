@@ -15,9 +15,22 @@ export interface IPostResponse{
     image: string[];
 }
 
+export interface IProductUpdate{
+    type?: string;
+    title?: string;
+    year?: number;
+    mileage?: number;
+    price?: number;
+    description?: string;
+    vehicle?: string;
+    published?: boolean;
+    cover_image?: string;
+    image?: string[];
+}
 interface Values {
     formSchema: any;
     onSubmitFunction: (data: IPostResponse) => void;
+    onSubmitFunction2: (data: IProductUpdate) => void;
 }
 
 export const ValuesFunctions = createContext<Values>({} as Values);

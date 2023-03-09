@@ -20,7 +20,7 @@ import {
   useDisclosure,
   Button,
 } from "@chakra-ui/react";
-import { CircularProgress, CircularProgressLabel } from "@chakra-ui/react";
+import { CircularProgress } from "@chakra-ui/react";
 
 const ForgotCode = () => {
   const [progress, setProgress] = useState(false);

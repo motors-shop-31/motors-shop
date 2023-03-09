@@ -6,7 +6,7 @@ export const ModalBackground = styled.div`
     width: 100%;
     height: 100vh;
     max-height: 100vh;
-    z-index: 2;
+    z-index: 5;
     background-color: rgba(0, 0, 0, 0.4);
 `
 
@@ -40,7 +40,7 @@ export const ModalCard = styled.div`
     max-width: 26.875rem;
     height: fit-content;
     padding: 20px;
-    margin-top: 515px;
+    margin-top: auto;
     border-radius: 0.25rem;
     background-color: var(--whiteFixed);
 `
