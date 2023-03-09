@@ -115,7 +115,7 @@ export const UserEditForm = ({ setState, user, setUser }: modalProps) => {
         id="Cpf"
         error={errors.cpf}
         placeholder={user.cpf}
-        label="Email"
+        label="Cpf"
         registerForm={register("cpf")}
       />
 
