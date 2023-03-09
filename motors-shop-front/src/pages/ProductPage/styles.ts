@@ -57,7 +57,7 @@ export const Container = styled.div`
       right: 15%;
       top: 168px;
       width: 8em;
-      margin-top: -2.5em;
+      margin-top: -2.7em;
     }
   }
 
@@ -180,12 +180,13 @@ export const Description = styled.div`
 
 export const PhotosProduct = styled.div`
   width: 290px;
-  height: 254px;
+  height: 235px;
   background-color: var(--grey10);
   border-radius: 4px;
 
   h2 {
     margin-left: 20px;
+    margin-top: 18px;
   }
 
   ul {
@@ -217,7 +218,7 @@ export const PhotosProduct = styled.div`
   }
 
   @media (min-width: 768px) {
-    height: 283px;
+    height: 285px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;

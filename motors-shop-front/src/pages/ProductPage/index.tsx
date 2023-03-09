@@ -151,7 +151,9 @@ export const ProductPage = () => {
             <h2 className="Heading-6-600 ">{title}</h2>
             <div>
               <h3 className="body-2-500">{year}</h3>
-              <h3 className="body-2-500">{mileage} KM</h3>
+              <h3 className="body-2-500">
+                {mileage.toLocaleString("pt-BR")} KM
+              </h3>
             </div>
             <h4 className="Heading-7-500">
               {price !== undefined

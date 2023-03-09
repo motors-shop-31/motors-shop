@@ -56,6 +56,7 @@ export const Conteiner = styled.div`
 
       input {
         width: 92%;
+        border: none;
         :focus {
           outline: none;
         }
