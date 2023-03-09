@@ -17,7 +17,7 @@ const Dashboard = () => {
         const cart: IDataCard[] = [];
         const bike: IDataCard[] = [];
         data.forEach((product: IDataCard) => {
-          product.vehicle === "carro" ? cart.push(product) : bike.push(product);
+          product.vehicle === "car" ? cart.push(product) : bike.push(product);
         });
 
         setProductCart(cart);

@@ -1,5 +1,12 @@
 import styled from "styled-components";
 
+export const Background = styled.div`
+  width: 100%;
+  position: absolute;
+  background-color: var(--grey8);
+  z-index: 0;
+`;
+
 export const Conteiner = styled.div`
 
   max-width: 100%;
@@ -83,6 +90,13 @@ export const Conteiner = styled.div`
     text-indent: 1rem;
     margin-top: 2.3rem;
     margin-bottom: 1rem;
+  }
+
+  .empty_list_container {
+    margin-left: 4rem;
+    h3 {
+      margin-bottom: 20px;
+    }
   }
 
   .leilaoConteiner {

@@ -8,7 +8,8 @@ import {
   Comments,
   InputComments,
   Figure,
-  Issoai,
+  Background,
+  DivModal,
 } from "./styles";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
@@ -30,6 +31,7 @@ import { getAllProduct } from "../../service/product/getAllProduct";
 import { IComments, IDataCard } from "../../interface/productArray";
 import { getAllcommentsByProduct } from "../../service/product/getAllcommentsByProduct";
 import { BsWhatsapp } from "react-icons/bs";
+import api from "../../service/api";
 
 export const ProductPage = () => {
   const [value, setValue] = useState("");
@@ -41,11 +43,11 @@ export const ProductPage = () => {
   const Navigate = useNavigate();
 
   const [productCart, setProductCart] = useState<IDataCard>({} as IDataCard);
-  const [commets, setCommets] = useState<IComments[]>([]);
 
   const [message, setMessage] = useState("");
 
-  const { logged } = useContext(GlobalContext);
+  const { logged, setCommets, commets, listComment } =
+    useContext(GlobalContext);
 
   const { id } = useParams();
 
@@ -73,20 +75,10 @@ export const ProductPage = () => {
 
   let logo = window.localStorage.getItem("userNameLogo");
   let userName = window.localStorage.getItem("userName");
+  let token = localStorage.getItem("token");
 
-  const {
-    description,
-    cover_image,
-    mileage,
-    price,
-    title,
-    year,
-    published,
-    user,
-    image,
-  } = productCart;
-
-  const { product } = useContext(GlobalContext);
+  const { description, cover_image, mileage, price, title, year, user, image } =
+    productCart;
 
   let firstLetterProduc = "";
   let secondLetterProduc = "";
@@ -99,23 +91,39 @@ export const ProductPage = () => {
     }
   }
 
-  function comment() {
-    console.log(value);
-    setValue("");
+  function createComment() {
+    if (value === "") {
+      return;
+    }
+    const data = {
+      text: value,
+      idProduct: productCart.id,
+    };
+
+    api
+      .post("/comments", data, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then(() => {
+        setValue("");
+      })
+      .catch(() => {});
+
+    listComment(id);
   }
 
   return !load ? (
     <></>
   ) : (
-    <>
+    <Background>
       <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <Issoai>
+        <DivModal>
           <ModalContent
             width={"520px"}
             height={"354px"}
             borderRadius={"8px"}
-            className="teste"
+            className="content"
           >
             <ModalHeader>Imagem do veículo</ModalHeader>
             <ModalCloseButton />
@@ -130,7 +138,7 @@ export const ProductPage = () => {
               </Figure>
             </ModalBody>
           </ModalContent>
-        </Issoai>
+        </DivModal>
       </Modal>
       <Navbar />
       <BackgroundPurple />
@@ -169,22 +177,28 @@ export const ProductPage = () => {
         </section>
         <section className="section-fixed">
           <PhotosProduct>
-            <h2>Fotos</h2>
+            <h2 className="Heading-6-600">Fotos</h2>
             <ul>
-              {image?.map((img: any) => {
-                return (
-                  <li key={img.id}>
-                    <img
-                      onClick={() => {
-                        setImg(img.image);
-                        onOpen();
-                      }}
-                      src={img.image}
-                      alt=""
-                    />
-                  </li>
-                );
-              })}
+              {image.length > 0 ? (
+                image.map((img: any) => {
+                  return (
+                    <li key={img.id}>
+                      <img
+                        onClick={() => {
+                          setImg(img.image);
+                          onOpen();
+                        }}
+                        src={img.image}
+                        alt=""
+                      />
+                    </li>
+                  );
+                })
+              ) : (
+                <h2 className="Heading-7-500">
+                  Oops! Parece que esse anúncio não tem imagens
+                </h2>
+              )}
             </ul>
           </PhotosProduct>
           <ProfileProduct>
@@ -212,16 +226,30 @@ export const ProductPage = () => {
         <div className="container">
           <h2 className="Heading-6-600">Comentários</h2>
 
-          {commets.map((item: IComments) => {
-            return (
-              <CommentsProduct
-                date={item.date_creation}
-                description={item.text}
-                name={item.user.name}
-                key={item.id}
-              />
-            );
-          })}
+          {commets.length ? (
+            commets.map((item: IComments) => {
+              return (
+                <CommentsProduct
+                  date_update={item.date_update}
+                  date_create={item.date_creation}
+                  description={item.text}
+                  name={item.user.name}
+                  key={item.id}
+                  id={item.user.id}
+                  idComment={item.id}
+                />
+              );
+            })
+          ) : (
+            <div className="comments-empty">
+              <h3 className="Heading-7-500">
+                Este veículo ainda não possui comentários
+              </h3>
+              <h3 className="Heading-7-500 no_comments">
+                Seja o primeiro a comentar!
+              </h3>
+            </div>
+          )}
         </div>
       </Comments>
       <InputComments>
@@ -244,7 +272,7 @@ export const ProductPage = () => {
               }}
             />
             {logged ? (
-              <button className="brand1" onClick={comment}>
+              <button className="brand1" onClick={createComment}>
                 Comentar
               </button>
             ) : (
@@ -282,6 +310,6 @@ export const ProductPage = () => {
         </div>
       </InputComments>
       <Footer />
-    </>
+    </Background>
   );
 };

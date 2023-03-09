@@ -4,6 +4,7 @@ export interface IComments {
   id: string;
   text: string;
   date_creation: string;
+  date_update: string;
   user: IUser;
 }
 
@@ -23,5 +24,5 @@ export interface IDataCard {
   user: IUser;
 
   //A fazer ainda
-  image?: string[];
+  image: string[];
 }

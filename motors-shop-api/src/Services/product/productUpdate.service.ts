@@ -28,7 +28,7 @@ const productUpdateService = async (
   const findProduct = await productsRepository.findOneBy({ id });
 
   if (!findProduct) {
-    throw new AppError(400, `${findProduct}`);
+    throw new AppError(400, "Product does not exist");
   }
 
   await productsRepository.update(id, {

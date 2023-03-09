@@ -6,7 +6,7 @@ export const NavbarStyle = styled.header`
   top: 0;
   left: 0;
   height: 80px;
-  z-index: 1;
+  z-index: 4;
 
   div {
     width: 100%;
@@ -121,6 +121,10 @@ export const DesktopStyle = styled.section`
     justify-content: space-between;
     align-items: center;
 
+    .button-login {
+      cursor: pointer;
+    }
+
     h2 {
       margin-right: 5px;
 
@@ -164,6 +168,7 @@ export const DesktopStyle = styled.section`
       border-radius: 4px;
       padding: 20px 20px;
       z-index: 1;
+      right: 10px;
       gap: 20px;
 
       button {

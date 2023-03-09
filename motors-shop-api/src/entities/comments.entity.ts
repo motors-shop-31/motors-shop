@@ -4,6 +4,7 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   ManyToOne,
+  UpdateDateColumn,
 } from "typeorm";
 import { Product } from "./product.entity";
 import { User } from "./user.entity";
@@ -19,7 +20,7 @@ export class Comments {
   @ManyToOne((type) => Product, (product) => product.comments, {
     onDelete: "CASCADE",
   })
-  product: Product;
+  product: Product | string;
 
   @ManyToOne(() => User, (user) => user.comments, {
     onDelete: "CASCADE",
@@ -29,4 +30,7 @@ export class Comments {
 
   @CreateDateColumn()
   date_creation: Date;
+
+  @UpdateDateColumn()
+  date_update: Date;
 }

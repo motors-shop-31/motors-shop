@@ -6,20 +6,24 @@ import Navbar from "../../components/Navbar";
 import { ProductCard } from "../../components/ProductCard/productCard";
 import { AuthContext } from "../../contexts/modalContext";
 import { IDataCard } from "../../interface/productArray";
+
 import { IUser } from "../../interface/userInterface";
 import { getAllProduct } from "../../service/product/getAllProduct";
 import { getUser } from "../../service/user/getUser";
-import { Conteiner } from "./styles";
+import { Background, Conteiner } from "./styles";
 
 const SellerAd = () => {
   const [productCart, setProductCart] = useState<IDataCard[]>([]);
   const [productMotorbike, setProductMotorbike] = useState<IDataCard[]>([]);
   const [user, setUser] = useState({} as IUser);
   const { modal, openModal } = useContext(AuthContext);
-
   const userId = localStorage.getItem("userId");
 
   useEffect(() => {
+    getUser(localStorage.getItem("token")!).then((res) => {
+      console.log(res.data);
+      setUser(res.data);
+    });
     getAllProduct()
       .then(({ data }) => {
         const cart: IDataCard[] = [];
@@ -49,13 +53,18 @@ const SellerAd = () => {
   }, []);
 
   return (
-    <>
-      {modal ? <ModalForm /> : null}
+    <Background>
+      {modal ? (
+        <ModalForm
+          setProductCart={setProductCart}
+          setProductMotorbike={setProductMotorbike}
+        />
+      ) : null}
       <Conteiner>
         <Navbar />
         <div className="backGroudHeader"></div>
         <div className="advertiserCard">
-          <p className="seller">SL</p>
+          <p className="seller">{localStorage.getItem("userNameLogo")}</p>
           <div className="sellerConteiner">
             <p className="Heading-6-600">{user.name}</p>
             <p className="sellerType">Anunciante</p>
@@ -88,24 +97,28 @@ const SellerAd = () => {
         <h2 className="Heading-5-600 tipo" id="carros">
           Carros
         </h2>
+
         <ProductCard
           arrayProduto={productCart}
-          anuncianteCard={false}
+          anuncianteCard={true}
           myAds={true}
+          buttonHandler={openModal}
         />
 
         <h2 className="Heading-5-600 tipo" id="motos">
           Motos
         </h2>
+
         <ProductCard
           arrayProduto={productMotorbike}
-          anuncianteCard={false}
+          anuncianteCard={true}
           myAds={true}
+          buttonHandler={openModal}
         />
 
         <Footer />
       </Conteiner>
-    </>
+    </Background>
   );
 };
 

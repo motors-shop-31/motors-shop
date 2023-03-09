@@ -1,8 +1,16 @@
 import styled from "styled-components";
 
 export const Conteiner = styled.div`
+  .empty_list_container {
+    margin-left: 4rem;
+    h3 {
+      margin-bottom: 20px;
+    }
+  }
+
   ul {
-    background-color: var(--whiteFixed);
+    display: flex;
+    width: fit-content;
     padding: 1rem;
     padding-left: 0px;
 
@@ -47,6 +55,12 @@ export const Conteiner = styled.div`
 
       img {
         min-width: 100%;
+        min-height: 100%;
+      }
+
+      .no_image {
+        width: 100%;
+        height: 100%;
       }
 
       .anuncioStatus {
@@ -137,12 +151,16 @@ export const Conteiner = styled.div`
 
         color: var(--brand1);
         background-color: var(--brand4);
+
+        border-radius: 4px;
       }
       .year {
         padding: 4px 8px;
 
         color: var(--brand1);
         background-color: var(--brand4);
+
+        border-radius: 4px;
       }
       .price {
         padding: 4px 8px;

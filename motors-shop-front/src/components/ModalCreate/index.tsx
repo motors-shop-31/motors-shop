@@ -1,47 +1,64 @@
 import {
-  Modal, ModalBody,
-  ModalCloseButton, ModalContent,
-  ModalHeader, ModalOverlay, useDisclosure
-} from '@chakra-ui/react';
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
+  useDisclosure,
+} from "@chakra-ui/react";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FieldValues } from "react-hook-form/dist/types";
 import { GrFormClose } from "react-icons/gr";
 import * as yup from "yup";
-import { IPostResponse } from '../../contexts/InputsContext';
-import { AuthContext } from '../../contexts/modalContext';
+import { IPostResponse } from "../../contexts/InputsContext";
+import { AuthContext } from "../../contexts/modalContext";
+import { IDataCard } from "../../interface/productArray";
 import api from "../../service/api";
+import { getAllProduct } from "../../service/product/getAllProduct";
 import Options from "../Options";
 import {
   BottomButtons,
   DefaultInputContainer,
   InputContainer02,
   InputContainerButtons,
-  InputContainerMarginBottom, ModalBackground, ModalCard,
+  InputContainerMarginBottom,
+  ModalBackground,
+  ModalCard,
   ModalContainer,
   ModalFormContainer,
   ModalUpContainer,
-  ModaMessageContainer
-} from './style';
+  ModaMessageContainer,
+} from "./style";
 
-const ModalForm = () => {
+interface IModalFormProps {
+  setProductCart: React.Dispatch<React.SetStateAction<IDataCard[]>>
+  setProductMotorbike: React.Dispatch<React.SetStateAction<IDataCard[]>>
+}
+
+const ModalForm = ({ setProductCart, setProductMotorbike }: IModalFormProps) => {
   const { closeModal } = useContext(AuthContext);
-  const [imagesURLs, setImagesURLs] = useState([""]);
+  const [imagesURLs, setImagesURLs] = useState<string[]>([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
     document.body.classList.add("modal_body");
-  })
+  });
 
   const addImage = () => {
-    setImagesURLs([...imagesURLs, ""]);
+    if (imagesURLs.length < 6) {
+      setImagesURLs([...imagesURLs, ""]);
+    }
   };
 
   const updateImage = (index: number, url: string) => {
-    const newImages = [...imagesURLs];
-    newImages[index] = url;
-    setImagesURLs(newImages);
+    if (url) {
+      const newImages = [...imagesURLs];
+      newImages[index] = url;
+      setImagesURLs(newImages);
+    }
   };
 
   const formSchema = yup.object().shape({
@@ -58,22 +75,37 @@ const ModalForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm<IPostResponse>({
-    resolver: yupResolver(formSchema)
+    resolver: yupResolver(formSchema),
   });
 
   const onSubmitFunction = (data: FieldValues) => {
-    const request = { ...data, image: imagesURLs, published: true }
-    console.log(request)
+    setImagesURLs(imagesURLs.filter((image) => image !== ""));
+    const request = { ...data, image: imagesURLs, published: true };
 
-    api.post("/product", request, {
-      headers: {
-        "Authorization": `Bearer ${localStorage.getItem("token")}`
-      }
-    }).then((res) => {
-      onOpen();
-    })
+    api
+      .post("/product", request, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        onOpen();
+        getAllProduct()
+          .then((res) => {
+            const userId = localStorage.getItem("userId")
+            const cart: IDataCard[] = [];
+            const bike: IDataCard[] = [];
+            res.data.forEach((product: IDataCard) => {
+              if (product.user.id === userId) {
+                product.vehicle === "car" ? cart.push(product) : bike.push(product);
+              }
+            });
+            setProductCart(cart);
+            setProductMotorbike(bike);
+          })
+      });
   };
 
   return (
@@ -83,12 +115,19 @@ const ModalForm = () => {
           <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
             <ModalContent>
-              <ModalHeader><h2 className="Heading-7-500">Sucesso!</h2></ModalHeader>
+              <ModalHeader>
+                <h2 className="Heading-7-500">Sucesso!</h2>
+              </ModalHeader>
               <ModalCloseButton />
               <ModalBody>
                 <ModaMessageContainer>
-                  <h2 className="Heading-7-500">Seu anúncio foi criado com sucesso!</h2>
-                  <h3 className="opa body-1-400">Agora você poderá ver seus negócios crescendo em grande escala</h3>
+                  <h2 className="Heading-7-500">
+                    Seu anúncio foi criado com sucesso!
+                  </h2>
+                  <h3 className="opa body-1-400">
+                    Agora você poderá ver seus negócios crescendo em grande
+                    escala
+                  </h3>
                 </ModaMessageContainer>
               </ModalBody>
             </ModalContent>
@@ -96,7 +135,7 @@ const ModalForm = () => {
           <ModalCard>
             <ModalUpContainer>
               <h1 className="modal_title">Criar anuncio</h1>
-              <GrFormClose id='xis' onClick={() => closeModal()} />
+              <GrFormClose id="xis" onClick={() => closeModal()} />
             </ModalUpContainer>
             <ModalFormContainer onSubmit={handleSubmit(onSubmitFunction)}>
               <InputContainerButtons>
@@ -120,7 +159,11 @@ const ModalForm = () => {
 
               <DefaultInputContainer>
                 <h2 className="body-2-500">Título</h2>
-                <input type="text" placeholder="Digitar título" {...register("title")} />
+                <input
+                  type="text"
+                  placeholder="Digitar título"
+                  {...register("title")}
+                />
                 <span>{errors?.title?.message}</span>
               </DefaultInputContainer>
 
@@ -139,13 +182,21 @@ const ModalForm = () => {
 
               <DefaultInputContainer>
                 <h2 className="body-2-500">Preço</h2>
-                <input type="text" placeholder="50.000,00" {...register("price")} />
+                <input
+                  type="text"
+                  placeholder="50.000,00"
+                  {...register("price")}
+                />
                 <span>{errors?.price?.message}</span>
               </DefaultInputContainer>
 
               <DefaultInputContainer>
                 <h2 className="body-2-500">Descrição</h2>
-                <textarea id="" placeholder="Digitar Descrição" {...register("description")}></textarea>
+                <textarea
+                  id=""
+                  placeholder="Digitar Descrição"
+                  {...register("description")}
+                ></textarea>
                 <span>{errors?.description?.message}</span>
               </DefaultInputContainer>
 
@@ -170,46 +221,58 @@ const ModalForm = () => {
 
               <DefaultInputContainer>
                 <h2 className="body-2-500">Imagem da capa</h2>
-                <input id="" placeholder="https://image.com" {...register("cover_image")} />
+                <input
+                  id=""
+                  placeholder="https://image.com"
+                  {...register("cover_image")}
+                />
                 <span>{errors?.cover_image?.message}</span>
               </DefaultInputContainer>
 
               {imagesURLs.map((url, index) => {
                 return (
                   <InputContainerMarginBottom key={index}>
-                    <h2 className="body-2-500">{index + 1 + "° Imagem da galeria"}</h2>
+                    <h2 className="body-2-500">
+                      {index + 1 + "° Imagem da galeria"}
+                    </h2>
                     <input
                       placeholder="https://image.com"
                       onChange={(event) => {
-                        updateImage(index, event.target.value)
+                        updateImage(index, event.target.value);
                       }}
                     />
                   </InputContainerMarginBottom>
                 );
               })}
 
-              <button className="medium BrandOpacity" onClick={(e) => {
-                e.preventDefault()
-                addImage()
-              }}>
+              <button
+                className="medium BrandOpacity"
+                onClick={(e) => {
+                  e.preventDefault();
+                  addImage();
+                }}
+              >
                 Adicionar campo para imagem da galeria
               </button>
 
               <BottomButtons>
-                <button className="big negative" onClick={(e) => {
-                  e.preventDefault()
-                  closeModal()
-                }}>Cancelar</button>
+                <button
+                  className="big negative"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    closeModal();
+                  }}
+                >
+                  Cancelar
+                </button>
                 <button className="big brand1">Criar anúncio</button>
               </BottomButtons>
-
             </ModalFormContainer>
           </ModalCard>
         </ModalContainer>
       </ModalBackground>
     </>
-  )
-}
+  );
+};
 
-
-export default ModalForm
+export default ModalForm;

@@ -6,6 +6,7 @@ export const Main = styled.main`
   color: #fff;
   flex-direction: column;
   border-radius: 5px;
+  overflow: hidden;
 
   .conteinerEdit {
     background-color: var(--brand1);
@@ -20,7 +21,6 @@ export const Main = styled.main`
 
   @media (min-width: 600px) {
     width: 735px;
-    height: 388px;
     border-radius: 5px;
   }
 `;

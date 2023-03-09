@@ -41,6 +41,27 @@ export const Conteiner = styled.div`
       }
     }
 
+    div:nth-child(25),
+    div:nth-child(27) {
+      display: flex;
+      align-items: center;
+      background-color: var(--grey8);
+      border-radius: 4px;
+      padding-right: 10px;
+      width: 97%;
+
+      :focus-within {
+        outline: 2px solid black;
+      }
+
+      input {
+        width: 92%;
+        :focus {
+          outline: none;
+        }
+      }
+    }
+
     label {
       font-family: "Inter";
       font-size: 0.875rem;

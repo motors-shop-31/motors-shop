@@ -89,6 +89,7 @@ const Login = () => {
           placeholder="Digitar senha"
           label="Senha"
           registerForm={register("password")}
+          type="password"
         />
 
         <p

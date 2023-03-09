@@ -1,6 +1,13 @@
 /* eslint-disable no-useless-concat */
 import styled from "styled-components";
 
+export const Background = styled.div`
+  width: 100%;
+  position: absolute;
+  background-color: var(--grey8);
+  z-index: 0;
+`;
+
 export const BackgroundPurple = styled.div`
   width: 100%;
   height: 450px;
@@ -107,7 +114,8 @@ export const InfoProduct = styled.div`
       text-align: center;
       background: var(--brand4);
       color: var(--brand1);
-      width: 60px;
+      padding: 7px;
+      border-radius: 4px;
     }
   }
 
@@ -297,6 +305,11 @@ export const Comments = styled.div`
   flex-direction: column;
   margin-top: 20px;
 
+  .no_comments {
+    margin-bottom: 25px;
+    color: var(--grey2);
+  }
+
   .container {
     width: 290px;
     padding-bottom: 20px;
@@ -313,6 +326,7 @@ export const Comments = styled.div`
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;
+    width: 100%;
   }
 
   h2 {
@@ -320,27 +334,74 @@ export const Comments = styled.div`
   }
 
   .container-info {
-    margin-left: 28px;
+    margin-left: 8px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     width: 100%;
 
     h3 {
       color: var(--grey1);
+      font-size: 13px;
     }
 
-    h4 {
-      font-weight: 400;
-      font-size: 12px;
-      color: var(--grey3);
+    .div-edit {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      margin-bottom: 10px;
+
+      h4 {
+        height: 0px;
+        font-weight: 400;
+        font-size: 10px;
+        color: var(--grey3);
+      }
+
+      span {
+        font-weight: 400;
+        font-size: 10px;
+        color: var(--grey3);
+      }
+    }
+
+    .trash {
+      cursor: pointer;
+
+      :hover {
+        color: red;
+      }
+    }
+
+    .more {
+      cursor: pointer;
+
+      :hover {
+        background-color: var(--grey6);
+      }
     }
   }
 
+  h5 {
+    margin-left: 50px;
+  }
+
   p {
-    margin-left: 28px;
-    margin-right: 20px;
+    width: 85%;
+    margin-left: 20px;
+    text-align: start;
+    word-break: break-all;
+  }
+
+  .comments-empty {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
   }
 
   @media (min-width: 768px) {
@@ -352,6 +413,14 @@ export const Comments = styled.div`
   @media (min-width: 1000px) {
     .container {
       width: 520px;
+    }
+
+    .container-info {
+      margin-left: 26px;
+    }
+
+    p {
+      margin-left: 40px;
     }
   }
 
@@ -560,9 +629,9 @@ export const Figure = styled.div`
   }
 `;
 
-export const Issoai = styled.div`
+export const DivModal = styled.div`
   @media (max-width: 768px) {
-    .teste {
+    .content {
       width: 344px;
     }
   }

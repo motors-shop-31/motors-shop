@@ -24,9 +24,7 @@ const SellerUserAd = () => {
         const bike: IDataCard[] = [];
         data.forEach((product: IDataCard) => {
           if (product.user.id === id) {
-            product.vehicle === "carro"
-              ? cart.push(product)
-              : bike.push(product);
+            product.vehicle === "car" ? cart.push(product) : bike.push(product);
           }
         });
 
