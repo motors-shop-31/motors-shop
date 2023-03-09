@@ -42,6 +42,7 @@ const ModalForm = ({ setProductCart, setProductMotorbike }: IModalFormProps) => 
   const { closeModal } = useContext(AuthContext);
   const [imagesURLs, setImagesURLs] = useState<string[]>([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [error, setError] = useState("");
 
   useEffect(() => {
     document.body.classList.add("modal_body");
@@ -69,7 +70,7 @@ const ModalForm = ({ setProductCart, setProductMotorbike }: IModalFormProps) => 
     price: yup.number().required("Preço obrigatório"),
     description: yup.string().required("Descrição obrigatória"),
     vehicle: yup.string().required("Tipo do veículo obrigatório"),
-    cover_image: yup.string().required("Url da imagem obrigatória"),
+    cover_image: yup.string()./* .url("Digite uma URL válida") */required("Url da imagem obrigatória"),
   });
 
   const {
@@ -105,33 +106,62 @@ const ModalForm = ({ setProductCart, setProductMotorbike }: IModalFormProps) => 
             setProductCart(cart);
             setProductMotorbike(bike);
           })
-      });
+      })
+      .catch((err) => {
+        console.log(err.response.data.error)
+        setError(err.response.data.error)
+        onOpen()
+      })
   };
 
   return (
     <>
       <ModalBackground>
         <ModalContainer>
-          <Modal isOpen={isOpen} onClose={onClose}>
-            <ModalOverlay />
-            <ModalContent>
-              <ModalHeader>
-                <h2 className="Heading-7-500">Sucesso!</h2>
-              </ModalHeader>
-              <ModalCloseButton />
-              <ModalBody>
-                <ModaMessageContainer>
-                  <h2 className="Heading-7-500">
-                    Seu anúncio foi criado com sucesso!
-                  </h2>
-                  <h3 className="opa body-1-400">
-                    Agora você poderá ver seus negócios crescendo em grande
-                    escala
-                  </h3>
-                </ModaMessageContainer>
-              </ModalBody>
-            </ModalContent>
-          </Modal>
+          {error ?
+            <Modal isOpen={isOpen} onClose={onClose}>
+              <ModalOverlay />
+              <ModalContent>
+                <ModalHeader>
+                  <h2 className="Heading-7-500">Erro!</h2>
+                </ModalHeader>
+                <ModalCloseButton onClick={() => {
+                  setError("");
+                }} />
+                <ModalBody>
+                  <ModaMessageContainer>
+                    <h2 className="Heading-7-500">
+                      Não foi possível criar o anúncio.
+                    </h2>
+                    <h3 className="opa body-1-400">
+                      {error}
+                    </h3>
+                  </ModaMessageContainer>
+                </ModalBody>
+              </ModalContent>
+            </Modal>
+            :
+            <Modal isOpen={isOpen} onClose={onClose}>
+              <ModalOverlay />
+              <ModalContent>
+                <ModalHeader>
+                  <h2 className="Heading-7-500">Sucesso!</h2>
+                </ModalHeader>
+                <ModalCloseButton onClick={() => closeModal()} />
+                <ModalBody>
+                  <ModaMessageContainer>
+                    <h2 className="Heading-7-500">
+                      Seu anúncio foi criado com sucesso!
+                    </h2>
+                    <h3 className="opa body-1-400">
+                      Agora você poderá ver seus negócios crescendo em grande
+                      escala
+                    </h3>
+                  </ModaMessageContainer>
+                </ModalBody>
+              </ModalContent>
+            </Modal>
+          }
           <ModalCard>
             <ModalUpContainer>
               <h1 className="modal_title">Criar anuncio</h1>
