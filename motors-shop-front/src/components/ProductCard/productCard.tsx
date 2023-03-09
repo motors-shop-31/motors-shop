@@ -9,6 +9,7 @@ import { LogoName } from "../../pages/ProductPage/styles";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import { ReactComponent as FrontCarIcon } from "../../assets/front_car.svg";
+import { UserModal } from "../userModal/userModal";
 
 interface props {
   arrayProduto: IDataCard[];
@@ -20,6 +21,8 @@ interface props {
 export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
   const carrosel = useRef<any>();
   const [width, setWidth] = useState(0);
+
+  const [addressEdit, setAddressEdit] = useState(false);
 
   let widthMove = 0;
 
@@ -132,7 +135,12 @@ export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
                   </div>
                   {myAds ? (
                     <div className="conteinerEdit">
-                      <button className="medium Outline1">Editar</button>
+                      <button
+                        className="medium Outline1"
+                        onClick={() => setAddressEdit(true)}
+                      >
+                        Editar
+                      </button>
                       <button
                         className="medium Outline1"
                         onClick={() =>
@@ -151,6 +159,11 @@ export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
           </motion.ul>
         </motion.div>
       )}
+      <UserModal
+        state={addressEdit}
+        setState={setAddressEdit}
+        children={<h1>OLa adasd</h1>}
+      />
     </Conteiner>
   );
 };
