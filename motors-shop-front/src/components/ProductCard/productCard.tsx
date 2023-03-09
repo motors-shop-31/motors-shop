@@ -1,9 +1,6 @@
 import { Conteiner } from "./styled";
-
 import { IDataCard } from "../../interface/productArray";
-
 import { motion } from "framer-motion";
-
 import { AuthContext } from "../../contexts/modalContext";
 import ModalFormEdit from "../ModalEdit";
 import { useContext, useEffect, useMemo, useRef, useState } from "react";
@@ -11,6 +8,7 @@ import { LogoName } from "../../pages/ProductPage/styles";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import { ReactComponent as FrontCarIcon } from "../../assets/front_car.svg";
+import { useDisclosure } from "@chakra-ui/react";
 
 interface props {
   arrayProduto: IDataCard[];
@@ -22,7 +20,6 @@ interface props {
 export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
   const carrosel = useRef<any>();
   const [width, setWidth] = useState(0);
-  const { modal, openModal } = useContext(AuthContext);
 
   let widthMove = 0;
 
@@ -36,19 +33,19 @@ export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
 
   useEffect(() => {
     setWidth(carrosel.current?.scrollWidth - carrosel.current?.offsetWidth);
-  });
+  }, );
 
   return (
     <Conteiner>
+
       {arrayProduto.length === 0 ?
         <div className="empty_list_container">
           <h3 className="Heading-7-500">Ops... Parece que ainda não há anúncios por aqui!</h3>
-          {anuncianteCard ? <button type='button' onClick={() => openModal()} className="big outlineBrand1">Criar anuncio</button> : null}
+          {/* {anuncianteCard ? <button type='button' onClick={() => openModal()} className="big outlineBrand1">Criar anuncio</button> : null} */}
         </div>
         :
         (
           <>
-            {modal ? <ModalFormEdit /> : null}
             <motion.div ref={carrosel} className="carroselConteiner">
               <motion.ul drag="x" dragConstraints={{ right: 0, left: -width }}>
                 {arrayProduto.map((vehicle) => {
@@ -81,6 +78,8 @@ export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
                   const anuncioStatus = published ? "Ativo" : "Inativo";
 
                   return (
+                    <>
+                  
                     <motion.li
                       key={id}
                       onMouseDown={(e) => {
@@ -89,9 +88,11 @@ export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
                       onMouseUp={(e) => {
                         const dif = Math.abs(widthMove - e.clientX);
                         setProduct(vehicle);
-                        if (dif < 5) Navigate(`/product/${id}`, { replace: false });
+
+                        // if (dif < 5) Navigate(`/product/${id}`, { replace: false });
                       }}
                     >
+                      
                       <figure className="conteiner--cart">
                         <img
                           src={cover_image}
@@ -134,10 +135,9 @@ export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
                       {myAds ? (
                         <div className="conteinerEdit">
                           <button
-                            onClick={() => openModal()}
                             className="medium Outline1"
                           >
-                            Editar
+                            Editar 
                           </button>
                           <button className="medium Outline1">Ver como</button>
                         </div>
@@ -145,6 +145,7 @@ export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
                         <></>
                       )}
                     </motion.li>
+                    </>
                   );
                 }
                 )}
