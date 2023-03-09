@@ -4,8 +4,6 @@ import { useNavigate } from "react-router";
 import Navbar from "../../components/Navbar";
 import { Conteiner } from "./styles";
 
-import jwt from "jwt-decode";
-
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
@@ -25,6 +23,7 @@ import Footer from "../../components/Footer";
 import { loginPost } from "../../service/login/login";
 import InputError from "../../components/InputError";
 import { createUser } from "../../service/user/createUser";
+import { IUser, IUserRegister } from "../../interface/userInterface";
 
 const Cadastro = () => {
   const navegar = useNavigate();
@@ -57,10 +56,9 @@ const Cadastro = () => {
       .string()
       .required("Campo obrigatorio")
       .matches(
-        /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/,
-        "E necessario uma data valida dia/mes/ano"
-      )
-      .typeError("E necessario uma data valida dia/mes/ano"),
+        /^\d{4}\/(0?[1-9]|1[012])\/(0?[1-9]|[12][0-9]|3[01])$/,
+        "E necessario uma data valida ano/mes/dia"
+      ),
     tel: yup
       .string()
       .required("Campo obrigatorio")
@@ -90,9 +88,9 @@ const Cadastro = () => {
     resolver: yupResolver(schema),
   });
 
-  function cadastro(data) {
+  function cadastro(data: any) {
     const { cep, state, street, city, number, complement, ...rest } = data;
-    const body = {
+    const body: IUser = {
       ...rest,
       account_type: userType,
       address: { cep, state, street, city, number, complement },

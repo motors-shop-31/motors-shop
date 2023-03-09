@@ -4,8 +4,6 @@ import { IDataCard } from "../../interface/productArray";
 
 import { motion } from "framer-motion";
 
-import { AuthContext } from "../../contexts/modalContext";
-import ModalFormEdit from "../ModalEdit";
 import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { LogoName } from "../../pages/ProductPage/styles";
 import { useNavigate } from "react-router-dom";
@@ -20,7 +18,6 @@ interface props {
 export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
   const carrosel = useRef<any>();
   const [width, setWidth] = useState(0);
-  const { modal, openModal } = useContext(AuthContext);
 
   let widthMove = 0;
 
@@ -38,7 +35,6 @@ export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
 
   return (
     <Conteiner>
-      {modal === true ? <ModalFormEdit /> : null}
       <motion.div ref={carrosel} className="carroselConteiner">
         <motion.ul drag="x" dragConstraints={{ right: 0, left: -width }}>
           {arrayProduto.map((vehicle) => {
@@ -78,8 +74,10 @@ export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
                 }}
                 onMouseUp={(e) => {
                   const dif = Math.abs(widthMove - e.clientX);
-                  setProduct(vehicle);
-                  if (dif < 5) Navigate(`/product/${id}`, { replace: false });
+                  if (!myAds) {
+                    setProduct(vehicle);
+                    if (dif < 5) Navigate(`/product/${id}`, { replace: false });
+                  }
                 }}
               >
                 <figure className="conteiner--cart">
@@ -123,13 +121,15 @@ export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
                 </div>
                 {myAds ? (
                   <div className="conteinerEdit">
+                    <button className="medium Outline1">Editar</button>
                     <button
-                      onClick={() => openModal()}
                       className="medium Outline1"
+                      onClick={() =>
+                        Navigate(`/product/${id}`, { replace: false })
+                      }
                     >
-                      Editar
+                      Ver como
                     </button>
-                    <button className="medium Outline1">Ver como</button>
                   </div>
                 ) : (
                   <></>

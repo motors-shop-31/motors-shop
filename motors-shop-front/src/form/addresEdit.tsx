@@ -52,7 +52,7 @@ export const AddressEdit = ({ setState, user, setUser }: modalProps) => {
       <InputError
         id="cep"
         error={errors.cep}
-        placeholder={user.address.cep.toString()}
+        placeholder={user.address!.cep.toString()}
         label="Cep"
         registerForm={register("cep")}
       />
@@ -62,7 +62,7 @@ export const AddressEdit = ({ setState, user, setUser }: modalProps) => {
           <InputError
             id="state"
             error={errors.state}
-            placeholder={user.address.state}
+            placeholder={user.address!.state}
             label="Estado"
             registerForm={register("state")}
           />
@@ -72,7 +72,7 @@ export const AddressEdit = ({ setState, user, setUser }: modalProps) => {
           <InputError
             id="city"
             error={errors.city}
-            placeholder={user.address.city}
+            placeholder={user.address!.city}
             label="Cidade"
             registerForm={register("city")}
           />
@@ -82,7 +82,7 @@ export const AddressEdit = ({ setState, user, setUser }: modalProps) => {
       <InputError
         id="street"
         error={errors.street}
-        placeholder={user.address.street}
+        placeholder={user.address!.street}
         label="Rua"
         registerForm={register("street")}
       />
@@ -92,7 +92,7 @@ export const AddressEdit = ({ setState, user, setUser }: modalProps) => {
           <InputError
             id="number"
             error={errors.number}
-            placeholder={user.address.number}
+            placeholder={user.address!.number}
             label="Número"
             registerForm={register("number")}
           />
@@ -102,7 +102,7 @@ export const AddressEdit = ({ setState, user, setUser }: modalProps) => {
           <InputError
             id="complement"
             error={errors.complement}
-            placeholder={user.address.complement}
+            placeholder={user.address!.complement}
             label="Complemento"
             registerForm={register("complement")}
           />

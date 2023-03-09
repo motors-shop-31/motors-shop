@@ -29,6 +29,7 @@ import { GlobalContext } from "../../contexts/GlobalContext";
 import { getAllProduct } from "../../service/product/getAllProduct";
 import { IComments, IDataCard } from "../../interface/productArray";
 import { getAllcommentsByProduct } from "../../service/product/getAllcommentsByProduct";
+import { BsWhatsapp } from "react-icons/bs";
 
 export const ProductPage = () => {
   const [value, setValue] = useState("");
@@ -42,6 +43,8 @@ export const ProductPage = () => {
   const [productCart, setProductCart] = useState<IDataCard>({} as IDataCard);
   const [commets, setCommets] = useState<IComments[]>([]);
 
+  const [message, setMessage] = useState("");
+
   const { logged } = useContext(GlobalContext);
 
   const { id } = useParams();
@@ -51,6 +54,9 @@ export const ProductPage = () => {
       .then(({ data }) => {
         data.forEach((product: IDataCard) => {
           if (product.id === id) {
+            setMessage(
+              `Você gostaria de falar com ${product.user.name} sobre o anuncio ${product.title}`
+            );
             setProductCart(product);
             setLoad(true);
           }
@@ -147,7 +153,14 @@ export const ProductPage = () => {
                   })
                 : null}
             </h4>
-            <button className="brand1">Comprar</button>
+            <a
+              className="brand1"
+              target="_blank"
+              href={`https://api.whatsapp.com/send?text=${message}&phone=55${user.tel}`}
+              rel="noreferrer"
+            >
+              Comprar
+            </a>
           </InfoProduct>
           <Description>
             <h2 className="Heading-6-600">Descrição</h2>
@@ -184,6 +197,14 @@ export const ProductPage = () => {
             >
               Ver todos anuncios
             </button>
+            <a
+              className="sucess"
+              target="_blank"
+              href={`https://api.whatsapp.com/send?text=${message}&phone=55${user.tel}`}
+              rel="noreferrer"
+            >
+              Entrar em contato <BsWhatsapp />
+            </a>
           </ProfileProduct>
         </section>
       </Container>

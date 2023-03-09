@@ -115,11 +115,21 @@ export const InfoProduct = styled.div`
     margin-left: 20px;
   }
 
-  button {
+  button,
+  a {
     margin-left: 20px;
     width: 100px;
     height: 38px;
     border-radius: 4px;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    text-decoration: none;
   }
 
   @media (min-width: 1000px) {
@@ -257,10 +267,20 @@ export const ProfileProduct = styled.div`
     text-align: center;
   }
 
-  button {
+  button,
+  a {
     width: 206px;
     height: 45px;
     border-radius: 4px;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    text-decoration: none;
   }
 
   @media (min-width: 1200px) {
