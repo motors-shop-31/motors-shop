@@ -6,12 +6,14 @@ import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 import { ProductCard } from "../../components/ProductCard/productCard";
 import { IDataCard } from "../../interface/productArray";
+import { IUser } from "../../interface/userInterface";
 import { getAllProduct } from "../../service/product/getAllProduct";
 import { Conteiner } from "./styles";
 
 const SellerUserAd = () => {
   const [productCart, setProductCart] = useState<IDataCard[]>([]);
   const [productMotorbike, setProductMotorbike] = useState<IDataCard[]>([]);
+  const [userProduct, setUserProduct] = useState<IUser>({} as IUser);
 
   const { id } = useParams();
 
@@ -28,9 +30,17 @@ const SellerUserAd = () => {
 
         setProductCart(cart);
         setProductMotorbike(bike);
+
+        if (cart.length > 0) {
+          setUserProduct(cart[0].user);
+        } else {
+          setUserProduct(bike[0].user);
+        }
       })
       .catch((err) => console.log(err));
   }, []);
+
+  // console.log(userProduct);
 
   return (
     <Conteiner>
@@ -40,14 +50,10 @@ const SellerUserAd = () => {
         <div className="advertiserCard">
           <p className="seller">SL</p>
           <div className="sellerConteiner">
-            <p className="Heading-6-600">Samuel Leão</p>{" "}
+            <p className="Heading-6-600">{userProduct.name}</p>
             <p className="sellerType">Anunciante</p>
           </div>
-          <p className="body-1-400 description">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s
-          </p>
+          <p className="body-1-400 description">{userProduct.description}</p>
         </div>
       </div>
 

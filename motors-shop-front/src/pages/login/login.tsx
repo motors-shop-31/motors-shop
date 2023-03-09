@@ -24,6 +24,10 @@ import Footer from "../../components/Footer";
 import { loginPost } from "../../service/login/login";
 import InputError from "../../components/InputError";
 
+interface user {
+  id: string;
+}
+
 const Login = () => {
   const navegar = useNavigate();
 
@@ -50,11 +54,11 @@ const Login = () => {
     resolver: yupResolver(schema),
   });
 
-  function login(data) {
+  function login(data: any) {
     loginPost(data)
       .then((response) => {
         const { token } = response.data;
-        const user = jwt(token);
+        const user: user = jwt(token);
 
         localStorage.setItem("token", token);
         localStorage.setItem("userId", user.id);
@@ -97,7 +101,7 @@ const Login = () => {
         </p>
 
         <button className="medium brand1">Entrar</button>
-        <p lassName="body-2-500">Ainda não possui conta?</p>
+        <p className="body-2-500">Ainda não possui conta?</p>
         <button
           className="medium Outline2"
           type="button"

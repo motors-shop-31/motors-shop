@@ -15,7 +15,9 @@ import { GrFormClose } from "react-icons/gr";
 import * as yup from "yup";
 import { IPostResponse } from "../../contexts/InputsContext";
 import { AuthContext } from "../../contexts/modalContext";
+import { IDataCard } from "../../interface/productArray";
 import api from "../../service/api";
+import { getAllProduct } from "../../service/product/getAllProduct";
 import Options from "../Options";
 import {
   BottomButtons,
@@ -31,7 +33,12 @@ import {
   ModaMessageContainer,
 } from "./style";
 
-const ModalForm = () => {
+interface IModalFormProps {
+  setProductCart: React.Dispatch<React.SetStateAction<IDataCard[]>>
+  setProductMotorbike: React.Dispatch<React.SetStateAction<IDataCard[]>>
+}
+
+const ModalForm = ({ setProductCart, setProductMotorbike }: IModalFormProps) => {
   const { closeModal } = useContext(AuthContext);
   const [imagesURLs, setImagesURLs] = useState<string[]>([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -85,6 +92,19 @@ const ModalForm = () => {
       })
       .then((res) => {
         onOpen();
+        getAllProduct()
+          .then((res) => {
+            const userId = localStorage.getItem("userId")
+            const cart: IDataCard[] = [];
+            const bike: IDataCard[] = [];
+            res.data.forEach((product: IDataCard) => {
+              if (product.user.id === userId) {
+                product.vehicle === "car" ? cart.push(product) : bike.push(product);
+              }
+            });
+            setProductCart(cart);
+            setProductMotorbike(bike);
+          })
       });
   };
 
