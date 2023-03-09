@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import { ReactComponent as FrontCarIcon } from "../../assets/front_car.svg";
 import { useDisclosure } from "@chakra-ui/react";
+import { ModalEdit } from "../ModalFormEdit/ModalEdit";
 
 interface props {
   arrayProduto: IDataCard[];
@@ -16,9 +17,11 @@ interface props {
   buttonHandler?: () => void;
 }
 
-export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
+export const ProductCard = ({ arrayProduto, anuncianteCard, myAds}: props) => {
   const carrosel = useRef<any>();
   const [width, setWidth] = useState(0);
+  const [modalOpen, setModalOpen] = useState(false)
+  const [id, setID] = useState<any>();
 
   let widthMove = 0;
 
@@ -131,7 +134,13 @@ export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
                   </div>
                   {myAds ? (
                     <div className="conteinerEdit">
-                      <button className="medium Outline1">Editar</button>
+                      <button 
+                      onClick={() => {
+                         setModalOpen(true); 
+                          setID(id);
+                      }
+                      }
+                      className="medium Outline1">Editar</button>
                       <button
                         className="medium Outline1"
                         onClick={() =>
@@ -149,7 +158,15 @@ export const ProductCard = ({ arrayProduto, anuncianteCard, myAds }: props) => {
             })}
           </motion.ul>
         </motion.div>
+
       )}
+      <ModalEdit
+        state={modalOpen}
+        setState={setModalOpen}
+        children={<h1>OLa adasd</h1>}
+        idProduct={id}
+      />
+      {/* <ModalFormEdit modalOpen={modalOpen} setModalOpen={setModalOpen}/> */}
     </Conteiner>
   );
 };

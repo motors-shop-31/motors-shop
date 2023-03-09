@@ -1,9 +1,6 @@
-import { Modal, ModalCloseButton, ModalContent, ModalOverlay, useDisclosure } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { AuctionCard } from "../../components/AuctionCard";
 import Footer from "../../components/Footer";
-import ModalFormEdit from "../../components/ModalEdit";
-import { ModalBoryStyled, ModalHeaderStryled } from "../../components/ModalSucess/style";
 import Navbar from "../../components/Navbar";
 import { ProductCard } from "../../components/ProductCard/productCard";
 import { IDataCard } from "../../interface/productArray";
