@@ -8,12 +8,11 @@ import ForgotCode from "../pages/forgotCode/forgotCode";
 import ResetPassword from "../pages/resetPassword/resetPassword";
 import { ForgotPassword } from "../pages/forgotPassword/forgotPassword";
 import { Login } from "../pages/login/login";
-import { Cadastro } from "../pages/cadastro/cadastro";
+import { Cadastro } from "../pages/register/register";
 
 export const MainRoute = () => {
   return (
     <Routes>
-      {/* <Route path="/" element={<ModalFormEdit />} /> */}
       <Route path="/Dashboard" element={<Dashboard />} />
       <Route path="/product/:id" element={<ProductPage />} />
       <Route path="/seller/:id" element={<SellerUserAd />} />

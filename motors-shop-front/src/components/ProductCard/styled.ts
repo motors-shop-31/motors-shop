@@ -26,7 +26,18 @@ export const Conteiner = styled.div`
       overflow: hidden;
     }
 
+    ul {
+      display: flex;
+    }
+
+    .conteiner--cart:hover img {
+      -moz-transform: scale(1.4);
+      -webkit-transform: scale(1.4);
+      transform: scale(1.4);
+    }
+
     .conteiner--cart {
+      overflow: hidden;
       position: relative;
 
       width: 17rem;
@@ -43,11 +54,8 @@ export const Conteiner = styled.div`
       }
 
       img {
-        &:hover {
-          -moz-transform: scale(1.4);
-          -webkit-transform: scale(1.4);
-          transform: scale(1.4);
-        }
+        min-width: 100%;
+        min-height: 100%;
       }
 
       .no_image {
