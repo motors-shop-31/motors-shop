@@ -20,7 +20,7 @@ import {
 import api from "../../service/api";
 import { AuthContext } from "../../contexts/modalContext";
 import { useContext } from "react";
-import { InputErrorPassword } from "../../components/InputError";
+import InputError from "../../components/InputError";
 
 const ResetPassword = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -55,7 +55,7 @@ const ResetPassword = () => {
       setTimeout(() => {
         navegar("/Login", { replace: false });
       }, 2500);
-    })
+    });
   }
 
   return (
@@ -67,20 +67,24 @@ const ResetPassword = () => {
             <p>Inisira a nova senha</p>
           </Header>
           <form onSubmit={handleSubmit(resetPasswordFunction)}>
-            <InputErrorPassword
+            <div></div>
+            <InputError
               id="new_password"
               error={errors.new_password}
               placeholder="Digite a nova senha"
               label="Nova Senha"
               registerForm={register("new_password")}
+              type="password"
             />
-            <InputErrorPassword
+            <InputError
               id="confirm_password"
               error={errors.confirm_password}
               placeholder="Confirmação da senha"
               label="Confirmar Senha"
               registerForm={register("confirm_password")}
+              type="password"
             />
+
             <button type="submit">Enviar</button>
           </form>
         </Content>
@@ -94,7 +98,7 @@ const ResetPassword = () => {
               <p className="title">
                 Senha atualizada com sucesso, você será redirecionado em breve
               </p>
-            <CircularProgress isIndeterminate color="green.300" />
+              <CircularProgress isIndeterminate color="green.300" />
             </ModalBoryStyled>
           </ModalContent>
         </Modal>

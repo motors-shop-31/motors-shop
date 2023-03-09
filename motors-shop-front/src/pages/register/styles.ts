@@ -52,6 +52,7 @@ export const Conteiner = styled.div`
 
       :focus-within {
         outline: 2px solid black;
+        background-color: var(--grey8);
       }
 
       input {
@@ -59,6 +60,7 @@ export const Conteiner = styled.div`
         border: none;
         :focus {
           outline: none;
+          background-color: var(--grey8);
         }
       }
     }
