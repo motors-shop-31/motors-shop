@@ -9,7 +9,8 @@ export const Conteiner = styled.div`
   }
 
   ul {
-    background-color: var(--whiteFixed);
+    display: flex;
+    width: fit-content;
     padding: 1rem;
     padding-left: 0px;
 
@@ -29,7 +30,14 @@ export const Conteiner = styled.div`
       display: flex;
     }
 
+    .conteiner--cart:hover img {
+      -moz-transform: scale(1.4);
+      -webkit-transform: scale(1.4);
+      transform: scale(1.4);
+    }
+
     .conteiner--cart {
+      overflow: hidden;
       position: relative;
 
       width: 17rem;
@@ -46,11 +54,8 @@ export const Conteiner = styled.div`
       }
 
       img {
-        &:hover {
-          -moz-transform: scale(1.4);
-          -webkit-transform: scale(1.4);
-          transform: scale(1.4);
-        }
+        min-width: 100%;
+        min-height: 100%;
       }
 
       .no_image {
@@ -146,12 +151,16 @@ export const Conteiner = styled.div`
 
         color: var(--brand1);
         background-color: var(--brand4);
+
+        border-radius: 4px;
       }
       .year {
         padding: 4px 8px;
 
         color: var(--brand1);
         background-color: var(--brand4);
+
+        border-radius: 4px;
       }
       .price {
         padding: 4px 8px;

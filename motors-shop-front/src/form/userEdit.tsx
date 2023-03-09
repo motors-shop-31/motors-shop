@@ -81,7 +81,7 @@ export const UserEditForm = ({ setState, user, setUser }: modalProps) => {
   const deleteUser = () => {
     const tokenJson = localStorage.getItem("token");
     if (tokenJson) {
-      userDelete(tokenJson, user.id)
+      userDelete(tokenJson, user.id!)
         .then(() => {
           setState(false);
           localStorage.clear();

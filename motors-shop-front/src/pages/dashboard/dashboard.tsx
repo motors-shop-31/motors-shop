@@ -13,8 +13,6 @@ import { Conteiner } from "./styles";
 const Dashboard = () => {
   const [productCart, setProductCart] = useState<IDataCard[]>([]);
   const [productMotorbike, setProductMotorbike] = useState<IDataCard[]>([]);
-  const [modalOpen, setModalOpen ] = useState(false)
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
 
 
@@ -24,7 +22,7 @@ const Dashboard = () => {
         const cart: IDataCard[] = [];
         const bike: IDataCard[] = [];
         data.forEach((product: IDataCard) => {
-          product.vehicle === "carro" ? cart.push(product) : bike.push(product);
+          product.vehicle === "car" ? cart.push(product) : bike.push(product);
         });
 
         setProductCart(cart);

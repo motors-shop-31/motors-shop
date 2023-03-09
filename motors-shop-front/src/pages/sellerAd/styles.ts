@@ -1,5 +1,12 @@
 import styled from "styled-components";
 
+export const Background = styled.div`
+  width: 100%;
+  position: absolute;
+  background-color: var(--grey8);
+  z-index: 0;
+`;
+
 export const Conteiner = styled.div`
 
   max-width: 100%;
